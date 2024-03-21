@@ -1,0 +1,257 @@
+<!--Page Content-->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col">
+                <h3 class="page-title">Documents Type</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Employee</a></li>
+                    <li class="breadcrumb-item active">Documents Type</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                &nbsp;  
+                <button  class="btn btn-primary" data-toggle="modal" data-target="#add_Documents-type"><i
+                        class="fa fa-plus"></i> Add Documents Type</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Documents Type</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                        class="table table-striped custom-table datatable mb-0" id="pdfSection">
+                        <div style="display:none;">
+                                <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                                <h3>No:47, 1st Floor, </h3>
+                                <h3>Prestige Tower,Haddows Road,</h3>
+                                <h3>Nungamabakkam,Chennai - 600006</h3>
+                                <h3 class="text-center">Documents Type</h3>
+                                <!-- <colgroup align="center"></colgroup> -->
+                            </div>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Documents Type</th>
+                                    <th class="text-center">Status</th>
+                                    <!-- <th class="text-center prt">Print</th> -->
+                                    <th class="text-right prt">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Certificate</td>
+                                    <td class="text-center">
+                                        <div class="dropdown action-label">
+                                            <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa fa-dot-circle-o text-purple"></i>{{status || statusValue}}
+                                                Active
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" (click)="getStatus('Active')"><i
+                                                        class="fa fa-dot-circle-o text-purple"></i>
+                                                    Active</a>
+                                                <a class="dropdown-item" (click)="getStatus('Deactive')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Inactive</a>
+                                                <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                        class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                                <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Declined</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-danger get-pdf"><i class="fa fa-file-pdf-o"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-success exceller"><i class="fa fa-file-excel-o"></i></button>
+                                        </div>
+                                    </td> -->
+                                    <td class="text-right prt">
+                                        <div class="dropdown dropdown-action">
+                                            <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#edit_department" (click)="edit(item.id)"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#delete_department" (click)="tempId = item.id"><i
+                                                        class="fa fa-trash-o m-r-5"></i>
+                                                    Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Adhaar Card</td>
+                                    <td class="text-center">
+                                        <div class="dropdown action-label">
+                                            <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa fa-dot-circle-o text-purple"></i>{{status || statusValue}}
+                                                Active
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" (click)="getStatus('Active')"><i
+                                                        class="fa fa-dot-circle-o text-purple"></i>
+                                                    Active</a>
+                                                <a class="dropdown-item" (click)="getStatus('Deactive')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Inactive</a>
+                                                <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                        class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                                <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Declined</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-danger get-pdf"><i class="fa fa-file-pdf-o"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-success exceller"><i class="fa fa-file-excel-o"></i></button>
+                                        </div>
+                                    </td> -->
+                                    <td class="text-right prt">
+                                        <div class="dropdown dropdown-action">
+                                            <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#edit_department" (click)="edit(item.id)"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#delete_department" (click)="tempId = item.id"><i
+                                                        class="fa fa-trash-o m-r-5"></i>
+                                                    Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Driving Lisence</td>
+                                    <td class="text-center">
+                                        <div class="dropdown action-label">
+                                            <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa fa-dot-circle-o text-purple"></i>{{status || statusValue}}
+                                                Active
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" (click)="getStatus('Active')"><i
+                                                        class="fa fa-dot-circle-o text-purple"></i>
+                                                    Active</a>
+                                                <a class="dropdown-item" (click)="getStatus('Deactive')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Inactive</a>
+                                                <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                        class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                                <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Declined</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-danger get-pdf"><i class="fa fa-file-pdf-o"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-success exceller"><i class="fa fa-file-excel-o"></i></button>
+                                        </div>
+                                    </td> -->
+                                    <td class="text-right prt">
+                                        <div class="dropdown dropdown-action">
+                                            <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#edit_department" (click)="edit(item.id)"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#delete_department" (click)="tempId = item.id"><i
+                                                        class="fa fa-trash-o m-r-5"></i>
+                                                    Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+        </div>
+    </div>
+    <!-- Add Department Modal -->
+<div id="add_Documents-type" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Documents Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addDocumentsType()" [formGroup]="addDocumentsTypeForm">
+                    <div class="form-group">
+                        <label>Documents Type</label>
+                        <input class="form-control" type="text" placeholder="Documents Type">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea class="form-control" type="text" placeholder="Notes"></textarea>
+                    </div>
+                        
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Department Modal -->
+
+</div>
+<!--/Page Content-->

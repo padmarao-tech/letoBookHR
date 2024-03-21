@@ -1,0 +1,297 @@
+
+        <!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Designations</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Designations</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                &nbsp;  
+                <a  class="btn add-btn " style="border-radius: 5px;" data-toggle="modal" data-target="#add_designation"><i
+                        class="fa fa-plus"></i> Add Designation</a>
+                        
+            </div>
+             <div class="col-auto float-right ml-auto">
+                <a  class="btn add-btn" (click)="getvalueofarray()"><i
+                        class="fa fa-plus"></i> Get Select row
+                </a>
+            </div> 
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Designation</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                    class="table table-striped custom-table mb-0 nowrap datatable" id="pdfSection">
+                    <div style="display:none;">
+                        <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                        <h3>No:47, 1st Floor, </h3>
+                        <h3>Prestige Tower,Haddows Road,</h3>
+                        <h3>Nungamabakkam,Chennai - 600006</h3>
+                        <h3 class="text-center">Designation</h3>
+                        <!-- <colgroup align="center"></colgroup> -->
+                    </div>
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">Select</th>
+                            <th style="width: 30px;">ID#</th>
+                            <th>Designation Code</th>
+                            <th>Designation Name</th>
+                            <th>Department</th>
+                            <th class="text-center">Status </th>
+                            <!-- <th class="text-center prt">Print</th> -->
+                            <th class="text-right prt">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of lstDesignation">
+                             <td style="text-align: center;">
+                                <input type="checkbox" [(ngModel)]="item.myselect" (change)="item.myselect = $event.target.checked ? 1: 0">
+                              </td>
+                            <td>{{item.uid}}</td>
+                            <td>{{item.designationCode}}</td>
+                            <td>{{item.designationName}}</td>
+                            <td>{{item.departmentName}}</td>
+                            <td class="text-center">
+                                <div class="dropdown action-label">
+                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa fa-dot-circle-o text-purple"></i>{{status || statusValue}}
+                                        {{item.status}}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- getStatus()    added item.id-->
+                                        <a class="dropdown-item" (click)="getStatus('Active',item.uid)"><i
+                                                class="fa fa-dot-circle-o text-purple"></i>
+                                            Active</a>
+                                        <a class="dropdown-item" (click)="getStatus('Deactive',item.uid)"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>
+                                            Inactive</a>
+                                        <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                        <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>
+                                            Declined</a> -->
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td class="prt">
+                                <div class="leave-action text-center">
+                                    <button class="btn btn-sm btn-primary"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                    &nbsp;
+                                    <button class="btn btn-sm btn-danger get-pdf"><i class="fa fa-file-pdf-o"></i></button>
+                                    &nbsp;
+                                    <button class="btn btn-sm btn-success exceller"><i class="fa fa-file-excel-o"></i></button>
+                                </div>
+                            </td> -->
+                            <td class="text-right prt">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_designation" (click)="edit(item.uid)"><i
+                                                class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_designation" (click)="tempId = item.uid"><i
+                                                class="fa fa-trash-o m-r-5"></i>
+                                            Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!-- Add Designation Modal -->
+<div id="add_designation" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Designation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addDesignation()" [formGroup]="addDesignationForm">
+                    <div class="form-group">
+                        <label>Designation Code <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Designation Code"
+                            [class.invalid]="addDesignationForm.get('DesignationCode').invalid && addDesignationForm.get('DesignationCode').touched"
+                            formControlName="DesignationCode">
+                        <div
+                            *ngIf="addDesignationForm.get('DesignationCode').invalid && addDesignationForm.get('DesignationCode').touched">
+                            <small
+                                *ngIf="addDesignationForm.get('DesignationCode').invalid && addDesignationForm.get('DesignationCode').touched"
+                                class="text-danger"> Designation Code is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Designation Name"
+                            [class.invalid]="addDesignationForm.get('DesignationName').invalid && addDesignationForm.get('DesignationName').touched"
+                            formControlName="DesignationName">
+                        <div
+                            *ngIf="addDesignationForm.get('DesignationName').invalid && addDesignationForm.get('DesignationName').touched">
+                            <small
+                                *ngIf="addDesignationForm.get('DesignationName').invalid && addDesignationForm.get('DesignationName').touched"
+                                class="text-danger"> Designation Name is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Department <span class="text-danger">*</span></label>
+                        <select class="select form-control" [class.invalid]="addDesignationForm.get('DepartmentName').invalid &&
+                            addDesignationForm.get('DepartmentName').touched" formControlName="DepartmentName">
+                            <option>Select Department</option>
+                            <option>Web Development</option>
+                            <option>IT Management</option>
+                            <option> Marketing</option>
+                        </select>
+                        <div
+                            *ngIf="addDesignationForm.get('DepartmentName').invalid && addDesignationForm.get('DepartmentName').touched">
+                            <small
+                                *ngIf="addDesignationForm.get('DepartmentName').invalid && addDesignationForm.get('DepartmentName').touched"
+                                class="text-danger"> Department is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea class="form-control" type="text" placeholder="Notes"></textarea>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Designation Modal -->
+
+<!-- Edit Designation Modal -->
+<div id="edit_designation" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Designation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="editDesignation()" [formGroup]="editDesignationForm">
+                    <div class="form-group">
+                        <label>Designation Code <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Designation Code"
+                            [class.invalid]="editDesignationForm.get('DesignationCode').invalid && editDesignationForm.get('DesignationCode').touched"
+                            formControlName="DesignationCode">
+                        <div
+                            *ngIf="editDesignationForm.get('DesignationCode').invalid && editDesignationForm.get('DesignationCode').touched">
+                            <small
+                                *ngIf="editDesignationForm.get('DesignationCode').invalid && editDesignationForm.get('DesignationCode').touched"
+                                class="text-danger"> Designation Code is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Designation Name"
+                            [class.invalid]="editDesignationForm.get('DesignationName').invalid && editDesignationForm.get('DesignationName').touched"
+                            formControlName="DesignationName">
+                        <div
+                            *ngIf="editDesignationForm.get('DesignationName').invalid && editDesignationForm.get('DesignationName').touched">
+                            <small
+                                *ngIf="editDesignationForm.get('DesignationName').invalid && editDesignationForm.get('DesignationName').touched"
+                                class="text-danger"> Designation Name is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Department <span class="text-danger">*</span></label>
+                        <select class="select form-control" [class.invalid]="editDesignationForm.get('DepartmentName').invalid &&
+                        editDesignationForm.get('DepartmentName').touched" formControlName="DepartmentName">
+                            <option>Select Department</option>
+                            <option>Web Development</option>
+                            <option>IT Management</option>
+                            <option> Marketing</option>
+                        </select>
+                        <div
+                            *ngIf="editDesignationForm.get('DepartmentName').invalid && editDesignationForm.get('DepartmentName').touched">
+                            <small
+                                *ngIf="editDesignationForm.get('DepartmentName').invalid && editDesignationForm.get('DepartmentName').touched"
+                                class="text-danger"> Department is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea class="form-control" type="text" placeholder="Notes"></textarea>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Designation Modal -->
+
+<!-- Delete Designation Modal -->
+<div class="modal custom-modal fade" id="delete_designation" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Designation</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="deleteDesignation()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Designation Modal -->
+    
+    <!-- /Page Wrapper -->

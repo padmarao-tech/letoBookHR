@@ -1,0 +1,246 @@
+<!-- Page Content -->
+<style>
+    .modal-backdrop.show {
+        opacity: 0 !important;
+        transition-duration: 400ms;
+        overflow: scroll !important;
+    }
+    </style>
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Payroll Register</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Payroll</a></li>
+                        <li class="breadcrumb-item active">Payroll Register</li>
+                    </ul>
+                </div>
+                <div class="text-right mb-4 clearfix">
+                    <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                    &nbsp;
+                    <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                    &nbsp;
+                    <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+    
+        <!-- Search Filter -->
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-2 col-12">
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating" (input)="searchName($event.target.value)" (focusout) = "rerender()">
+                    <label class="focus-label">Employee ID</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-2 col-12">
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating" (input)="searchName($event.target.value)" (focusout) = "rerender()">
+                    <label class="focus-label">Employee Name</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-2 col-12">
+                <div class="form-group form-focus select-focus">
+                    <select class="select form-control" (input)="searchStatus($event.target.value)">
+                        
+                        <option value = '0'> Select Designation </option>
+                        <option value = '1'> Web Developer </option>
+                        <option value = '2'> Web Designer </option>
+                        <option value = '3'>Android Developer</option>
+                        <option value = '4'>Ios Developer</option>
+                    </select>
+                    <label class="focus-label">Designation</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-2 col-12">
+                <div class="form-group form-focus cal-icon">
+                    <input type="text" class="form-control floating datetimepicker" bsDatepicker (input)="searchDate($event.target.value)" (focusout) = "rerender()">
+                    <label class="focus-label">Payroll Month</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-4 col-12">
+                <a  class="btn btn-success btn-block" > Search </a>
+            </div>
+        </div>
+        <!-- /Search Filter -->
+        
+        <!-- Page Tab -->
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="table-responsive  print-box" id="print-section">
+                            <h3 class="page-title prt-header text-center">Payroll Register Report</h3>    
+                            <div class="row printClass">
+                                <div class="col-sm-6 m-b-20">
+                                    <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>Leto Systems Pvt.Ltd</li>
+                                        <li>No.47. 1st Floor</li>
+                                        <li>Prestige Tower,Haddows Road,</li>
+                                        <li>Nungamabakkam, Chennai - 600006</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- -->
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-striped custom-table nowrap datatable"  id="pdfSection">
+                                <div style="display:none;">
+                                    <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                                    <h3>No:47, 1st Floor, </h3>
+                                    <h3>Prestige Tower,Haddows Road,</h3>
+                                    <h3>Nungamabakkam,Chennai - 600006</h3>
+                                    <h3 class="text-center">Payroll Register</h3>
+                                    <!-- <colgroup align="center"></colgroup> -->
+                                </div>
+                                <thead>
+                                    <!-- <tr>
+                                        <th rowspan="2">Name</th>
+                                        <th colspan="2">HR Information</th>
+                                        <th colspan="3">Contact</th>
+                                    </tr> -->
+                                    <tr style="box-shadow: none;">
+                                        <!-- style="background: #f7f7f7;border: none;box-shadow: none;" -->
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="border: 1px solid #e5e5e5;border-right: none;border-bottom: none;"></th>
+                                        <th rowspan="1" style="border-bottom: none;"></th>
+                                        <th rowspan="1"  style="border-bottom: none;"></th>
+                                        <th colspan="1" style="border-bottom: none;">Earnings</th>
+                                        <th rowspan="1" style="border-bottom: none;"></th>
+                                        <th rowspan="1"  style="border: 1px solid #e5e5e5;border-left: none;border-bottom: none;"></th>
+                                        <th rowspan="1"  style="border: 1px solid #e5e5e5;border-right: none;border-bottom: none;"></th>
+                                        <th rowspan="1" style="border-bottom: none;"></th>
+                                        <th rowspan="1" style="border-bottom: none;"></th>
+                                        <th colspan="1" style="border-bottom: none;">Dedutions</th>
+                                        <th rowspan="1" style="border-bottom: none;"></th>
+                                        <th rowspan="1"  style="border: 1px solid #e5e5e5;border-left: none;border-bottom: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <th rowspan="1" style="background: #f7f7f7;border: none;box-shadow: none;"></th>
+                                        <!-- <th colspan="3">Contact</th> -->
+                                    </tr>
+                                    <tr>
+                                        <th>Employee Name</th>
+                                        <th>Employee ID</th>
+                                        <th>Month & Year</th>
+                                        <th>Location</th>
+                                        <th>CTC</th>
+                                        <th>Working Days</th>
+                                        <th>Basic</th>
+                                        <th>DA</th>
+                                        <th>HRA</th>
+                                        <th>Conveyance</th>
+                                        <th>Allowance</th>
+                                        <th>Medical Allowance</th>
+                                        <th>TDS</th>
+                                        <th>ESI</th>
+                                        <th>PF</th>
+                                        <th>Leave</th>
+                                        <th>Prof. Tax</th>
+                                        <th>Labour Welfare</th>
+                                        <!-- <th class="prt">Print</th> -->
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>E1001</td>
+                                        <td>Jan , 2021</td>
+                                        <td>Chennai</td>
+                                        <td>25,000</td>
+                                        <td>28</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>10010</td>
+                                        <td>0.00</td>
+                                        <td>31</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1.0011</td>
+                                        <td>5.021</td>
+                                        <td>28</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <!-- <td class="prt">
+                                            <div class="leave-action text-center">
+                                                <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            </div>
+                                        </td> -->
+                                        <td>0.00</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>E1002</td>
+                                        <td>Jan , 2021</td>
+                                        <td>Chennai</td>
+                                        <td>25,000</td>
+                                        <td>27</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1.0011</td>
+                                        <td>0.00</td>
+                                        <td>28</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1.0011</td>
+                                        <td>5.021</td>
+                                        <td>28</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <!-- <td class="prt">
+                                            <div class="leave-action text-center">
+                                                <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            </div>
+                                        </td> -->
+                                        <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>E1003</td>
+                                        <td>Jan , 2021</td>
+                                        <td>Chennai</td>
+                                        <td>25,000</td>
+                                        <td>27</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1.0011</td>
+                                        <td>0.00</td>
+                                        <td>28</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1.0011</td>
+                                        <td>5.021</td>
+                                        <td>28</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <!-- <td class="prt">
+                                            <div class="leave-action text-center">
+                                                <button class="btn btn-sm btn-primary payslip-print2"   printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            </div>
+                                        </td> -->
+                                        <td>0.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                         
+                    </div>
+                
+            </div>
+        </div>
+        <!-- /Page Content -->
+    
+    </div>
+    
+    
+
+    
+    
+    

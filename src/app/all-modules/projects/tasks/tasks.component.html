@@ -1,0 +1,1081 @@
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="index.html"><i class="la la-home"></i> <span>Back to Home</span></a>
+                </li>
+                <li class="menu-title">Projects <a data-toggle="modal" data-target="#create_project"><i
+                            class="fa fa-plus"></i></a></li>
+                <li>
+                    <a href="javaScript:void(0)">Project Management</a>
+                </li>
+                <li class="active">
+                    <a href="javaScript:void(0)">Hospital Administration</a>
+                </li>
+                <li>
+                    <a href="javaScript:void(0)">Video Calling App</a>
+                </li>
+                <li>
+                    <a href="javaScript:void(0)">Office Management</a>
+                </li>
+                <li (click)="addValueGet(newProject.value);" #newProject>
+                    <a href="javaScript:void(0)">LetoBookHR</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /Sidebar -->
+
+<!--PageContent-->
+<div class="chat-main-row">
+    <div class="chat-main-wrapper">
+        <div class="col-lg-7 message-view task-view task-left-sidebar">
+            <div class="chat-window">
+                <div class="fixed-header">
+                    <div class="navbar">
+                        <div class="float-left mr-auto">
+                            <div class="add-task-btn-wrapper">
+                                <span class="add-task-btn btn btn-white btn-sm">
+                                    Add Task
+                                </span>
+                            </div>
+                        </div>
+                        <a class="task-chat profile-rightbar float-right" id="task_chat" href="#task_window"><i
+                                class="fa fa fa-comment"></i></a>
+                        <ul class="nav float-right custom-menu">
+                            <li class="nav-item dropdown dropdown-action">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                                        class="fa fa-cog"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" >Pending Tasks</a>
+                                    <a class="dropdown-item" >Completed Tasks</a>
+                                    <a class="dropdown-item" >All Tasks</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chat-contents">
+                    <div class="chat-content-wrap">
+                        <div class="chat-wrap-inner">
+                            <div class="chat-box">
+                                <div class="task-wrapper">
+                                    <div class="task-list-container">
+                                        <div class="task-list-body" style="max-height: 100%;">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card flex-fill">
+                                                        
+                                                        <div class="card-body">
+                                                            <form [formGroup]="addTaskForm">
+                                                                <!-- [formGroup]="basicForm" -->
+                                                                <div class="row">
+                                                                    <!-- <div class="form-group col-md-12">
+                                                                        <label class="col-form-label">Referance No</label>
+                                                                        <div class="">
+                                                                            <textarea type="text" class="form-control" placeholder="Task Name" #newTask></textarea>
+                                                                        </div>
+                                                                    </div> -->
+                                                                    
+                                                                    <div class="form-group col-md-12">
+                                                                        <label class="col-form-label">Project</label>
+                                                                        <div class="">
+                                                                            <select type="text" class="select form-control" #newItem>
+                                                                                <option>--Select--</option>
+                                                                                <option>LetoBookHR</option>
+                                                                                <option>LetoSys</option>
+                                                                                <option>LetoBook</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-12">
+                                                                        <label class="col-form-label">Task Name</label>
+                                                                        <div class="">
+                                                                            <textarea type="text" class="form-control" placeholder="Task Name" #newTask></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group col-md-12">
+                                                                        <label class="col-form-label" for="item-input">Date</label>
+                                                                        <div class="cal-icon">
+                                                                            <input class="form-control datetimepicker" placeholder="Date" type="text" bsDatepicker type="text" #newDate>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-12">
+                                                                        <label class="col-form-label" for="item-input">Task Due Date</label>
+                                                                        <div class="cal-icon">
+                                                                            <input class="form-control datetimepicker" placeholder="Task Due Date" type="text" bsDatepicker type="text" #newDate>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-12">
+                                                                        <label class="col-form-label" for="item-input">Task Description</label>
+                                                                        <div class="">
+                                                                            <textarea type="text" placeholder="Task Description" class="form-control" #newDis></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-12">
+                                                                        <label class="d-block" for="item-input">Assignee</label>
+                                                                        <ng-multiselect-dropdown
+                                                                                [placeholder]="'Assignee'"
+                                                                                class="form-control"
+                                                                               [settings]="dropdownSettings"
+                                                                                [data]="dropdownList"
+                                                                                [(ngModel)]="selectedItems"
+                                                                                (onSelect)="onItemSelect($event)"
+                                                                                (onSelectAll)="onSelectAll($event)"
+                                                                                #newAssign>
+                                                                        </ng-multiselect-dropdown>
+                                                                    </div>
+                                                                    
+                                                                    <!-- 29-April-21 Morning Work -->
+                                                                    <!-- All Employees Grid -->
+                                                                </div>
+                                                                <!-- <div class="form-group row">
+                                                                    <label class="col-lg-3 col-form-label">Username</label>
+                                                                    <div class="col-lg-9">
+                                                                        <input type="text" class="form-control" [class.invalid]="basicForm.get('userName').invalid && basicForm.get('userName').touched"
+                                                                        formControlName="userName">
+                                                                        <div
+                                                                        *ngIf="basicForm.get('userName').invalid && basicForm.get('userName').touched">
+                                                                        <small
+                                                                            *ngIf="basicForm.get('userName').invalid && basicForm.get('userName').touched"
+                                                                            class="text-danger"> *User name is required</small>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-3 col-form-label">Password</label>
+                                                                    <div class="col-lg-9">
+                                                                        <input type="password" class="form-control" [class.invalid]="basicForm.get('password').invalid && basicForm.get('password').touched"
+                                                                        formControlName="password">
+                                                                        <div
+                                                                        *ngIf="basicForm.get('password').invalid && basicForm.get('password').touched">
+                                                                        <small
+                                                                            *ngIf="basicForm.get('password').invalid && basicForm.get('password').touched"
+                                                                            class="text-danger"> *Password is required</small>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-3 col-form-label">Repeat Password</label>
+                                                                    <div class="col-lg-9">
+                                                                        <input type="password" class="form-control" [class.invalid]="basicForm.get('repeatPassword').invalid && basicForm.get('repeatPassword').touched"
+                                                                        formControlName="repeatPassword">
+                                                                        <div
+                                                                        *ngIf="basicForm.get('repeatPassword').invalid && basicForm.get('repeatPassword').touched">
+                                                                        <small
+                                                                            *ngIf="basicForm.get('repeatPassword').invalid && basicForm.get('repeatPassword').touched"
+                                                                            class="text-danger"> *Repeat password is required</small>
+                                                                    </div>
+                                                                    </div>
+                                                                </div> -->
+
+                                                                <div class="row form-group">
+                                                                    <!-- <label class="d-block">Assignee</label>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="addition_assignee" id="addition_no_emp"
+                                                                            value="option1" checked>
+                                                                        <label class="form-check-label" for="addition_no_emp">
+                                                                            No assignee
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="addition_assignee" id="addition_all_emp"
+                                                                            value="option2">
+                                                                        <label class="form-check-label" for="addition_all_emp">
+                                                                            All employees
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="addition_assignee"
+                                                                            id="addition_single_emp" value="option3">
+                                                                        <label class="form-check-label" for="addition_single_emp">
+                                                                            Select Employee
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <select class="select form-control" >
+                                                                            <option>-</option>
+                                                                            <option>Select All</option>
+                                                                            <option>John Doe</option>
+                                                                            <option>Richard Miles</option>
+                                                                        </select>
+                                                                    </div> -->
+                                                                    
+                                                                    <br>
+                                                                    <div class="col-md-4"></div>
+                                                                    <div class="col-md-4">
+                                                                        <a class="btn add-btn" (click)="addNewItem(newItem.value);addNewDate(newDate.value);addNewDis(newDis.value);addNewTask(newTask.value);addNewAssign(newAssign.value);addTaskBox(newTaskBox.value);"><i
+                                                                                class="fa fa-plus"></i> Add Task</a>
+                                                                    </div>
+                                                                    <div class="col-md-4"></div>
+                                                                    <!-- <div class="text-right">
+                                                                        <div class="submit-section">
+                                                                            <button type="submit"   class="btn add-btn taskbtn"><i class="fa fa-plus"> Add Task</i></button>
+                                                                        </div>
+                                                                    </div> -->
+                                                                </div>
+
+                                                                <!--table Row-->
+                                                                <!-- <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="card mb-0">
+                                                                            <div class="card-body">
+                                                                                <div class="table-responsive">
+                                                                                    <table datatable [dtOptions]="dtOptions" class="datatable table table-stripped">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>Task Name</th>
+                                                                                                <th>Task Assign</th>
+                                                                                                <th>Task Due Date</th>
+                                                                                                <th>Status</th>
+                                                                                                <th>Action</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>John Deo</td>
+                                                                                                <td>Jawahar</td>
+                                                                                                <td>21-April-21</td>
+                                                                                                <td>
+                                                                                                    <div class="dropdown action-label">
+                                                                                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop"
+                                                                                                            data-toggle="dropdown" aria-expanded="false"><i
+                                                                                                                class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                                                                                                <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop"
+                                                                                                            data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                                                                                                
+                                                                                                        <div class="dropdown-menu">
+                                                                                                            <a class="dropdown-item penShowHide"><i class="fa fa-dot-circle-o text-danger"></i>
+                                                                                                                Pending</a>
+                                                                                                            <a class="dropdown-item comShowHide"><i class="fa fa-dot-circle-o text-success"></i>
+                                                                                                                Completed</a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                                <td class="text-right">
+                                                                                                    <div class="dropdown dropdown-action">
+                                                                                                        <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                                                               
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                                                                
+                                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>Details</a>
+                                                                                                                
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            
+                                                                                            <tr>
+                                                                                                <td>Ashton Cox</td>
+                                                                                                <td>Junior Technical Author</td>
+                                                                                                <td>11-April-21</td>
+                                                                                                <td><div class="dropdown action-label">
+                                                                                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop2"
+                                                                                                        data-toggle="dropdown" aria-expanded="false"><i
+                                                                                                            class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                                                                                            <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop2"
+                                                                                                        data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                                                                                            
+                                                                                                    <div class="dropdown-menu">
+                                                                                                        <a class="dropdown-item penShowHide2"><i class="fa fa-dot-circle-o text-danger"></i>
+                                                                                                            Pending</a>
+                                                                                                        <a class="dropdown-item comShowHide2"><i class="fa fa-dot-circle-o text-success"></i>
+                                                                                                            Completed</a>
+                                                                                                    </div>
+                                                                                                </div></td>
+                                                                                                <td class="text-right">
+                                                                                                    <div class="dropdown dropdown-action">
+                                                                                                        <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                                                               
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                                                                
+                                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>Details</a>
+                                                                                                                
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>Cedric Kelly</td>
+                                                                                                <td>Senior Javascript Developer</td>
+                                                                                                <td>10-Jan-21</td>
+                                                                                                <td><div class="dropdown action-label">
+                                                                                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop3"
+                                                                                                        data-toggle="dropdown" aria-expanded="false"><i
+                                                                                                            class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                                                                                            <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop3"
+                                                                                                        data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                                                                                            
+                                                                                                    <div class="dropdown-menu">
+                                                                                                        <a class="dropdown-item penShowHide3"><i class="fa fa-dot-circle-o text-danger"></i>
+                                                                                                            Pending</a>
+                                                                                                        <a class="dropdown-item comShowHide3"><i class="fa fa-dot-circle-o text-success"></i>
+                                                                                                            Completed</a>
+                                                                                                    </div>
+                                                                                                </div></td>
+                                                                                                <td class="text-right">
+                                                                                                    <div class="dropdown dropdown-action">
+                                                                                                        <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                                                               
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                                                                
+                                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>Details</a>
+                                                                                                                
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>Airi Satou</td>
+                                                                                                <td>Accountant</td>
+                                                                                                <td>22-Feb-21</td>
+                                                                                                <td><div class="dropdown action-label">
+                                                                                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop4"
+                                                                                                        data-toggle="dropdown" aria-expanded="false"><i
+                                                                                                            class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                                                                                            <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop4"
+                                                                                                        data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                                                                                            
+                                                                                                    <div class="dropdown-menu">
+                                                                                                        <a class="dropdown-item penShowHide4"><i class="fa fa-dot-circle-o text-danger"></i>
+                                                                                                            Pending</a>
+                                                                                                        <a class="dropdown-item comShowHide4"><i class="fa fa-dot-circle-o text-success"></i>
+                                                                                                            Completed</a>
+                                                                                                    </div>
+                                                                                                </div></td>
+                                                                                                <td class="text-right">
+                                                                                                    <div class="dropdown dropdown-action">
+                                                                                                        <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                                                               
+                                                                                                            <a class="dropdown-item"  data-toggle="modal"
+                                                                                                                data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                                                                
+                                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>Details</a>
+                                                                                                                
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> -->
+                                                                
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <ul id="task-list">
+                                                <li class="task">
+                                                    <div class="task-container">
+                                                        <span class="task-action-btn task-check">
+                                                            <span class="action-circle large complete-btn"
+                                                                title="Mark Complete">
+                                                                <i class="material-icons">check</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="task-label" contenteditable="true">Patient
+                                                            appointment booking</span>
+                                                        <span class="task-action-btn task-btn-right">
+                                                            <span class="action-circle large" title="Assign">
+                                                                <i class="material-icons">person_add</i>
+                                                            </span>
+                                                            <span class="action-circle large delete-btn"
+                                                                title="Delete Task">
+                                                                <i class="material-icons">delete</i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="task">
+                                                    <div class="task-container">
+                                                        <span class="task-action-btn task-check">
+                                                            <span class="action-circle large complete-btn"
+                                                                title="Mark Complete">
+                                                                <i class="material-icons">check</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="task-label" contenteditable="true">Appointment
+                                                            booking with payment gateway</span>
+                                                        <span class="task-action-btn task-btn-right">
+                                                            <span class="action-circle large" title="Assign">
+                                                                <i class="material-icons">person_add</i>
+                                                            </span>
+                                                            <span class="action-circle large delete-btn"
+                                                                title="Delete Task">
+                                                                <i class="material-icons">delete</i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="completed task">
+                                                    <div class="task-container">
+                                                        <span class="task-action-btn task-check">
+                                                            <span class="action-circle large complete-btn"
+                                                                title="Mark Complete">
+                                                                <i class="material-icons">check</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="task-label">Doctor available module</span>
+                                                        <span class="task-action-btn task-btn-right">
+                                                            <span class="action-circle large" title="Assign">
+                                                                <i class="material-icons">person_add</i>
+                                                            </span>
+                                                            <span class="action-circle large delete-btn"
+                                                                title="Delete Task">
+                                                                <i class="material-icons">delete</i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="task">
+                                                    <div class="task-container">
+                                                        <span class="task-action-btn task-check">
+                                                            <span class="action-circle large complete-btn"
+                                                                title="Mark Complete">
+                                                                <i class="material-icons">check</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="task-label" contenteditable="true">Patient and
+                                                            Doctor video conferencing</span>
+                                                        <span class="task-action-btn task-btn-right">
+                                                            <span class="action-circle large" title="Assign">
+                                                                <i class="material-icons">person_add</i>
+                                                            </span>
+                                                            <span class="action-circle large delete-btn"
+                                                                title="Delete Task">
+                                                                <i class="material-icons">delete</i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="task">
+                                                    <div class="task-container">
+                                                        <span class="task-action-btn task-check">
+                                                            <span class="action-circle large complete-btn"
+                                                                title="Mark Complete">
+                                                                <i class="material-icons">check</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="task-label" contenteditable="true">Private chat
+                                                            module</span>
+                                                        <span class="task-action-btn task-btn-right">
+                                                            <span class="action-circle large" title="Assign">
+                                                                <i class="material-icons">person_add</i>
+                                                            </span>
+                                                            <span class="action-circle large delete-btn"
+                                                                title="Delete Task">
+                                                                <i class="material-icons">delete</i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="task">
+                                                    <div class="task-container">
+                                                        <span class="task-action-btn task-check">
+                                                            <span class="action-circle large complete-btn"
+                                                                title="Mark Complete">
+                                                                <i class="material-icons">check</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="task-label" contenteditable="true">Patient
+                                                            Profile add</span>
+                                                        <span class="task-action-btn task-btn-right">
+                                                            <span class="action-circle large" title="Assign">
+                                                                <i class="material-icons">person_add</i>
+                                                            </span>
+                                                            <span class="action-circle large delete-btn"
+                                                                title="Delete Task">
+                                                                <i class="material-icons">delete</i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </ul> -->
+                                        </div>
+                                        <div class="task-list-footer">
+                                            <div class="new-task-wrapper">
+                                                <textarea id="new-task"
+                                                    placeholder="Enter new task here. . ."></textarea>
+                                                <span class="error-message hidden">You need to enter a task
+                                                    first</span>
+                                                <span class="add-new-task-btn btn" id="add-task">Add Task</span>
+                                                <span class="btn" id="close-task-panel">Close</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-popup hide">
+                                    <p>
+                                        <span class="task"></span>
+                                        <span class="notification-text"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 message-view task-chat-view task-right-sidebar" id="task_window">
+            <div class="chat-window">
+                <div class="fixed-header">
+                    <div class="navbar">
+                        <div class="task-assign">
+
+                            <a class="task-complete-btn" id="task_complete" >
+                                <i class="material-icons">check</i> Mark Complete
+                            </a>
+                        </div>
+                        <ul class="nav float-right custom-menu">
+                            <li class="dropdown dropdown-action">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                                        class="material-icons">more_vert</i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" >Delete Task</a>
+                                    <a class="dropdown-item" >Settings</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chat-contents task-chat-contents">
+                    <div class="chat-content-wrap">
+                        <div class="chat-wrap-inner">
+                            <div class="chat-box">
+                                <form>
+                                    <div class="chats">
+                                        <h4>Task </h4>
+                                        <div class="taskshow" *ngFor="let item of items;">
+                                                <div class="task-header">
+                                                    <div class="assignee-info">
+                                                        <a>
+                                                            <div class="avatar">
+                                                                <img alt="" src="assets/img/profiles/avatar-02.jpg">
+                                                            </div>
+                                                            <div class="assigned-info">
+                                                                <div class="task-head-title">Project</div>
+                                                                <div class="task-assignee">{{item}}</div>
+                                                            </div>
+                                                        </a>
+                                                        <span class="remove-icon">
+                                                            <i class="fa fa-close"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="task-due-date">
+                                                        <a>
+                                                            <div class="due-icon">
+                                                                <span>
+                                                                    <i class="material-icons">date_range</i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="due-info">
+                                                                <div class="task-head-title">Due Date</div>
+                                                                <div class="due-date">{{dueDate}}</div>
+                                                            </div>
+                                                        </a>
+                                                        <span class="remove-icon">
+                                                            <i class="fa fa-close"></i>
+                                                        </span>
+                                                    </div>
+                                                    
+                                                    <div class="assignee-info">
+                                                        <a data-toggle="modal" data-target="#assignee">
+                                                            <div class="avatar">
+                                                                <img alt="" src="assets/img/profiles/avatar-02.jpg">
+                                                            </div>
+                                                            <div class="assigned-info">
+                                                                <div class="task-head-title">Assignee</div>
+                                                                <div class="task-assignee"></div>
+                                                                <!-- {{newAssign}} -->
+                                                            </div>
+                                                        </a>
+                                                        <span class="remove-icon">
+                                                            <i class="fa fa-close"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    
+                                                </div>
+                                                <hr class="task-line">
+                                                
+                                                <!-- <div class="task-desc">
+                                                    <div class="task-desc-icon">
+                                                        <i class="material-icons">subject</i>
+                                                    </div>
+                                                    <div class="task-textarea">
+                                                        <textarea class="form-control" placeholder="Description"></textarea>
+                                                    </div>
+                                                </div>
+                                                <hr class="task-line"> -->
+                                            
+                                                <div class="task-information">
+                                                    <span class="task-info-line"><a class="task-user">Task Name:</a>
+                                                        <span class="task-info-subject"> {{taskName}}</span></span>
+                                                    <!-- <div class="task-time">Jan 20, 2019</div> -->
+                                                </div>
+                                                <div class="task-information">
+                                                    <span class="task-info-line"><a class="task-user">Discription:</a>
+                                                        <span class="task-info-subject"> {{disCrip}}</span></span>
+                                                    <!-- <div class="task-time">{{dueDate}}</div> -->
+                                                </div>
+
+                                                <hr class="task-line">
+                                        </div>
+                                        <!-- <div class="task-information">
+                                            <span class="task-info-line"><a class="task-user">Lesley Grauer</a>
+                                                <span class="task-info-subject">assigned to John Doe</span></span>
+                                            <div class="task-time">Jan 20, 2019</div>
+                                        </div> -->
+                                        <!-- <hr class="task-line"> -->
+                                        <div class="task-information">
+                                            <span class="task-info-line"><a class="task-user">John Doe</a>
+                                                <span class="task-info-subject">changed the due date to Sep 28</span>
+                                            </span>
+                                            <div class="task-time">9:09pm</div>
+                                        </div>
+                                        <div class="task-information">
+                                            <span class="task-info-line"><a class="task-user">John Doe</a>
+                                                <span class="task-info-subject">assigned to you</span></span>
+                                            <div class="task-time">9:10pm</div>
+                                        </div>
+                                        <div class="chat chat-left">
+                                            <div class="chat-avatar">
+                                                <a routerLink="/clients/clientsprofile/1" class="avatar">
+                                                    <img alt="" src="assets/img/profiles/avatar-02.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="chat-body">
+                                                <div class="chat-bubble">
+                                                    <div class="chat-content">
+                                                        <span class="task-chat-user">John Doe</span> <span
+                                                            class="chat-time">8:35 am</span>
+                                                        <p>I'm just looking around.</p>
+                                                        <p>Will you tell me something about yourself? </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="completed-task-msg"><span class="task-success"><a>John
+                                                    Doe</a> completed this task.</span> <span class="task-time">Today at
+                                                9:27am</span></div>
+                                        <div class="chat chat-left">
+                                            <div class="chat-avatar">
+                                                <a routerLink="/clients/clientsprofile/1" class="avatar">
+                                                    <img alt="" src="assets/img/profiles/avatar-02.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="chat-body">
+                                                <div class="chat-bubble">
+                                                    <div class="chat-content">
+                                                        <span class="task-chat-user">John Doe</span> <span
+                                                            class="file-attached">attached 3 files <i
+                                                                class="fa fa-paperclip"></i></span> <span
+                                                            class="chat-time">Feb 17, 2019 at 4:32am</span>
+                                                        <ul class="attach-list">
+                                                            <li><i class="fa fa-file"></i> <a>project_document.avi</a></li>
+                                                            <li><i class="fa fa-file"></i> <a>video_conferencing.psd</a>
+                                                            </li>
+                                                            <li><i class="fa fa-file"></i> <a>landing_page.psd</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chat chat-left">
+                                            <div class="chat-avatar">
+                                                <a routerLink="/clients/clientsprofile/1" class="avatar">
+                                                    <img alt="" src="assets/img/profiles/avatar-016.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="chat-body">
+                                                <div class="chat-bubble">
+                                                    <div class="chat-content">
+                                                        <span class="task-chat-user">Jeffery Lalor</span> <span
+                                                            class="file-attached">attached file <i
+                                                                class="fa fa-paperclip"></i></span> <span
+                                                            class="chat-time">Yesterday at 9:16pm</span>
+                                                        <ul class="attach-list">
+                                                            <li class="pdf-file"><i class="fa fa-file-pdf-o"></i>
+                                                                <a>Document_2016.pdf</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chat chat-left">
+                                            <div class="chat-avatar">
+                                                <a routerLink="/clients/clientsprofile/1" class="avatar">
+                                                    <img alt="" src="assets/img/profiles/avatar-012.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="chat-body">
+                                                <div class="chat-bubble">
+                                                    <div class="chat-content">
+                                                        <span class="task-chat-user">Jeffery Lalor</span> <span
+                                                            class="file-attached">attached file <i
+                                                                class="fa fa-paperclip"></i></span> <span
+                                                            class="chat-time">Today at 12:42pm</span>
+                                                        <ul class="attach-list">
+                                                            <li class="img-file">
+                                                                <div class="attach-img-download"><a>avatar-1.jpg</a></div>
+                                                                <div class="task-attach-img"><img src="assets/img/user.jpg"
+                                                                        alt=""></div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="task-information">
+                                            <span class="task-info-line">
+                                                <a class="task-user">John Doe</a>
+                                                <span class="task-info-subject">marked task as incomplete</span>
+                                            </span>
+                                            <div class="task-time">1:16pm</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <div class="message-bar">
+                        <div class="message-inner">
+                            <a class="link attach-icon"><img src="assets/img/attachment.png" alt=""></a>
+                            <div class="message-area">
+                                <div class="input-group">
+                                    <textarea class="form-control" placeholder="Type message..."></textarea>
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary" type="button"><i
+                                                class="fa fa-send"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-members task-followers">
+                        <span class="followers-title">Followers</span>
+                        <a class="avatar" data-toggle="tooltip" title="Jeffery Lalor">
+                            <img alt="" src="assets/img/profiles/avatar-016.jpg">
+                        </a>
+                        <a class="avatar" data-toggle="tooltip" title="Richard Miles">
+                            <img alt="" src="assets/img/profiles/avatar-09.jpg">
+                        </a>
+                        <a class="avatar" data-toggle="tooltip" title="John Smith">
+                            <img alt="" src="assets/img/profiles/avatar-010.jpg">
+                        </a>
+                        <a class="avatar" data-toggle="tooltip" title="Mike Litorus">
+                            <img alt="" src="assets/img/profiles/avatar-05.jpg">
+                        </a>
+                        <a class="followers-add" data-toggle="modal" data-target="#task_followers"><i
+                                class="material-icons">add</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/PageContent-->
+
+<!-- Create Project Modal -->
+<div id="create_project" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Project Name</label>
+                                <input class="form-control" type="text" placeholder="Project Name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Client</label>
+                                <select class="select form-control">
+                                    <option>Global Technologies</option>
+                                    <option>Delta Infotech</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <div class="cal-icon">
+                                    <input class="form-control floating datetimepicker" bsDatepicker type="text" placeholder="Start Date"
+                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <div class="cal-icon">
+                                    <input class="form-control floating datetimepicker" bsDatepicker type="text" placeholder="End Date"
+                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Rate</label>
+                                <input placeholder="$50" class="form-control" type="text" placeholder="Rate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>&nbsp;</label>
+                                <select class="select form-control">
+                                    <option>Hourly</option>
+                                    <option>Fixed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Priority</label>
+                                <select class="select form-control">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Add Project Leader</label>
+                                <input class="form-control" type="text" placeholder="Add Project Leader">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Team Leader</label>
+                                <div class="project-members">
+                                    <a class="avatar" data-toggle="tooltip" title="Jeffery Lalor">
+                                        <img alt="" src="assets/img/profiles/avatar-016.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Add Team</label>
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Team Members</label>
+                                <div class="project-members">
+                                    <a class="avatar" data-toggle="tooltip" title="John Doe">
+                                        <img alt="" src="assets/img/profiles/avatar-02.jpg">
+                                    </a>
+                                    <a class="avatar" data-toggle="tooltip" title="Richard Miles">
+                                        <img alt="" src="assets/img/profiles/avatar-09.jpg">
+                                    </a>
+                                    <a class="avatar" data-toggle="tooltip" title="John Smith">
+                                        <img alt="" src="assets/img/profiles/avatar-010.jpg">
+                                    </a>
+                                    <a class="avatar" data-toggle="tooltip" title="Mike Litorus">
+                                        <img alt="" src="assets/img/profiles/avatar-05.jpg">
+                                    </a>
+                                    <span class="all-team">+2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea rows="4" class="form-control summernote"
+                            placeholder="Enter your message here"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Files</label>
+                        <input class="form-control" type="file">
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit" (click)="Onsubmit()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Create Project Modal -->
+
+<!-- Assignee Modal -->
+<div id="assignee" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Assigned to this task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="input-group m-b-30">
+                    <input placeholder="Search to add" class="form-control search-input" type="text">
+                    <span class="input-group-append">
+                        <button class="btn btn-primary">Search</button>
+                    </span>
+                </div> -->
+                <div>
+                    <ul class="chat-user-list">
+                        <li>
+                            <a>
+                                <div class="media">
+                                    <span class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></span>
+                                    <div class="media-body align-self-center text-nowrap">
+                                        <div class="user-name">Richard Miles</div>
+                                        <span class="designation">Web Developer</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <div class="media">
+                                    <span class="avatar"><img alt="" src="assets/img/profiles/avatar-010.jpg"></span>
+                                    <div class="media-body align-self-center text-nowrap">
+                                        <div class="user-name">John Smith</div>
+                                        <span class="designation">Android Developer</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <div class="media">
+                                    <span class="avatar">
+                                        <img alt="" src="assets/img/profiles/avatar-016.jpg">
+                                    </span>
+                                    <div class="media-body align-self-center text-nowrap">
+                                        <div class="user-name">Jeffery Lalor</div>
+                                        <span class="designation">Team Leader</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="submit-section">
+                    <button class="btn btn-primary submit-btn">Assign</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Assignee Modal -->
+
+<!-- Task Followers Modal -->
+<div id="task_followers" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add followers to this task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="input-group m-b-30">
+                    <input placeholder="Search to add" class="form-control search-input" type="text">
+                    <span class="input-group-append">
+                        <button class="btn btn-primary">Search</button>
+                    </span>
+                </div> -->
+                <div>
+                    <ul class="chat-user-list">
+                        <li>
+                            <a>
+                                <div class="media">
+                                    <span class="avatar"><img alt="" src="assets/img/profiles/avatar-016.jpg"></span>
+                                    <div class="media-body media-middle text-nowrap">
+                                        <div class="user-name">Jeffery Lalor</div>
+                                        <span class="designation">Team Leader</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <div class="media">
+                                    <span class="avatar"><img alt="" src="assets/img/profiles/avatar-08.jpg"></span>
+                                    <div class="media-body media-middle text-nowrap">
+                                        <div class="user-name">Catherine Manseau</div>
+                                        <span class="designation">Android Developer</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <div class="media">
+                                    <span class="avatar"><img alt="" src="assets/img/profiles/avatar-026.jpg"></span>
+                                    <div class="media-body media-middle text-nowrap">
+                                        <div class="user-name">Wilmer Deluna</div>
+                                        <span class="designation">Team Leader</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="submit-section">
+                    <button class="btn btn-primary submit-btn">Add to Follow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Task Followers Modal -->

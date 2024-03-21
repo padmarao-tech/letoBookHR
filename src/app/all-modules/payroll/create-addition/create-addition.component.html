@@ -1,0 +1,198 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title" *ngIf="!id">Create Monthly Addition</h3>
+                <h3 class="page-title" *ngIf="id">Edit Monthly Addition</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink = "/payroll/monthly-addition">Back</a></li>
+                    <li class="breadcrumb-item active">Create Addition/Bonus</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form [formGroup]="addInvoiceForm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Year <span class="text-danger">*</span></label>
+                            <select class="select form-control" name="tyear"  [class.invalid]="addInvoiceForm.get('tyear').invalid && addInvoiceForm.get('tyear').touched"
+                             formControlName="tyear">
+                                <option>Please Select</option>
+                                <option >2020</option>
+                                <option >2021</option>
+                                <option >2022</option>
+                                <option >2023</option>
+                                <option >2023</option>
+                                <option >2024</option>
+                                <option >2025</option>
+                                <option >2026</option>
+                                <option >2027</option>
+                                <option >2028</option>
+                                <option >2029</option>
+                                <option >2030</option>
+                                <option >2031</option>
+                                <option >2032</option>
+                                <option >2033</option>
+                                <option >2034</option>
+                                <option >2035</option>
+                                <option >2036</option>
+                            </select>
+                            <div
+                            *ngIf="addInvoiceForm.get('tyear').invalid && addInvoiceForm.get('tyear').touched">
+                            <small
+                                *ngIf="addInvoiceForm.get('tyear').invalid && addInvoiceForm.get('tyear').touched"
+                                class="text-danger"> *Year is required</small>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Month <span class="text-danger">*</span></label>
+                            <select class="select form-control" name="tmonth"  [class.invalid]="addInvoiceForm.get('tmonth').invalid && addInvoiceForm.get('tmonth').touched"
+                            formControlName="tmonth">
+                            <option>Please Select</option>
+                                <option >1</option>
+                                <option >2</option>
+                                <option >3</option>
+                                <option >4</option>
+                                <option >5</option>
+                                <option >6</option>
+                                <option >7</option>
+                                <option >8</option>
+                                <option >9</option>
+                                <option >10</option>
+                                <option >11</option>
+                                <option >12</option>
+                            </select>
+                            <div
+                            *ngIf="addInvoiceForm.get('tmonth').invalid && addInvoiceForm.get('tmonth').touched">
+                            <small
+                                *ngIf="addInvoiceForm.get('tmonth').invalid && addInvoiceForm.get('tmonth').touched"
+                                class="text-danger"> *Month is required</small>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Entry date <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker" type="text" name="tax"  [class.invalid]="addInvoiceForm.get('entry_date').invalid && addInvoiceForm.get('entry_date').touched"
+                                bsDatepicker type="text" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"formControlName="entry_date">
+                                <div
+                                *ngIf="addInvoiceForm.get('entry_date').invalid && addInvoiceForm.get('entry_date').touched">
+                                <small
+                                    *ngIf="addInvoiceForm.get('entry_date').invalid && addInvoiceForm.get('entry_date').touched"
+                                    class="text-danger"> *Invoice date is required</small>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+               
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Other Information</label>
+                            <textarea class="form-control" [class.invalid]="addInvoiceForm.get('other_information').invalid && addInvoiceForm.get('other_information').touched"
+                            formControlName="other_information"></textarea>
+                            <div
+                            *ngIf="addInvoiceForm.get('other_information').invalid && addInvoiceForm.get('other_information').touched">
+                            <small
+                                *ngIf="addInvoiceForm.get('other_information').invalid && addInvoiceForm.get('other_information').touched"
+                                class="text-danger"> *Other information is required</small>
+                        </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <div >
+                        <div class="table-responsive">
+                            <table class="table table-hover table-white">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20px">#</th>
+                                        <th >Employee</th>
+                                        <th >Type</th>
+                                        <th >Description</th>
+                                        <th >Amount</th>
+                                        <th> </th>
+                                        <th ></th>
+                                    </tr>
+                                </thead>
+                                  <tbody formArrayName="items">
+                                                
+                                    <tr *ngFor="let item of addInvoiceForm.get('items')['controls']; let i=index" [formGroupName]="i">
+                                        
+                                            <td>{{i+1}}</td>
+                                            <td>
+                                                <select class="form-control" style="width: 100%" formControlName="aempmaster_uid"  >
+                                                    <option [ngValue]="null" disabled>Select employee</option>
+                                                    <option *ngFor="let empid of employeelist" value={{empid.uid}}>
+                                                        {{empid.Name}}</option>
+                                                  </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" formControlName="altype_uid"  >
+                                                    <option [ngValue]="null" disabled>Select Type</option>
+                                                    <option *ngFor="let ltype of adddeductlist" value={{ltype.uid}}>
+                                                        {{ltype.Name}}</option>
+                                                  </select>
+                                            </td>
+                                            <td>
+                                                <input class="form-control" formControlName="description" calss="form-control input-sm pull-right"  type="text">
+                                            </td>
+                                           <td>
+                                                <input class="form-control" formControlName="amount" (input)="changePrice(i)" calss="form-control input-sm pull-right" align="right"  type="number">
+                                            </td>
+                                            <td>
+                                                <a (click)="addItems()" class="text-success font-18" title="Add">
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+                                            </td>
+                                            <td *ngIf="i != 0">
+                                                <a (click)="removeItems(i)" class="text-danger font-18" title="Remove">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                    </tr>
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-white">
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-right"> Total Amount</td>
+                                        <td style="text-align: right; padding-right: 30px;width: 230px">
+                                            <input class="form-control text-right"  readonly type="text" [class.invalid]="addInvoiceForm.get('totalamount').invalid && addInvoiceForm.get('totalamount').touched"
+                                            formControlName="totalamount"></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                     
+                    </div>
+                </div>
+              <!--  <div class="submit-section" *ngIf="!id">-->
+                    <div class="submit-section">
+                    <button class="btn btn-primary submit-btn m-r-10" (click)="savesend()">Save & Send</button>
+                    <button class="btn btn-primary submit-btn" routerLink = "/payroll/create-addition">cancel</button>
+                </div>
+             
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->

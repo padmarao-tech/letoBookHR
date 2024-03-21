@@ -1,0 +1,908 @@
+<!-- Page Content -->
+<style>
+.modal-backdrop.show {
+    opacity: 0 !important;
+    transition-duration: 400ms;
+    overflow: scroll !important;
+}
+</style>
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Payroll Summary</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Payroll Summary</li>
+                </ul>
+            </div>
+            <div class="text-right mb-4 clearfix">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Search Filter -->
+    <div class="row filter-row">
+        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 col-12">
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating" (input)="searchName($event.target.value)" (focusout) = "rerender()">
+                <label class="focus-label">Employee ID</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 col-12">
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating" (input)="searchName($event.target.value)" (focusout) = "rerender()">
+                <label class="focus-label">Employee Name</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 col-12">
+            <div class="form-group form-focus select-focus">
+                <select class="select form-control" (input)="searchStatus($event.target.value)">
+                    <!-- <option value = ''> -- Select -- </option> -->
+                    <option value = '0'> Select Designation </option>
+                    <option value = '1'> Web Developer </option>
+                    <option value = '2'> Web Designer </option>
+                    <option value = '3'>Android Developer</option>
+                    <option value = '4'>Ios Developer</option>
+                </select>
+                <label class="focus-label">Designation</label>
+            </div>
+        </div>
+        <!-- <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+            <div class="form-group form-focus">
+                <div class="cal-icon">
+                    <input class="form-control floating datetimepicker" bsDatepicker type="text" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }" (bsValueChange)="searchByFrom($event)">
+                </div>
+                <label class="focus-label">From</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+            <div class="form-group form-focus">
+                <div class="cal-icon">
+                    <input class="form-control floating datetimepicker" bsDatepicker type="text" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }" (bsValueChange)="searchByTo($event)">
+                </div>
+                <label class="focus-label">To</label>
+            </div>
+        </div> -->
+        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 col-12">
+            <a  class="btn btn-success btn-block" > Search </a>
+        </div>
+    </div>
+    <!-- /Search Filter -->
+    
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive" id="print-section">
+                <h3 class="page-title prt-header text-center">Payroll Summary</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped custom-table nowrap datatable" id="pdfSection">
+                    <div style="display:none;">
+                        <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                        <h3>No:47, 1st Floor, </h3>
+                        <h3>Prestige Tower,Haddows Road,</h3>
+                        <h3>Nungamabakkam,Chennai - 600006</h3>
+                        <h3 class="text-center">Payroll Summary</h3>
+                        <!-- <colgroup align="center"></colgroup> -->
+                    </div>
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Employee ID</th>
+                            <th>Payroll Month & Year</th>
+                            <th>Total Days</th>
+                            <th>Working Days</th>
+                            <th>Additions</th>
+                            <th>Deductions</th>
+                            <th>Overtime</th>
+                            <th>Total Salary</th>
+                            <th>Status</th>
+                            <th>Payslip</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- *ngFor="let salary of allSalary;let i = index" -->
+                        <tr>
+                            <td>John Doe
+                                <!-- <h2 class="table-avatar">
+                                    <a routerLink = "/employees/employeeprofile" class="avatar"><img alt=""
+                                            src="assets/img/profiles/avatar-0{{i+ 1}}.jpg"></a>
+                                    <a routerLink = "/employees/employeeprofile">{{salary.employee}}<span>{{salary.role}}</span></a>
+                                </h2> -->
+                            </td>
+                            <!-- {{salary.employeeId}} -->
+                            <td>10010</td>
+
+                            <!-- {{salary.email}} -->
+                            <td>Jan , 2021</td>
+
+                            <!-- {{salary.joinDate | customDate}} -->
+                            <td>31</td>
+
+                            <td>25
+                                <!-- <div class="dropdown">
+                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle"
+                                        data-toggle="dropdown" aria-expanded="false">{{salary.role || statusValue}} </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" (click)= "getStatus('Software Engineer')">Software Engineer</a>
+                                        <a class="dropdown-item" (click)= "getStatus('Software Tester')">Software Tester</a>
+                                        <a class="dropdown-item" (click)= "getStatus('Frontend Developer')">Frontend Developer</a>
+                                        <a class="dropdown-item" (click)= "getStatus('UI/UX Developer')">UI/UX Developer</a>
+                                    </div>
+                                </div> -->
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <!-- {{salary.salary}} -->
+                            <td>10,000</td>
+                            <td>
+                                <!-- <div class="col-6 text-right">
+                                    <span class="badge bg-inverse-danger penShowHide" data-toggle="modal"
+                                    data-target="#status">Pending</span>
+                                </div>
+                            
+                                <div class="col-6 text-right">
+                                    <span class="badge bg-inverse-success comShowHide" data-toggle="modal"
+                                    data-target="#status" style="display:none;">Completed</span>
+                                </div> -->
+                                <div class="dropdown action-label">
+                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop"
+                                        data-toggle="dropdown" aria-expanded="false"><i
+                                            class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                            <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop"
+                                        data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                            
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item penShowHide"><i class="fa fa-dot-circle-o text-danger"></i>
+                                            Pending</a>
+                                        <a class="dropdown-item comShowHide"><i class="fa fa-dot-circle-o text-success"></i>
+                                            Completed</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="leave-action text-center">
+                                    <button class="btn btn-sm btn-primary payslip-print"  routerLink = "/payroll/salary-view"><i class="fa fa-print"></i></button>
+                                </div>
+                            </td>
+                            
+                            <!-- <td><a class="btn btn-sm btn-primary" routerLink = "/payroll/salary-view">Generate Slip</a></td> -->
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <!-- (click)="edit(salary.id)" -->
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            <!-- (click)="tempId = salary.id" -->
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>View</a>
+                                            <!-- (click)="tempId = salary.id" -->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- <tr *ngIf="allSalary.length === 0">
+                            <td colspan="10">
+                                <h5 style="text-align: center;">No data found</h5>
+                            </td>
+                           
+                        </tr> -->
+                        <tr>
+                            <td>Richard Miles
+                                <!-- <h2 class="table-avatar">
+                                    <a routerLink = "/employees/employeeprofile" class="avatar"><img alt=""
+                                            src="assets/img/profiles/avatar-0{{i+ 1}}.jpg"></a>
+                                    <a routerLink = "/employees/employeeprofile">{{salary.employee}}<span>{{salary.role}}</span></a>
+                                </h2> -->
+                            </td>
+                            <!-- {{salary.employeeId}} -->
+                            <td>10011</td>
+
+                            <!-- {{salary.email}} -->
+                            <td>Feb , 2021</td>
+
+                            <!-- {{salary.joinDate | customDate}} -->
+                            <td>28</td>
+
+                            <td>25
+                                <!-- <div class="dropdown">
+                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle"
+                                        data-toggle="dropdown" aria-expanded="false">{{salary.role || statusValue}} </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" (click)= "getStatus('Software Engineer')">Software Engineer</a>
+                                        <a class="dropdown-item" (click)= "getStatus('Software Tester')">Software Tester</a>
+                                        <a class="dropdown-item" (click)= "getStatus('Frontend Developer')">Frontend Developer</a>
+                                        <a class="dropdown-item" (click)= "getStatus('UI/UX Developer')">UI/UX Developer</a>
+                                    </div>
+                                </div> -->
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <!-- {{salary.salary}} -->
+                            <td>15,000</td>
+                            <td>
+                                <!-- <div class="col-6 text-right">
+                                    <span class="badge bg-inverse-danger penShowHide2"  data-toggle="modal"
+                                    data-target="#status">Pending</span>
+                                </div>
+                            
+                                
+                                <div class="col-6 text-right">
+                                    <span class="badge bg-inverse-success comShowHide2" data-toggle="modal"
+                                    data-target="#status"  style="display:none;">Completed</span>
+                                </div> -->
+                                
+                                <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                        class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                        class="fa fa-dot-circle-o text-danger"></i>
+                                    Declined</a> -->
+                                    <div class="dropdown action-label">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop2"
+                                            data-toggle="dropdown" aria-expanded="false"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                                <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop2"
+                                            data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                                
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item penShowHide2"><i class="fa fa-dot-circle-o text-danger"></i>
+                                                Pending</a>
+                                            <a class="dropdown-item comShowHide2"><i class="fa fa-dot-circle-o text-success"></i>
+                                                Completed</a>
+                                        </div>
+                                    </div>
+                            </td>
+                            <td>
+                                <div class="leave-action text-center">
+                                    <button class="btn btn-sm btn-primary payslip-print2" routerLink = "/payroll/salary-view"><i class="fa fa-print"></i></button>
+                                </div>
+                            </td>
+                            <!-- <td><a class="btn btn-sm btn-primary" routerLink = "/payroll/salary-view">Generate Slip</a></td> -->
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <!-- (click)="edit(salary.id)" -->
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            <!-- (click)="tempId = salary.id" -->
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>View</a>
+                                            <!-- (click)="tempId = salary.id" -->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bernardo Galaviz
+                               <!-- <h2 class="table-avatar">
+                                    <a routerLink = "/employees/employeeprofile" class="avatar"><img alt=""
+                                            src="assets/img/profiles/avatar-0{{i+ 1}}.jpg"></a>
+                                    <a routerLink = "/employees/employeeprofile">{{salary.employee}}<span>{{salary.role}}</span></a>
+                                </h2> -->
+                            </td>
+                            <!-- {{salary.employeeId}} -->
+                            <td>10011</td>
+
+                            <!-- {{salary.email}} -->
+                            <td>Feb , 2021</td>
+
+                            <!-- {{salary.joinDate | customDate}} -->
+                            <td>28</td>
+
+                            <td>25
+                                <!-- <div class="dropdown">
+                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle"
+                                        data-toggle="dropdown" aria-expanded="false">{{salary.role || statusValue}} </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" (click)= "getStatus('Software Engineer')">Software Engineer</a>
+                                        <a class="dropdown-item" (click)= "getStatus('Software Tester')">Software Tester</a>
+                                        <a class="dropdown-item" (click)= "getStatus('Frontend Developer')">Frontend Developer</a>
+                                        <a class="dropdown-item" (click)= "getStatus('UI/UX Developer')">UI/UX Developer</a>
+                                    </div>
+                                </div> -->
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <!-- {{salary.salary}} -->
+                            <td>15,000</td>
+                            <td>
+                                <!-- <div class="col-6 text-right">
+                                    <span class="badge bg-inverse-danger penShowHide2"  data-toggle="modal"
+                                    data-target="#status">Pending</span>
+                                </div>
+                            
+                                
+                                <div class="col-6 text-right">
+                                    <span class="badge bg-inverse-success comShowHide2" data-toggle="modal"
+                                    data-target="#status"  style="display:none;">Completed</span>
+                                </div> -->
+                                
+                                <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                        class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                        class="fa fa-dot-circle-o text-danger"></i>
+                                    Declined</a> -->
+                                    <div class="dropdown action-label">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop3"
+                                            data-toggle="dropdown" aria-expanded="false"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                                <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop3"
+                                            data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                                
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item penShowHide3"><i class="fa fa-dot-circle-o text-danger"></i>
+                                                Pending</a>
+                                            <a class="dropdown-item comShowHide3"><i class="fa fa-dot-circle-o text-success"></i>
+                                                Completed</a>
+                                        </div>
+                                    </div>
+                            </td>
+                            <td>
+                                <div class="leave-action text-center">
+                                    <button class="btn btn-sm btn-primary payslip-print3" routerLink = "/payroll/salary-view"><i class="fa fa-print"></i></button>
+                                </div>
+                            </td>
+                            <!-- <td><a class="btn btn-sm btn-primary" routerLink = "/payroll/salary-view">Generate Slip</a></td> -->
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <!-- (click)="edit(salary.id)" -->
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            <!-- (click)="tempId = salary.id" -->
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#add_salary"><i class="fa fa-info-circle m-r-5"></i>View</a>
+                                            <!-- (click)="tempId = salary.id" -->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- <tr *ngIf="allSalary.length === 0">
+                            <td colspan="10">
+                                <h5 style="text-align: center;">No data found</h5>
+                            </td>
+                           
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!-- Add Salary Modal -->
+<div id="add_salary" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Staff Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  name="myForm" id="myForm" onsubmit="return validateForm()" (ngSubmit)="addSalarySubmit()" [formGroup]="addSalaryForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Select Staff</label>
+                                <select class="select form-control" style="background:#fff;" disabled>
+                                    <option value = "john Doe">John Doe</option>
+                                    <option value = "richard miles">Richard Miles</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Net Salary</label>
+                            <input class="form-control" type="text" readonly [class.invalid]="addSalary.get('netSalary').invalid && addSalary.get('netSalary').touched"
+                            formControlName="netSalary" disabled>
+                            <div
+                            *ngIf="addSalary.get('netSalary').invalid && addSalary.get('netSalary').touched">
+                            <small
+                                *ngIf="addSalary.get('netSalary').invalid && addSalary.get('netSalary').touched"
+                                class="text-danger"> *Salary is required</small>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 class="text-primary">Earnings</h4>
+                            <div class="form-group">
+                                <label>Basic</label>
+                                <input class="form-control" type="text" placeholder="Basic" [class.invalid]="addSalary.get('basic').invalid && addSalary.get('basic').touched"
+                                formControlName="basic" (input)="changeAddPrice(0,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('basic').invalid && addSalary.get('basic').touched">
+                                <small
+                                    *ngIf="addSalary.get('basic').invalid && addSalary.get('basic').touched"
+                                    class="text-danger"> *Basic is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>DA</label>
+                                <input class="form-control" type="text" placeholder="DA" [class.invalid]="addSalary.get('da').invalid && addSalary.get('da').touched"
+                                formControlName="da" (input)="changeAddPrice(1,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('da').invalid && addSalary.get('da').touched">
+                                <small
+                                    *ngIf="addSalary.get('da').invalid && addSalary.get('da').touched"
+                                    class="text-danger"> *DA is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>HRA(15%)</label>
+                                <input class="form-control" type="text" placeholder="HRA(15%)" [class.invalid]="addSalary.get('hra').invalid && addSalary.get('hra').touched"
+                                formControlName="hra" (input)="changeAddPrice(2,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('hra').invalid && addSalary.get('hra').touched">
+                                <small
+                                    *ngIf="addSalary.get('hra').invalid && addSalary.get('hra').touched"
+                                    class="text-danger"> *HRA is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Conveyance</label>
+                                <input class="form-control" type="text" placeholder="Conveyance" [class.invalid]="addSalary.get('conveyance').invalid && addSalary.get('conveyance').touched"
+                                formControlName="conveyance" (input)="changeAddPrice(3,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('conveyance').invalid && addSalary.get('conveyance').touched">
+                                <small
+                                    *ngIf="addSalary.get('conveyance').invalid && addSalary.get('conveyance').touched"
+                                    class="text-danger"> *Conveyance is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Allowance</label>
+                                <input class="form-control" type="text" placeholder="Allowance" [class.invalid]="addSalary.get('allowance').invalid && addSalary.get('allowance').touched"
+                                formControlName="allowance" (input)="changeAddPrice(4,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('allowance').invalid && addSalary.get('allowance').touched">
+                                <small
+                                    *ngIf="addSalary.get('allowance').invalid && addSalary.get('allowance').touched"
+                                    class="text-danger"> *Allowance is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Medical Allowance</label>
+                                <input class="form-control" placeholder="Medical Allowance" type="text" [class.invalid]="addSalary.get('medicalAllowance').invalid && addSalary.get('medicalAllowance').touched"
+                                formControlName="medicalAllowance" (input)="changeAddPrice(5,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('medicalAllowance').invalid && addSalary.get('medicalAllowance').touched">
+                                <small
+                                    *ngIf="addSalary.get('medicalAllowance').invalid && addSalary.get('medicalAllowance').touched"
+                                    class="text-danger"> *Medical allowance is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Others</label>
+                                <input class="form-control" placeholder="Others" type="text" [class.invalid]="addSalary.get('othersAdd').invalid && addSalary.get('othersAdd').touched"
+                                formControlName="othersAdd" (input)="changeAddPrice(6,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('othersAdd').invalid && addSalary.get('othersAdd').touched">
+                                <small
+                                    *ngIf="addSalary.get('othersAdd').invalid && addSalary.get('othersAdd').touched"
+                                    class="text-danger"> *Others is required</small>
+                                 </div>
+                            </div>
+                            
+                            
+
+                            <!-- <div class="add-more">
+                                <div class="leave-action">
+                                    <button class="btn btn-sm btn-primary"  (click)="addtextbox()"><i class="fa fa-plus"></i> Add More</button>
+                                </div>
+                            </div> -->
+                            
+                           
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="text-primary">Deductions</h4>
+                            <div class="form-group">
+                                <label>TDS</label>
+                                <input class="form-control" placeholder="TDS" type="text" [class.invalid]="addSalary.get('tds').invalid && addSalary.get('tds').touched"
+                                formControlName="tds" (input)="changeAddPrice(7,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('tds').invalid && addSalary.get('tds').touched">
+                                <small
+                                    *ngIf="addSalary.get('tds').invalid && addSalary.get('tds').touched"
+                                    class="text-danger"> *TDS is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>ESI</label>
+                                <input class="form-control" placeholder="ESI" type="text" [class.invalid]="addSalary.get('esi').invalid && addSalary.get('esi').touched"
+                                formControlName="esi" (input)="changeAddPrice(8,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('esi').invalid && addSalary.get('esi').touched">
+                                <small
+                                    *ngIf="addSalary.get('esi').invalid && addSalary.get('esi').touched"
+                                    class="text-danger"> *ESI is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>PF</label>
+                                <input class="form-control" placeholder="PF" type="text" [class.invalid]="addSalary.get('pf').invalid && addSalary.get('pf').touched"
+                                formControlName="pf" (input)="changeAddPrice(9,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('pf').invalid && addSalary.get('pf').touched">
+                                <small
+                                    *ngIf="addSalary.get('pf').invalid && addSalary.get('pf').touched"
+                                    class="text-danger"> *PF is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Leave</label>
+                                <input class="form-control" placeholder="Leave" type="text" [class.invalid]="addSalary.get('leave').invalid && addSalary.get('leave').touched"
+                                formControlName="leave" (input)="changeAddPrice(10,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('leave').invalid && addSalary.get('leave').touched">
+                                <small
+                                    *ngIf="addSalary.get('leave').invalid && addSalary.get('leave').touched"
+                                    class="text-danger"> *Leave is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Prof. Tax</label>
+                                <input class="form-control" placeholder="Prof. Tax" type="text" [class.invalid]="addSalary.get('profTax').invalid && addSalary.get('profTax').touched"
+                                formControlName="profTax" (input)="changeAddPrice(11,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('profTax').invalid && addSalary.get('profTax').touched">
+                                <small
+                                    *ngIf="addSalary.get('profTax').invalid && addSalary.get('profTax').touched"
+                                    class="text-danger"> *Proffesional tax is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Labour Welfare</label>
+                                <input class="form-control" placeholder="Labour Welfare" type="text" [class.invalid]="addSalary.get('labour').invalid && addSalary.get('labour').touched"
+                                formControlName="labour" (input)="changeAddPrice(12,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('labour').invalid && addSalary.get('labour').touched">
+                                <small
+                                    *ngIf="addSalary.get('labour').invalid && addSalary.get('labour').touched"
+                                    class="text-danger"> *Labour Welfare is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Others</label>
+                                <input class="form-control" placeholder="Others" type="text" [class.invalid]="addSalary.get('othersDed').invalid && addSalary.get('othersDed').touched"
+                                formControlName="othersDed" (input)="changeAddPrice(13,$event.target.value)" style="background:#fff;" disabled>
+                                <div
+                                *ngIf="addSalary.get('othersDed').invalid && addSalary.get('othersDed').touched">
+                                <small
+                                    *ngIf="addSalary.get('othersDed').invalid && addSalary.get('othersDed').touched"
+                                    class="text-danger"> *Others is required</small>
+                            </div>
+                            </div>
+                            
+                            <div class="leave-action">
+                                <button class="btn btn-sm btn-success payslip-modelHide" style="float:right;" routerLink = "/payroll/salary-view"><i class="fa fa-print"></i> Print Payslip</button>
+                            </div>
+                            
+                            <!-- <div class="add-more">
+                                <a ><i class="fa fa-plus-circle"></i> Add More</a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="submit-section">
+                                <button class="btn btn-primary submit-btn">Submit</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Salary Modal -->
+<style>
+.align{
+    float: right !important;
+}
+</style>
+<!-- Add Department Modal -->
+<div id="status" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure want to proceed for Payroll?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-success comShow" data-dismiss="modal" aria-label="" style="float:right;margin-left: 5px;">
+                    <i class="fa fa-check"></i> Ok
+                </button>
+                <button type="button" class="btn btn-success comShow2" data-dismiss="modal" aria-label="" style="float:right;margin-left: 5px;">
+                    Ok
+                </button>
+                <button type="button" class="btn btn-danger comShowCancel" data-dismiss="modal" aria-label="" style="float:right;">
+                    <i class="fa fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-danger comShowCancel2" data-dismiss="modal" aria-label="" style="float:right;">
+                    <i class="fa fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Department Modal -->
+<!-- Edit Salary Modal -->
+<div id="edit_salary" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Staff Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="editSalarySubmit()" [formGroup]="editSalary">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Select Staff</label>
+                                <select class="select form-control" [class.invalid]="editSalary.get('editSelectStaff').invalid && editSalary.get('editSelectStaff').touched"
+                                formControlName="editSelectStaff">
+                                    <option>John Doe</option>
+                                    <option>Richard Miles</option>
+                                </select>
+                                <div
+                                *ngIf="editSalary.get('editSelectStaff').invalid && editSalary.get('editSelectStaff').touched">
+                                <small
+                                    *ngIf="editSalary.get('editSelectStaff').invalid && editSalary.get('editSelectStaff').touched"
+                                    class="text-danger"> *Staff name is required</small>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Net Salary</label>
+                            <input class="form-control" type="text" readonly [class.invalid]="editSalary.get('editNetSalary').invalid && editSalary.get('editNetSalary').touched"
+                            formControlName="editNetSalary">
+                            <div
+                            *ngIf="editSalary.get('editNetSalary').invalid && editSalary.get('editNetSalary').touched">
+                            <small
+                                *ngIf="editSalary.get('editNetSalary').invalid && editSalary.get('editNetSalary').touched"
+                                class="text-danger"> *Salary is required</small>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 class="text-primary">Earnings</h4>
+                            <div class="form-group">
+                                <label>Basic</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editBasic').invalid && editSalary.get('editBasic').touched"
+                                formControlName="editBasic" (input)="changeEditPrice(0,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editBasic').invalid && editSalary.get('editBasic').touched">
+                                <small
+                                    *ngIf="editSalary.get('editBasic').invalid && editSalary.get('editBasic').touched"
+                                    class="text-danger"> *Basic is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>DA</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editDa').invalid && editSalary.get('editDa').touched"
+                                formControlName="editDa" (input)="changeEditPrice(1,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editDa').invalid && editSalary.get('editDa').touched">
+                                <small
+                                    *ngIf="editSalary.get('editDa').invalid && editSalary.get('editDa').touched"
+                                    class="text-danger"> *DA is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>HRA(15%)</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editHra').invalid && editSalary.get('editHra').touched"
+                                formControlName="editHra" (input)="changeEditPrice(2,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editHra').invalid && editSalary.get('editHra').touched">
+                                <small
+                                    *ngIf="editSalary.get('editHra').invalid && editSalary.get('editHra').touched"
+                                    class="text-danger"> *HRA is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Conveyance</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editConveyance').invalid && editSalary.get('editConveyance').touched"
+                                formControlName="editConveyance" (input)="changeEditPrice(3,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editConveyance').invalid && editSalary.get('editConveyance').touched">
+                                <small
+                                    *ngIf="editSalary.get('editConveyance').invalid && editSalary.get('editConveyance').touched"
+                                    class="text-danger"> *Conveyance is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Allowance</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editAllowance').invalid && editSalary.get('editAllowance').touched"
+                                formControlName="editAllowance" (input)="changeEditPrice(4,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editAllowance').invalid && editSalary.get('editAllowance').touched">
+                                <small
+                                    *ngIf="editSalary.get('editAllowance').invalid && editSalary.get('editAllowance').touched"
+                                    class="text-danger"> *Allowance is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Medical Allowance</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editMedAllowance').invalid && editSalary.get('editMedAllowance').touched"
+                                formControlName="editMedAllowance"(input)="changeEditPrice(5,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editMedAllowance').invalid && editSalary.get('editMedAllowance').touched">
+                                <small
+                                    *ngIf="editSalary.get('editMedAllowance').invalid && editSalary.get('editMedAllowance').touched"
+                                    class="text-danger"> *Medical allowance is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Others</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editAddOthers').invalid && editSalary.get('editAddOthers').touched"
+                                formControlName="editAddOthers" (input)="changeEditPrice(6,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editAddOthers').invalid && editSalary.get('editAddOthers').touched">
+                                <small
+                                    *ngIf="editSalary.get('editAddOthers').invalid && editSalary.get('editAddOthers').touched"
+                                    class="text-danger"> *Others is required</small>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="text-primary">Deductions</h4>
+                            <div class="form-group">
+                                <label>TDS</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editTds').invalid && editSalary.get('editTds').touched"
+                                formControlName="editTds" (input)="changeEditPrice(7,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editTds').invalid && editSalary.get('editTds').touched">
+                                <small
+                                    *ngIf="editSalary.get('editTds').invalid && editSalary.get('editTds').touched"
+                                    class="text-danger"> *TDS is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>ESI</label>
+                                <input class="form-control" type="text"  [class.invalid]="editSalary.get('editEsi').invalid && editSalary.get('editEsi').touched"
+                                formControlName="editEsi" (input)="changeEditPrice(8,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editEsi').invalid && editSalary.get('editEsi').touched">
+                                <small
+                                    *ngIf="editSalary.get('editEsi').invalid && editSalary.get('editEsi').touched"
+                                    class="text-danger"> *ESI is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>PF</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editPf').invalid && editSalary.get('editPf').touched"
+                                formControlName="editPf" (input)="changeEditPrice(9,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editPf').invalid && editSalary.get('editPf').touched">
+                                <small
+                                    *ngIf="editSalary.get('editPf').invalid && editSalary.get('editPf').touched"
+                                    class="text-danger"> *PF is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Leave</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editleave').invalid && editSalary.get('editleave').touched"
+                                formControlName="editleave" (input)="changeEditPrice(10,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editleave').invalid && editSalary.get('editleave').touched">
+                                <small
+                                    *ngIf="editSalary.get('editleave').invalid && editSalary.get('editleave').touched"
+                                    class="text-danger"> *Leave is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Prof. Tax</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editProfTax').invalid && editSalary.get('editProfTax').touched"
+                                formControlName="editProfTax" (input)="changeEditPrice(11,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editProfTax').invalid && editSalary.get('editProfTax').touched">
+                                <small
+                                    *ngIf="editSalary.get('editProfTax').invalid && editSalary.get('editProfTax').touched"
+                                    class="text-danger"> *Professional tax is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Labour Welfare</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editLabour').invalid && editSalary.get('editLabour').touched"
+                                formControlName="editLabour" (input)="changeEditPrice(12,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editLabour').invalid && editSalary.get('editLabour').touched">
+                                <small
+                                    *ngIf="editSalary.get('editLabour').invalid && editSalary.get('editLabour').touched"
+                                    class="text-danger"> *Labour welfare is required</small>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Others</label>
+                                <input class="form-control" type="text" [class.invalid]="editSalary.get('editDedOthers').invalid && editSalary.get('editDedOthers').touched"
+                                formControlName="editDedOthers" (input)="changeEditPrice(13,$event.target.value)">
+                                <div
+                                *ngIf="editSalary.get('editDedOthers').invalid && editSalary.get('editDedOthers').touched">
+                                <small
+                                    *ngIf="editSalary.get('editDedOthers').invalid && editSalary.get('editDedOthers').touched"
+                                    class="text-danger"> *Others is required</small>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Salary Modal -->
+
+<!-- Delete Salary Modal -->
+<div class="modal custom-modal fade" id="delete_salary" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Salary</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn" (click)="deleteSalary()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Salary Modal -->

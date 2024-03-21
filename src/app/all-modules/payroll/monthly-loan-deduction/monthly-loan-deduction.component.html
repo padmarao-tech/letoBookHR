@@ -1,0 +1,227 @@
+
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Monthly Loan Deduction</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Monthly Loan Deduction</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <!-- /Page Content -->
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                &nbsp;  
+                <button  class="btn btn-primary" data-toggle="modal" data-target="#add_loandetail" style="border-radius: 5px"><i class="fa fa-plus"></i> Add Department</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Loan Header</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                class="table table-striped custom-table datatable nowrap mb-0" id="pdfSection">
+                  
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">ID #</th>
+                            <th>Year</th>
+                            <th>Month</th>
+                            <th>Notes</th>
+                            <!-- <th class="text-center prt">Print</th> -->
+                            <th class="text-right prt">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of loandeductedlist">
+                            <td>{{item.uid}}</td>
+                            <td>{{item.tyear}}</td>
+                            <td>{{item.tmonth}}</td>
+                            <td>{{item.notes}}</td>
+                            <td class="text-right prt">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#add_loandetail" (click)="edit(item.uid)"><i
+                                                class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_department" (click)="tempId = item.uid"><i
+                                                class="fa fa-trash-o m-r-5"></i>
+                                            Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+  </div>
+  <!-- /Page Content -->
+  
+  <!-- Add monthly loan deduction -->
+  <div id="add_loandetail" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Loan Deduction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  [formGroup]="addloandetailsform">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Effect year <span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+                                    <input class="form-control datetimepicker" [(ngModel)]="tyear" type="text" bsDatepicker type="text"
+                                        [bsConfig]="{ dateInputFormat: 'YYYY',  returnFocusToInput: true }"
+                                        [class.invalid]="addloandetailsform.get('aeffect_year').invalid && addloandetailsform.get('aeffect_year').touched"
+                                        formControlName="aeffect_year"  (bsValueChange)="addfromdt()">
+                                       <div *ngIf="addloandetailsform.get('aeffect_year').invalid && addloandetailsform.get('aeffect_year').touched">
+                                        <small
+                                            *ngIf="addloandetailsform.get('aeffect_year').invalid && addloandetailsform.get('aeffect_year').touched"
+                                            class="text-danger"> *year is required</small> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Effect Month <span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+                                    <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                        [bsConfig]="{ dateInputFormat: 'MM',  returnFocusToInput: true }"
+                                        [class.invalid]="addloandetailsform.get('aeffect_month').invalid && addloandetailsform.get('aeffect_month').touched"
+                                        formControlName="aeffect_month"  [(ngModel)]="tmonth" (bsValueChange)="addfromdt()">
+                                       <div *ngIf="addloandetailsform.get('aeffect_month').invalid && addloandetailsform.get('aeffect_month').touched">
+                                        <small
+                                            *ngIf="addloandetailsform.get('aeffect_month').invalid && addloandetailsform.get('aeffect_month').touched"
+                                            class="text-danger"> *year is required</small> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="col-md-4">
+                            <label> <span class="text-danger">*</span></label>
+                        <div class="leave-action">
+                            <button class="btn btn-sm btn-primary"  (click)="Insertintoloan()"><i class="fa fa-plus"></i>Get Details</button>
+                        </div>
+<!--                        <div>
+                            <button (click)= "finlatestid()" >get last id </button> 
+                        </div>
+-->
+                                         
+                        </div>
+
+                      
+                    </div>
+                </form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Loan Header</h3>    
+                    <!-- -->
+                    <table id="tblsalarymaster" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                    class="table table-striped custom-table mb-0 datatable">
+                         <thead>
+                        <tr>
+                            <th style="width: 30px;">Select</th>
+                            <th>Id</th>
+                            <th>Emp. Uid</th>
+                            <th>Emp. Name</th>
+                            <th>loan type </th>
+                            <th>loantype uid </th>
+                            <th>Loan Amount </th>
+                            <th>Total Paid Amount</th>
+                            <th>Monthly Deduction</th>
+                            <th>still Balance</th>
+                            <th>This month due</th>
+                           </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of loandetaillst;let i = index">
+                            <td style="text-align: center;">
+                                <input type="checkbox" [(ngModel)]="row.tick" (change)="row.tick = $event.target.checked ? 1: 0">
+                              </td>
+                            <td>{{row.uid}}</td>
+                            <td> {{row.empmaster_uid}}</td>
+                            <td>{{row.employee}}</td>
+                            <td>{{row.loantype}}</td>
+                            <td>{{row.loantype_uid}} </td>
+                            <td>{{row.loanamount}}</td>
+                            <td>{{row.total_paidamount}}</td>
+                            <td>{{row.monthly_deduction}}</td>
+                            <td>{{row.still_tobe_paid}}</td>
+                            <td><input type="text" [(ngModel)]="row.thismonth_due" > </td>
+                           </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="leave-action">
+            <button class="btn btn-sm btn-primary"  (click)="insertheaderanddetails()"><i class="fa fa-plus"></i>Update and save</button>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- /Add Department Modal -->
+  
+  <!-- Delete Department Modal -->
+  <div class="modal custom-modal fade" id="delete_department" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Department</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="deleteDepartment()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- /Delete Department Modal -->

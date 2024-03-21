@@ -1,0 +1,2372 @@
+<!--Add Employee New Update Modal -->
+<div id="add_employee" class="modal custom-modal fade  model-pop" role="dialog" style="padding-right: 0px !important;"> 
+    <div class="container-fluid modal-dialog modal-dialog-centered modal-lg" style="max-width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="CompanyName" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 17px;">Leto Systems Pvt.Ltd</h5>
+                </div>
+                <div id="CompanyAddress" style="display: none;">
+                    <p style="font-size: 12px;">No.47. 1st Floor ,<br>Prestige Tower,Haddows Road,<br>Nungamabakkam, Chennai - 600006</p>
+                </div>
+                <div id="EmpDetailsTitle" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 16px;">Employee Details</h5>
+                </div>
+               
+                <!-- <h5 class="modal-title">Employee Details</h5> -->
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addEmployee()" [formGroup]="addEmployeeForm">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" placeholder="First Name" name="firstname">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Last Name<span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="lastname" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Joining Date<span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+
+                                    <input class="form-control datetimepicker" type="text" bsDatepicker name="joingDate" placeholder="Joining Date">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Employee ID<span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" name="Emp_id" placeholder="Employee ID">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Employment Status</label>
+                                <select class="select form-control" name="employment_status">
+                                    <option>--Select--</option>
+                                    <option>Permanent</option>
+                                    <option>Temporary</option>
+                                    <option>Consultant</option>
+                                    <option>Contract</option>
+                                    <option>Probation</option>
+                                    <option>On Long Leave</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Company Phone</label>
+                               <input class="form-control" type="number" name="company_phone" placeholder="Company Phone">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Location
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <select class="select form-control" type="text" name="location">
+                                    <option>--Select--</option>
+                                    <option>India</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Department</label>
+                                <select class="select form-control" name="department">
+                                    <option>--Select--</option>
+                                    <option> Design</option>
+                                    <option> CSE </option>
+                                    <option> Angular Developer </option>
+                                    <option> Development </option>
+                                    <option> Design </option>
+                                    <option> CSE </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Designation</label>
+                                <select class="select form-control" name="designation">
+                                    <option>--Select--</option>
+                                    <option>  Full Stack Developer </option>
+                                    <option>  Designer  </option>
+                                    <option>  UI Designer  </option>
+                                    <option>  Front End Developer  </option>
+                                    <option>  Full Stack Developer  </option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Employee Company Email ID </label>
+                                
+                                <input class="form-control" type="text" name="Emp_CompanyEmailID" placeholder="Employee Company Email ID">
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Salary Currency 
+                                    
+                                </label>
+                                
+                                
+                                <select class="select form-control">
+                                    <option >--Select--</option>
+                                    <option >US Dollar</option>
+                                    <option >Indian Rupee</option>
+                                    <option > Afghani</option>
+                                    <option >Lek</option>
+                                    <option > Algerian Dinar</option>
+                                    <option >ANDORRA Euro</option>
+                                    <option >Kwanza</option>
+                                    <option >East Caribbean Dollar</option>
+                                    <option >No universal currency</option>
+                                    <option > Afghani</option>
+                                    <option >Lek</option>
+                                    <option > Algerian Dinar</option>
+                                    <option >East Caribbean Dollar</option>
+                                    <option >Argentine Peso</option>
+                                    <option >Armenian Dram</option>
+                                    <option >Aruban Florin</option>
+                                    <option > Australian Dollar</option>
+                                    <option >Azerbaijanian Manat</option>
+                                    <option >AUSTRIA Euro</option>
+                                    <option >Azerbaijanian Manat</option>
+                                    <option >Bahamian Dollar</option>
+                                    <option >Bahraini Dinar</option>
+                                    <option >Taka</option>
+                                    <option > Barbados Dollar</option>
+                                    <option >Belarussian Ruble</option>
+                                    <option >BELGIUM Euro</option>
+                                    <option >Belize Dollar</option>
+                                    <option >CFA Franc BCEAO</option>
+                                    <option >Bermudian Dollar</option>
+                                    <option >Ngultrum</option>
+                                    <option > BHUTAN Indian Rupee</option>
+                                    <option >Boliviano</option>
+                                    <option >Mvdol</option>
+                                    <option >Convertible Mark</option>
+                                    <option >Pula</option>
+                                    <option >Norwegian Krone</option>
+                                    <option >Brazilian Real</option>
+                                    <option > Brunei Dollar</option>
+                                    <option >Bulgarian Lev</option>
+                                    <option >CFA Franc BCEAO</option>
+                                    <option >Burundi Franc</option>
+                                    <option >Cabo Verde Escudo</option>
+                                    <option >Riel</option>
+                                    <option >CFA Franc BEAC</option>
+                                    <option >Canadian Dollar</option>
+                                    <option >Cayman Islands Dollar</option>
+                                    <option >CHAD CFA Franc BEAC</option>
+                                    <option >CHILE CFA Franc BEAC</option>
+                                    <option >Chilean Peso</option>
+                                    <option >Yuan Renminbi</option>
+                                    <option >Australian Dollar</option>
+                                    <option >Colombian Peso</option>
+                                        <option >Unidad de Valor Real</option>
+                                            <option >Comoro Franc</option>
+                                                <option >Congolese Franc</option>
+                                                    <option >CFA Franc BEAC</option>
+                                                        <option >New Zealand Dollar</option>
+                                                            <option >Costa Rican Colon</option>
+                                                                <option >Kuna</option>
+                                                                    <option >Peso Convertible</option>
+                                                                        <option >Cuban Peso</option>
+                                                                            <option >Netherlands Antillean Guilder</option>
+                                                                                <option >Czech Koruna</option>
+                                                                                    <option >CFA Franc BCEAO</option>
+                                                                                        <option >Danish Krone</option>
+                                                                                            <option >Djibouti Franc</option>
+                                                                                                <option >East Caribbean Dollar</option>
+                                                                                                    <option >Dominican Peso</option>
+                                     <option >Egyptian Pound</option>
+                                        <option >El Salvador Colon</option>
+                                            <option >CFA Franc BEAC</option>
+                                                <option >Nakfa</option>
+                                                    <option >Ethiopian Birr</option>
+                                                        <option >Falkland Islands Pound</option>
+                                                            <option >Danish Krone</option>
+                                                                <option >Fiji Dollar</option>
+                                                                    <option >CFP Franc</option>
+                                                                        <option >CFA Franc BEAC</option>
+                                                                            <option >Dalasi</option>
+                                                                                <option >Lari</option>
+                                                                                    <option >Ghana Cedi</option>
+                                                                                        <option > Gibraltar Pound</option>
+                                                                                            <option > Danish Krone</option>
+                                                                                                <option >East Caribbean Dollar</option>
+                                                                                                    <option >Quetzal</option>
+                                                                                                        <option >Pound Sterling</option>
+                                                                                                            <option > Guinea Franc</option>
+                                                                                                                <option > CFA Franc BCEAO</option>
+                                                                                                                    <option > Guyana Dollar</option>
+                                                                                                                        <option > Gourde</option>
+                                                                                                                            <option >Australian Dollar</option>
+                                                                                                                                <option >Lempira</option>
+                                                                                                                                    <option > Hong Kong Dollar</option>
+                                                                                                                                        <option > Forint</option>
+                                                                                                                                            <option >Iceland Krona</option>
+                                                                                                                                                <option > Rupiah</option>
+                                    <option >SDR (Special Drawing Right)</option>
+                                        <option >Iranian Rial</option>
+                                            <option >Iraqi Dinar</option>
+                                                <option > Pound Sterling</option>
+                                                    <option >New Israeli Sheqel</option>
+                                                        <option >Jamaican Dollar</option>
+                                                            <option >Yen</option>
+                                                                <option > Jordanian Dinar</option>
+                                                                    <option >Tenge</option>
+                                                                        <option >Kenyan Shilling</option>
+                                                                            <option >North Korean Won</option>
+                                    <option >Won</option>
+                                        <option >Kuwaiti Dinar</option>
+                                            <option >Som</option>
+                                                <option >Kip</option>
+                                                    <option >Lebanese Pound</option>
+                                                        <option > Loti</option>
+                                                            <option >Rand</option>
+                                                                <option >Liberian Dollar</option>
+                                                                    <option >Libyan Dinar</option>
+                                                                        <option >Swiss Franc</option>
+                                                                            <option >Pataca</option>
+                                                                                <option >Malagasy Ariary</option>
+                                                                                    <option > Kwacha</option>
+                                                                                        <option >Malaysian Ringgit</option>
+                                                                                            <option >Rufiyaa</option>
+                                                                                                <option >CFA Franc BCEAO</option>
+                                                                                                    <option >Ouguiya</option>
+                                                                                                        <option >Mauritius Rupee</option>
+                                                                                                            <option >ADB Unit of Account</option>
+                                                                                                                <option >Mexican Peso</option>
+                                                                                                                    <option >Mexican Unidad de Inversion (UDI)</option>
+                                                                                                                        <option >Moldovan Leu</option>
+                                                                                                                            <option >Tugrik</option>
+                                                                                                                                <option >East Caribbean Dollar</option>
+                                                                                                                                    <option >Moroccan Dirham</option>
+                                                                                                                                        <option >Mozambique Metical</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Salary Amount
+                                     
+                                </label>
+                                
+                                
+                                <input class="form-control" placeholder="Salary Amount" type="text" >
+                                
+                            </div>
+                        </div> -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">User ID 
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <input class="form-control" type="text" name="user_id" placeholder="User ID">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">User Password 
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <input class="form-control" type="password"  name="user_password" placeholder="User Password">
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Reports to
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input class="form-control" type="text" placeholder="Reports to">
+                            </div>
+                        </div> -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="select form-group">
+                                <label class="col-form-label">Supervisor
+                                  
+                                </label>
+                                <select class="form-control" type="text" name="supervisor" placeholder="Supervisor">
+                                    <option>--Select--</option>
+                                    <option>John Deo</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    
+                    <div class="col-md-2" style="display: flex;">
+                        <label class="col-form-label">Active:</label>
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                id="switch_hospitalisation">
+                            <label class="onoffswitch-label" for="switch_hospitalisation">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-header">
+                        <div id="PersonalDetails" style="display: none;">
+                            <h5 class="modal-title" style="font-size: 16px;">Personal Details</h5>
+                        </div>
+                        <h5 class="modal-title">Personal Details</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <br>
+                    
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Gender<span class="text-danger">*</span></label>
+                                    <select class="select form-control" name="genter">
+                                        <option>-- Select --</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Others</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Date Of Birth<span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+    
+                                        <input class="form-control datetimepicker" type="text" bsDatepicker type="text" name="dob">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Relegion</label>
+                                    <select class="select form-control" name="Relegion">
+                                        <option>-- Select --</option>
+                                        <option>Atheism/Agnosticism</option>
+                                        <option>Bahá’í</option>
+                                        <option>Buddhism</option>
+                                        <option>Christianity</option>
+                                        <option>Confucianism</option>
+                                        <option> Druze</option>
+                                        <option>Gnosticism</option>
+                                        <option>Hinduism</option>
+                                        <option>Islam</option>
+                                        <option>Jainism</option>
+                                        <option>Judaism</option>
+                                        <option>Rastafarianism</option>
+                                        <option>Shinto</option>
+                                        <option>Sikhism</option>
+                                        <option>Zoroastrianism</option>
+                                        <option>Traditional African Religions</option>
+                                        <option> African Diaspora Religions</option>
+                                        <option>Indigenous American Religions</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Nationality</label>
+                                    <select class="select form-control" name="nationality">
+                                        <option >-- Select --</option>
+                                        <option >Afghan</option>
+                                        <option >Albanian</option>
+                                        <option >Algerian</option>
+                                        <option >Argentine & Argentinian</option>
+                                        <option >Australian</option>
+                                        <option > Austrian</option>
+                                        <option >Bangladeshi</option>
+                                        <option >Belgian</option>
+                                        <option >Bolivian</option>
+                                        <option >Batswana</option>
+                                        <option >Brazilian</option>
+                                        <option >Bulgarian</option>
+                                        <option >Cambodian</option>
+                                        <option >Cameroonian</option>
+                                        <option >Canadian</option>
+                                        <option >Chilean</option>
+                                        <option > Chinese</option>
+                                        <option >Colombian</option>
+                                        <option >Costa Rican</option>
+                                        <option >Croatian</option>
+                                        <option >Cuban</option>
+                                        <option >Czech</option>
+                                        <option >Danish</option>
+                                        <option >Dominican</option>
+                                        <option >Ecuadorian</option>
+                                        <option >Egyptian</option>
+                                        <option >Salvadorian</option>
+                                        <option >English</option>
+                                        <option >Estonian</option>
+                                        <option >Ethiopian</option>
+                                        <option >Fijian</option>
+                                        <option >Finnish</option>
+                                        <option >German</option>
+                                        <option >Ghanaian</option>
+                                        <option >Greek</option>
+                                        <option >Guatemalan</option>
+                                        <option >Haitian</option>
+                                        <option >Honduran</option>
+                                        <option >Hungarian</option>
+                                        <option >Icelandic</option>
+                                        <option >Indian</option>
+                                        <option >Indonesian</option>
+                                        <option >Iranian</option>
+                                        <option >Iraqi</option>
+                                        <option >Irish</option>
+                                        <option >Israeli</option>
+                                        <option >Italian</option>
+                                        <option >Jamaican</option>
+                                        <option >Japanese</option>
+                                        <option >Jordanian</option>
+                                        <option >Kenyan</option>
+                                        <option >Kuwaiti</option>
+                                        <option >Lao</option>
+                                        <option >Latvian</option>
+                                        <option >Lebanese</option>
+                                        <option >Libyan</option>
+                                        <option >Lithuanian</option>
+                                        <option >Malagasy</option>
+                                        <option >Malaysian</option>
+                                        <option >Malian</option>
+                                        <option >Maltese</option>
+                                        <option >Mexican</option>
+                                        <option >Mongolian</option>
+                                        <option >Moroccan</option>
+                                        <option >Mozambican</option>
+                                        <option >Namibian</option>
+                                        <option >Nepalese</option>
+                                        <option >Dutch</option>
+                                        <option >New Zealand</option>
+                                        <option >Nicaraguan</option>
+                                        <option >Nigerian</option>
+                                        <option >Norwegian</option>
+                                        <option >Pakistani</option>
+                                        <option >Panamanian</option>
+                                        <option >Paraguayan</option>
+                                        <option >Peruvian</option>
+                                        <option >Philippine</option>
+                                        <option >Polish</option>
+                                        <option >Portuguese</option>
+                                        <option >Romanian</option>
+                                        <option >Russian</option>
+                                        <option >Saudi</option>
+                                        <option >Scottish</option>
+                                        <option >Senegalese</option>
+                                        <option >Serbian</option>
+                                        <option >Singaporean</option>
+                                        <option >Slovak</option>
+                                        <option >South African</option>
+                                        <option >Korean</option>
+                                        <option >Spanish</option>
+                                        <option >Sri Lankan</option>
+                                        <option >Sudanese</option>
+                                        <option >Swedish</option>
+                                        <option >Swiss</option>
+                                        <option >Syrian</option>
+                                        <option >Taiwanese</option>
+                                        <option >Tajikistani</option>
+                                        <option >Thai</option>
+                                        <option >Tongan</option>
+                                        <option >Tunisian	</option>
+                                        <option >Turkish</option>
+                                        <option >Ukrainian</option>
+                                        <option >Emirati</option>
+                                        <option >British</option>
+                                        <option >American</option>
+                                        <option >Uruguayan</option>
+                                        <option >Venezuelan</option>
+                                        <option >Vietnamese</option>
+                                        <option >Welsh</option>
+                                        <option >Zambian</option>
+                                        <option >Zimbabwean</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Marital status</label>
+                                    <select class="select form-control" name="marital_status">
+                                        <option >-- Select --</option>
+                                        <option >Married</option>
+                                        <option >Single</option>
+                                        <option >Divorced</option>
+                                        <option >Separated</option>
+                                        <option >Widowed</option>
+                                        <option >Others</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">No of Children</label>
+                                    <input class="form-control" placeholder="No of Children" name="noofChildren" type="number">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Persnol Phone Number</label>
+                                    <input class="form-control" type="number" name="PersnolPhoneNumber" placeholder="Persnol Phone Number">
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Personal Email Address
+                                        <!-- <span class="text-danger">*</span> -->
+                                    </label>
+                                    <input class="form-control" type="text" name="PersnolEmailAddress" placeholder="Persnol Email Address">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Employment of spouse</label>
+                                    <div class="onoffswitch" style="margin-left: 0;">
+                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                            id="switch_hospitalisation2">
+                                        <label class="onoffswitch-label" for="switch_hospitalisation2">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                        <!-- <small>Same as Present Address</small> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Blood Group<span class="text-danger">*</span></label>
+                                    <select class="select form-control" name="blood_group">
+                                        <option >--Select--</option>
+                                        <option > A+</option>
+                                        <option > A- </option>
+                                        <option > B+ </option>
+                                        <option > B- </option>
+                                        <option > O+ </option>
+                                        <option > O- </option>
+                                        <option > AB+ </option>
+                                        <option > AB- </option>
+                                    </select>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('CompanyName').invalid && addEmployeeForm.get('CompanyName').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('CompanyName').invalid && addEmployeeForm.get('CompanyName').touched"
+                                            class="text-danger"> Blood Group Name required</small>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Educational Qualifications<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" type="text" name="EducationalQualifications"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber" placeholder="Educational Qualifications"></textarea>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Educational Qualifications is required</small>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Work Experience<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" type="text" name="work_experience"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber" placeholder="Work Experience"></textarea>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Work Experience is required</small>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Skill Set</label>
+                                    <textarea class="form-control" placeholder="Skill Set" name="skillSet" type="text"></textarea>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Reference Details</label>
+                                    <textarea class="form-control" placeholder="Reference Details" name="reference_details" type="text"></textarea>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Identity Proof Name<span class="text-danger">*</span></label>
+                                    <select class="select form-control" name="IdentityProofName">
+                                        <option >--Select--</option>
+                                        <option >National ID</option>
+                                        <option >Passport</option>
+                                        <option >Driving License</option>
+                                        <option >PAN Card</option>
+                                        <option >TAN Card</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Identity Proof Details<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" name="IdentityProofDetails"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber" placeholder="Identity Proof Details">
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Identity Proof Details is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Present Address <i class="fa fa-question-circle"></i><span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text"  placeholder="Address1" name="present_address1"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <input class="form-control" type="text" placeholder="Address2" name="present_address2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text"  placeholder="City/Town" name="PresentCityTown"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="Postal Code" name="postal_code"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text" placeholder="Country" name="PresentCountry"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="State" name="state"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> Present Address is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div style="display: flex;">
+                                        <label class="col-form-label">Permanent Address<span class="text-danger">*</span></label>
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                id="switch_hospitalisation1">
+                                            <label class="onoffswitch-label" for="switch_hospitalisation1">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                            <!-- <small>Same as Present Address</small> -->
+                                        </div>
+                                    </div>
+                                    <input class="form-control" type="text"  placeholder="Address1" name="permanent_address1"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <input class="form-control" type="text" placeholder="Address2"  name="permanent_address2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text"  placeholder="City/Town" name="PermanentCityTown"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="Postal Code" name="postal_code2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text" placeholder="Country" name="PermanentCountry"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="State" name="state2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Permanent Address is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Employee Photo</label>
+                                    <input class="form-control" type="file" name="Employee_Photo"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                    <small>adduser.Maximum allowed file size is 20KB</small>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Employee Photo is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+
+                        <br>
+                        <div id="BankInformationTitle" style="display: none;">
+                            <h5 class="modal-title" style="font-size: 16px;">Bank Information</h5>
+                        </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Bank Information</h5>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Bank Name</label>
+                                    <select class="form-control" type="text" name="BankName"  placeholder="Bank Name">
+                                        <option>State Bank of India</option>
+                                        <option>ICICI</option>
+                                        <option>Indian Bank</option>
+                                    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Bank Account Name</label>
+                                    <input class="form-control" type="text" name="BankAccountName" placeholder="Bank Account Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Bank Account No</label>
+                                    <input class="form-control" type="number" name="BankAccountNo" placeholder="Bank Account No">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">IFSC Code</label>
+                                    <input class="form-control" type="text" name="ifscCode"  placeholder="IFSC Code">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">PAN No</label>
+                                    <input class="form-control" type="number" name="pan_no" placeholder="PAN No">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">IBAN NO</label>
+                                    <input class="form-control" type="number" name="iban_no" placeholder="IBAN NO">
+                                </div>
+                            </div>
+                        </div>    
+                   
+                        <!-- <br>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Family Information</h5>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Name</label>
+                                    <input class="form-control" type="text"  placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Relationship</label>
+                                    <input class="form-control" type="text" placeholder="Relationship">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Date Of Birth<span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+    
+                                        <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                            [class.invalid]="addEmployeeForm.get('JoinDate').invalid && addEmployeeForm.get('JoinDate').touched"
+                                            formControlName="JoinDate" placeholder="Date of Birth">
+                                        <div
+                                            *ngIf="addEmployeeForm.get('JoinDate').invalid && addEmployeeForm.get('JoinDate').touched">
+                                            <small
+                                                *ngIf="addEmployeeForm.get('JoinDate').invalid && addEmployeeForm.get('JoinDate').touched"
+                                                class="text-danger"> *Date Of Birth is required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Phone Number</label>
+                                    <input class="form-control" type="number" placeholder="Phone Number">
+                                </div>
+                            </div>
+                        </div>     -->
+
+
+                    <br>
+                    <div id="EmergencyDetailsTitle" style="display: none;">
+                        <h5 class="modal-title" style="font-size: 16px;">Emergency Details</h5>
+                    </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Emergency Details</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- <div class="col-md-12">
+                            <span style="font-weight:100;font-size:20px;">Primary</span>
+                        </div> -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Name</label>
+                                <input class="form-control" type="text" value="{{ c_name.value }}"  name="contact_name" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Relationship</label>
+                                <input class="form-control" type="text" value="{{ c_relationship.value }}" name="relationship" placeholder="Contact Relationship">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Number</label>
+                                <input class="form-control" type="number" value="{{ c_no.value }}" name="contact_no" placeholder="Contact Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Email ID</label>
+                                <input class="form-control" type="number" value="{{ c_email_id.value }}" name="contact_emailId" placeholder="Contact  Email ID">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Notes</label>
+                                <textarea class="form-control" type="text" name="notes" placeholder="Notes" value="{{ notes.value }}"></textarea>
+                            </div>
+                        </div>
+                        <!-- <div class="col-auto float-right ml-auto">
+                            <a  class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i>
+                                Add</a>
+                        </div> -->
+                    </div>
+
+                    
+                    <button type="button" class="btn btn-danger button" style="float: right;">
+                        <i class="fa fa-pdf"></i>pdf
+                    </button>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn btn-style" type="submit">Clear</button>
+                        <button class="btn btn-success submit-btn btn-style" type="submit">Save & New</button>
+                        <button class="btn btn-success submit-btn btn-style" type="submit">Save</button>
+                        <button class="btn btn-danger submit-btn btn-style" type="submit">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add Employee New Update End Model-->
+
+
+<!-- Add Employee Modal -->
+<div id="add_employee" class="modal custom-modal fade  model-pop" role="dialog" style="padding-right: 0px !important;"> 
+    <div class="container-fluid modal-dialog modal-dialog-centered modal-lg" style="max-width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="CompanyName" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 20px;">Leto Systems Pvt.Ltd</h5>
+                </div>
+                <div id="EmpDetailsTitle" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 16px;">Employee Details</h5>
+                </div>
+               
+                <h5 class="modal-title">Employee Details</h5>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addEmployee()" [formGroup]="addEmployeeForm">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" placeholder="First Name" name="firstname">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Last Name<span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="lastname" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Joining Date<span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+
+                                    <input class="form-control datetimepicker" type="text" bsDatepicker name="joingDate" placeholder="Joining Date">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Employee ID<span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" name="Emp_id" placeholder="Employee ID">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Employment Status</label>
+                                <select class="select form-control" name="employment_status">
+                                    <option>--Select--</option>
+                                    <option>Permanent</option>
+                                    <option>Temporary</option>
+                                    <option>Consultant</option>
+                                    <option>Contract</option>
+                                    <option>Probation</option>
+                                    <option>On Long Leave</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Company Phone</label>
+                               <input class="form-control" type="number" name="company_phone" placeholder="Company Phone">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Location
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <select class="select form-control" type="text" name="location">
+                                    <option>--Select--</option>
+                                    <option>India</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Department</label>
+                                <select class="select form-control" name="department">
+                                    <option>--Select--</option>
+                                    <option> Design</option>
+                                    <option> CSE </option>
+                                    <option> Angular Developer </option>
+                                    <option> Development </option>
+                                    <option> Design </option>
+                                    <option> CSE </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Designation</label>
+                                <select class="select form-control" name="designation">
+                                    <option>--Select--</option>
+                                    <option>  Full Stack Developer </option>
+                                    <option>  Designer  </option>
+                                    <option>  UI Designer  </option>
+                                    <option>  Front End Developer  </option>
+                                    <option>  Full Stack Developer  </option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Employee Company Email ID </label>
+                                
+                                <input class="form-control" type="text" name="Emp_CompanyEmailID" placeholder="Employee Company Email ID">
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Salary Currency 
+                                    
+                                </label>
+                                
+                                
+                                <select class="select form-control">
+                                    <option >--Select--</option>
+                                    <option >US Dollar</option>
+                                    <option >Indian Rupee</option>
+                                    <option > Afghani</option>
+                                    <option >Lek</option>
+                                    <option > Algerian Dinar</option>
+                                    <option >ANDORRA Euro</option>
+                                    <option >Kwanza</option>
+                                    <option >East Caribbean Dollar</option>
+                                    <option >No universal currency</option>
+                                    <option > Afghani</option>
+                                    <option >Lek</option>
+                                    <option > Algerian Dinar</option>
+                                    <option >East Caribbean Dollar</option>
+                                    <option >Argentine Peso</option>
+                                    <option >Armenian Dram</option>
+                                    <option >Aruban Florin</option>
+                                    <option > Australian Dollar</option>
+                                    <option >Azerbaijanian Manat</option>
+                                    <option >AUSTRIA Euro</option>
+                                    <option >Azerbaijanian Manat</option>
+                                    <option >Bahamian Dollar</option>
+                                    <option >Bahraini Dinar</option>
+                                    <option >Taka</option>
+                                    <option > Barbados Dollar</option>
+                                    <option >Belarussian Ruble</option>
+                                    <option >BELGIUM Euro</option>
+                                    <option >Belize Dollar</option>
+                                    <option >CFA Franc BCEAO</option>
+                                    <option >Bermudian Dollar</option>
+                                    <option >Ngultrum</option>
+                                    <option > BHUTAN Indian Rupee</option>
+                                    <option >Boliviano</option>
+                                    <option >Mvdol</option>
+                                    <option >Convertible Mark</option>
+                                    <option >Pula</option>
+                                    <option >Norwegian Krone</option>
+                                    <option >Brazilian Real</option>
+                                    <option > Brunei Dollar</option>
+                                    <option >Bulgarian Lev</option>
+                                    <option >CFA Franc BCEAO</option>
+                                    <option >Burundi Franc</option>
+                                    <option >Cabo Verde Escudo</option>
+                                    <option >Riel</option>
+                                    <option >CFA Franc BEAC</option>
+                                    <option >Canadian Dollar</option>
+                                    <option >Cayman Islands Dollar</option>
+                                    <option >CHAD CFA Franc BEAC</option>
+                                    <option >CHILE CFA Franc BEAC</option>
+                                    <option >Chilean Peso</option>
+                                    <option >Yuan Renminbi</option>
+                                    <option >Australian Dollar</option>
+                                    <option >Colombian Peso</option>
+                                        <option >Unidad de Valor Real</option>
+                                            <option >Comoro Franc</option>
+                                                <option >Congolese Franc</option>
+                                                    <option >CFA Franc BEAC</option>
+                                                        <option >New Zealand Dollar</option>
+                                                            <option >Costa Rican Colon</option>
+                                                                <option >Kuna</option>
+                                                                    <option >Peso Convertible</option>
+                                                                        <option >Cuban Peso</option>
+                                                                            <option >Netherlands Antillean Guilder</option>
+                                                                                <option >Czech Koruna</option>
+                                                                                    <option >CFA Franc BCEAO</option>
+                                                                                        <option >Danish Krone</option>
+                                                                                            <option >Djibouti Franc</option>
+                                                                                                <option >East Caribbean Dollar</option>
+                                                                                                    <option >Dominican Peso</option>
+                                     <option >Egyptian Pound</option>
+                                        <option >El Salvador Colon</option>
+                                            <option >CFA Franc BEAC</option>
+                                                <option >Nakfa</option>
+                                                    <option >Ethiopian Birr</option>
+                                                        <option >Falkland Islands Pound</option>
+                                                            <option >Danish Krone</option>
+                                                                <option >Fiji Dollar</option>
+                                                                    <option >CFP Franc</option>
+                                                                        <option >CFA Franc BEAC</option>
+                                                                            <option >Dalasi</option>
+                                                                                <option >Lari</option>
+                                                                                    <option >Ghana Cedi</option>
+                                                                                        <option > Gibraltar Pound</option>
+                                                                                            <option > Danish Krone</option>
+                                                                                                <option >East Caribbean Dollar</option>
+                                                                                                    <option >Quetzal</option>
+                                                                                                        <option >Pound Sterling</option>
+                                                                                                            <option > Guinea Franc</option>
+                                                                                                                <option > CFA Franc BCEAO</option>
+                                                                                                                    <option > Guyana Dollar</option>
+                                                                                                                        <option > Gourde</option>
+                                                                                                                            <option >Australian Dollar</option>
+                                                                                                                                <option >Lempira</option>
+                                                                                                                                    <option > Hong Kong Dollar</option>
+                                                                                                                                        <option > Forint</option>
+                                                                                                                                            <option >Iceland Krona</option>
+                                                                                                                                                <option > Rupiah</option>
+                                    <option >SDR (Special Drawing Right)</option>
+                                        <option >Iranian Rial</option>
+                                            <option >Iraqi Dinar</option>
+                                                <option > Pound Sterling</option>
+                                                    <option >New Israeli Sheqel</option>
+                                                        <option >Jamaican Dollar</option>
+                                                            <option >Yen</option>
+                                                                <option > Jordanian Dinar</option>
+                                                                    <option >Tenge</option>
+                                                                        <option >Kenyan Shilling</option>
+                                                                            <option >North Korean Won</option>
+                                    <option >Won</option>
+                                        <option >Kuwaiti Dinar</option>
+                                            <option >Som</option>
+                                                <option >Kip</option>
+                                                    <option >Lebanese Pound</option>
+                                                        <option > Loti</option>
+                                                            <option >Rand</option>
+                                                                <option >Liberian Dollar</option>
+                                                                    <option >Libyan Dinar</option>
+                                                                        <option >Swiss Franc</option>
+                                                                            <option >Pataca</option>
+                                                                                <option >Malagasy Ariary</option>
+                                                                                    <option > Kwacha</option>
+                                                                                        <option >Malaysian Ringgit</option>
+                                                                                            <option >Rufiyaa</option>
+                                                                                                <option >CFA Franc BCEAO</option>
+                                                                                                    <option >Ouguiya</option>
+                                                                                                        <option >Mauritius Rupee</option>
+                                                                                                            <option >ADB Unit of Account</option>
+                                                                                                                <option >Mexican Peso</option>
+                                                                                                                    <option >Mexican Unidad de Inversion (UDI)</option>
+                                                                                                                        <option >Moldovan Leu</option>
+                                                                                                                            <option >Tugrik</option>
+                                                                                                                                <option >East Caribbean Dollar</option>
+                                                                                                                                    <option >Moroccan Dirham</option>
+                                                                                                                                        <option >Mozambique Metical</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Salary Amount
+                                     
+                                </label>
+                                
+                                
+                                <input class="form-control" placeholder="Salary Amount" type="text" >
+                                
+                            </div>
+                        </div> -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">User ID 
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <input class="form-control" type="text" name="user_id" placeholder="User ID">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">User Password 
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <input class="form-control" type="password"  name="user_password" placeholder="User Password">
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Reports to
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input class="form-control" type="text" placeholder="Reports to">
+                            </div>
+                        </div> -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="select form-group">
+                                <label class="col-form-label">Supervisor
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <select class="form-control" type="text" name="supervisor" placeholder="Supervisor">
+                                    <option>--Select--</option>
+                                    <option>John Deo</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Second Form Persnol Form-->
+                    
+                    <!-- <div class="table-responsive m-t-15">
+                        <table class="table table-striped custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Module Permission</th>
+                                    <th class="text-center">Read</th>
+                                    <th class="text-center">Write</th>
+                                    <th class="text-center">Create</th>
+                                    <th class="text-center">Delete</th>
+                                    <th class="text-center">Import</th>
+                                    <th class="text-center">Export</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Holidays</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Leaves</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Clients</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Projects</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tasks</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Chats</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Assets</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Timing Sheets</td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input checked="" type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                    <div class="col-md-2" style="display: flex;">
+                        <label class="col-form-label">Active:</label>
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                id="switch_hospitalisation">
+                            <label class="onoffswitch-label" for="switch_hospitalisation">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-header">
+                        <div id="PersonalDetails" style="display: none;">
+                            <h5 class="modal-title" style="font-size: 16px;">Personal Details</h5>
+                        </div>
+                        <h5 class="modal-title">Personal Details</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <br>
+                    
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Gender<span class="text-danger">*</span></label>
+                                    <select class="select form-control" name="genter">
+                                        <option>-- Select --</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Others</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Date Of Birth<span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+    
+                                        <input class="form-control datetimepicker" type="text" bsDatepicker type="text" name="dob">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Relegion</label>
+                                    <select class="select form-control" name="Relegion">
+                                        <option>-- Select --</option>
+                                        <option>Atheism/Agnosticism</option>
+                                        <option>Bahá’í</option>
+                                        <option>Buddhism</option>
+                                        <option>Christianity</option>
+                                        <option>Confucianism</option>
+                                        <option> Druze</option>
+                                        <option>Gnosticism</option>
+                                        <option>Hinduism</option>
+                                        <option>Islam</option>
+                                        <option>Jainism</option>
+                                        <option>Judaism</option>
+                                        <option>Rastafarianism</option>
+                                        <option>Shinto</option>
+                                        <option>Sikhism</option>
+                                        <option>Zoroastrianism</option>
+                                        <option>Traditional African Religions</option>
+                                        <option> African Diaspora Religions</option>
+                                        <option>Indigenous American Religions</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Nationality</label>
+                                    <select class="select form-control" name="nationality">
+                                        <option >-- Select --</option>
+                                        <option >Afghan</option>
+                                        <option >Albanian</option>
+                                        <option >Algerian</option>
+                                        <option >Argentine & Argentinian</option>
+                                        <option >Australian</option>
+                                        <option > Austrian</option>
+                                        <option >Bangladeshi</option>
+                                        <option >Belgian</option>
+                                        <option >Bolivian</option>
+                                        <option >Batswana</option>
+                                        <option >Brazilian</option>
+                                        <option >Bulgarian</option>
+                                        <option >Cambodian</option>
+                                        <option >Cameroonian</option>
+                                        <option >Canadian</option>
+                                        <option >Chilean</option>
+                                        <option > Chinese</option>
+                                        <option >Colombian</option>
+                                        <option >Costa Rican</option>
+                                        <option >Croatian</option>
+                                        <option >Cuban</option>
+                                        <option >Czech</option>
+                                        <option >Danish</option>
+                                        <option >Dominican</option>
+                                        <option >Ecuadorian</option>
+                                        <option >Egyptian</option>
+                                        <option >Salvadorian</option>
+                                        <option >English</option>
+                                        <option >Estonian</option>
+                                        <option >Ethiopian</option>
+                                        <option >Fijian</option>
+                                        <option >Finnish</option>
+                                        <option >German</option>
+                                        <option >Ghanaian</option>
+                                        <option >Greek</option>
+                                        <option >Guatemalan</option>
+                                        <option >Haitian</option>
+                                        <option >Honduran</option>
+                                        <option >Hungarian</option>
+                                        <option >Icelandic</option>
+                                        <option >Indian</option>
+                                        <option >Indonesian</option>
+                                        <option >Iranian</option>
+                                        <option >Iraqi</option>
+                                        <option >Irish</option>
+                                        <option >Israeli</option>
+                                        <option >Italian</option>
+                                        <option >Jamaican</option>
+                                        <option >Japanese</option>
+                                        <option >Jordanian</option>
+                                        <option >Kenyan</option>
+                                        <option >Kuwaiti</option>
+                                        <option >Lao</option>
+                                        <option >Latvian</option>
+                                        <option >Lebanese</option>
+                                        <option >Libyan</option>
+                                        <option >Lithuanian</option>
+                                        <option >Malagasy</option>
+                                        <option >Malaysian</option>
+                                        <option >Malian</option>
+                                        <option >Maltese</option>
+                                        <option >Mexican</option>
+                                        <option >Mongolian</option>
+                                        <option >Moroccan</option>
+                                        <option >Mozambican</option>
+                                        <option >Namibian</option>
+                                        <option >Nepalese</option>
+                                        <option >Dutch</option>
+                                        <option >New Zealand</option>
+                                        <option >Nicaraguan</option>
+                                        <option >Nigerian</option>
+                                        <option >Norwegian</option>
+                                        <option >Pakistani</option>
+                                        <option >Panamanian</option>
+                                        <option >Paraguayan</option>
+                                        <option >Peruvian</option>
+                                        <option >Philippine</option>
+                                        <option >Polish</option>
+                                        <option >Portuguese</option>
+                                        <option >Romanian</option>
+                                        <option >Russian</option>
+                                        <option >Saudi</option>
+                                        <option >Scottish</option>
+                                        <option >Senegalese</option>
+                                        <option >Serbian</option>
+                                        <option >Singaporean</option>
+                                        <option >Slovak</option>
+                                        <option >South African</option>
+                                        <option >Korean</option>
+                                        <option >Spanish</option>
+                                        <option >Sri Lankan</option>
+                                        <option >Sudanese</option>
+                                        <option >Swedish</option>
+                                        <option >Swiss</option>
+                                        <option >Syrian</option>
+                                        <option >Taiwanese</option>
+                                        <option >Tajikistani</option>
+                                        <option >Thai</option>
+                                        <option >Tongan</option>
+                                        <option >Tunisian	</option>
+                                        <option >Turkish</option>
+                                        <option >Ukrainian</option>
+                                        <option >Emirati</option>
+                                        <option >British</option>
+                                        <option >American</option>
+                                        <option >Uruguayan</option>
+                                        <option >Venezuelan</option>
+                                        <option >Vietnamese</option>
+                                        <option >Welsh</option>
+                                        <option >Zambian</option>
+                                        <option >Zimbabwean</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Marital status</label>
+                                    <select class="select form-control" name="marital_status">
+                                        <option >-- Select --</option>
+                                        <option >Married</option>
+                                        <option >Single</option>
+                                        <option >Divorced</option>
+                                        <option >Separated</option>
+                                        <option >Widowed</option>
+                                        <option >Others</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">No of Children</label>
+                                    <input class="form-control" placeholder="No of Children" name="noofChildren" type="number">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Persnol Phone Number</label>
+                                    <input class="form-control" type="number" name="PersnolPhoneNumber" placeholder="Persnol Phone Number">
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Personal Email Address
+                                        <!-- <span class="text-danger">*</span> -->
+                                    </label>
+                                    <input class="form-control" type="text" name="PersnolEmailAddress" placeholder="Persnol Email Address">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Employment of spouse</label>
+                                    <div class="onoffswitch" style="margin-left: 0;">
+                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                            id="switch_hospitalisation2">
+                                        <label class="onoffswitch-label" for="switch_hospitalisation2">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                        <!-- <small>Same as Present Address</small> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Blood Group<span class="text-danger">*</span></label>
+                                    <select class="select form-control" name="blood_group">
+                                        <option >--Select--</option>
+                                        <option > A+</option>
+                                        <option > A- </option>
+                                        <option > B+ </option>
+                                        <option > B- </option>
+                                        <option > O+ </option>
+                                        <option > O- </option>
+                                        <option > AB+ </option>
+                                        <option > AB- </option>
+                                    </select>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('CompanyName').invalid && addEmployeeForm.get('CompanyName').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('CompanyName').invalid && addEmployeeForm.get('CompanyName').touched"
+                                            class="text-danger"> Blood Group Name required</small>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Educational Qualifications<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" type="text" name="EducationalQualifications"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber" placeholder="Educational Qualifications"></textarea>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Educational Qualifications is required</small>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Work Experience<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" type="text" name="work_experience"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber" placeholder="Work Experience"></textarea>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Work Experience is required</small>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Skill Set</label>
+                                    <textarea class="form-control" placeholder="Skill Set" name="skillSet" type="text"></textarea>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Reference Details</label>
+                                    <textarea class="form-control" placeholder="Reference Details" name="reference_details" type="text"></textarea>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Identity Proof Name<span class="text-danger">*</span></label>
+                                    <select class="select form-control" name="IdentityProofName">
+                                        <option >--Select--</option>
+                                        <option >National ID</option>
+                                        <option >Passport</option>
+                                        <option >Driving License</option>
+                                        <option >PAN Card</option>
+                                        <option >TAN Card</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Identity Proof Details<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" name="IdentityProofDetails"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber" placeholder="Identity Proof Details">
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Identity Proof Details is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Present Address <i class="fa fa-question-circle"></i><span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text"  placeholder="Address1" name="present_address1"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <input class="form-control" type="text" placeholder="Address2" name="present_address2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text"  placeholder="City/Town" name="PresentCityTown"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="Postal Code" name="postal_code"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text" placeholder="Country" name="PresentCountry"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="State" name="state"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> Present Address is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div style="display: flex;">
+                                        <label class="col-form-label">Permanent Address<span class="text-danger">*</span></label>
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                id="switch_hospitalisation1">
+                                            <label class="onoffswitch-label" for="switch_hospitalisation1">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                            <!-- <small>Same as Present Address</small> -->
+                                        </div>
+                                    </div>
+                                    <input class="form-control" type="text"  placeholder="Address1" name="permanent_address1"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <input class="form-control" type="text" placeholder="Address2"  name="permanent_address2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text"  placeholder="City/Town" name="PermanentCityTown"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="Postal Code" name="postal_code2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                        <br>
+                                        <div style="display:flex;">
+                                            <input class="form-control" type="text" placeholder="Country" name="PermanentCountry"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        <input class="form-control" type="text" placeholder="State" name="state2"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                        </div>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Permanent Address is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Employee Photo</label>
+                                    <input class="form-control" type="file" name="Employee_Photo"
+                                        [class.invalid]="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                        formControlName="PhoneNumber">
+                                    <small>adduser.Maximum allowed file size is 20KB</small>
+                                    <div
+                                        *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched">
+                                        <small
+                                            *ngIf="addEmployeeForm.get('PhoneNumber').invalid && addEmployeeForm.get('PhoneNumber').touched"
+                                            class="text-danger"> *Employee Photo is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+
+                        <br>
+                        <div id="BankInformationTitle" style="display: none;">
+                            <h5 class="modal-title" style="font-size: 16px;">Bank Information</h5>
+                        </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Bank Information</h5>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Bank Name</label>
+                                    <select class="form-control" type="text" name="BankName"  placeholder="Bank Name">
+                                        <option>State Bank of India</option>
+                                        <option>ICICI</option>
+                                        <option>Indian Bank</option>
+                                    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Bank Account Name</label>
+                                    <input class="form-control" type="text" name="BankAccountName" placeholder="Bank Account Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Bank Account No</label>
+                                    <input class="form-control" type="number" name="BankAccountNo" placeholder="Bank Account No">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">IFSC Code</label>
+                                    <input class="form-control" type="text" name="ifscCode"  placeholder="IFSC Code">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">PAN No</label>
+                                    <input class="form-control" type="number" name="pan_no" placeholder="PAN No">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">IBAN NO</label>
+                                    <input class="form-control" type="number" name="iban_no" placeholder="IBAN NO">
+                                </div>
+                            </div>
+                        </div>    
+                   
+                        <!-- <br>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Family Information</h5>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Name</label>
+                                    <input class="form-control" type="text"  placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Relationship</label>
+                                    <input class="form-control" type="text" placeholder="Relationship">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Date Of Birth<span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+    
+                                        <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                            [class.invalid]="addEmployeeForm.get('JoinDate').invalid && addEmployeeForm.get('JoinDate').touched"
+                                            formControlName="JoinDate" placeholder="Date of Birth">
+                                        <div
+                                            *ngIf="addEmployeeForm.get('JoinDate').invalid && addEmployeeForm.get('JoinDate').touched">
+                                            <small
+                                                *ngIf="addEmployeeForm.get('JoinDate').invalid && addEmployeeForm.get('JoinDate').touched"
+                                                class="text-danger"> *Date Of Birth is required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Phone Number</label>
+                                    <input class="form-control" type="number" placeholder="Phone Number">
+                                </div>
+                            </div>
+                        </div>     -->
+
+
+                    <br>
+                    <div id="EmergencyDetailsTitle" style="display: none;">
+                        <h5 class="modal-title" style="font-size: 16px;">Emergency Details</h5>
+                    </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Emergency Details</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- <div class="col-md-12">
+                            <span style="font-weight:100;font-size:20px;">Primary</span>
+                        </div> -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Name</label>
+                                <input class="form-control" type="text" value="{{ c_name.value }}"  name="contact_name" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Relationship</label>
+                                <input class="form-control" type="text" value="{{ c_relationship.value }}" name="relationship" placeholder="Contact Relationship">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Number</label>
+                                <input class="form-control" type="number" value="{{ c_no.value }}" name="contact_no" placeholder="Contact Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Email ID</label>
+                                <input class="form-control" type="number" value="{{ c_email_id.value }}" name="contact_emailId" placeholder="Contact  Email ID">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Notes</label>
+                                <textarea class="form-control" type="text" name="notes" placeholder="Notes" value="{{ notes.value }}"></textarea>
+                            </div>
+                        </div>
+                        <!-- <div class="col-auto float-right ml-auto">
+                            <a  class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i>
+                                Add</a>
+                        </div> -->
+                    </div>
+
+                    
+                    <button type="button" class="btn btn-danger button" style="float: right;">
+                        <i class="fa fa-pdf"></i>pdf
+                    </button>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn btn-style" type="submit">Clear</button>
+                        <button class="btn btn-success submit-btn btn-style" type="submit">Save & New</button>
+                        <button class="btn btn-success submit-btn btn-style" type="submit">Save</button>
+                        <button class="btn btn-danger submit-btn btn-style" type="submit">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title mb-0" style="text-align: center;font-size: 16px;">Personal Details</h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped mb-0">
+            <tbody>
+                <tr>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Gender</label>
+                    </td>
+                    <td>
+                        <select class="select form-control" name="genter">
+                            <option>-- Select --</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Others</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Date Of Birth<span class="text-danger">*</span></label>
+                    </td>
+                    <td>
+                        <input class="form-control datetimepicker" type="text" bsDatepicker type="text" name="dob">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Relegion</label></td>
+                    <td>
+                        <select class="select form-control" name="Relegion">
+                            <option>-- Select --</option>
+                            <option>Atheism/Agnosticism</option>
+                            <option>Bahá’í</option>
+                            <option>Buddhism</option>
+                            <option>Christianity</option>
+                            <option>Confucianism</option>
+                            <option> Druze</option>
+                            <option>Gnosticism</option>
+                            <option>Hinduism</option>
+                            <option>Islam</option>
+                            <option>Jainism</option>
+                            <option>Judaism</option>
+                            <option>Rastafarianism</option>
+                            <option>Shinto</option>
+                            <option>Sikhism</option>
+                            <option>Zoroastrianism</option>
+                            <option>Traditional African Religions</option>
+                            <option> African Diaspora Religions</option>
+                            <option>Indigenous American Religions</option>
+                        </select>
+                    </td>
+                    <td><label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Nationality</label></td>
+                    <td>
+                        <select class="select form-control" name="nationality">
+                            <option >-- Select --</option>
+                            <option >Afghan</option>
+                            <option >Albanian</option>
+                            <option >Algerian</option>
+                            <option >Argentine & Argentinian</option>
+                            <option >Australian</option>
+                            <option > Austrian</option>
+                            <option >Bangladeshi</option>
+                            <option >Belgian</option>
+                            <option >Bolivian</option>
+                            <option >Batswana</option>
+                            <option >Brazilian</option>
+                            <option >Bulgarian</option>
+                            <option >Cambodian</option>
+                            <option >Cameroonian</option>
+                            <option >Canadian</option>
+                            <option >Chilean</option>
+                            <option > Chinese</option>
+                            <option >Colombian</option>
+                            <option >Costa Rican</option>
+                            <option >Croatian</option>
+                            <option >Cuban</option>
+                            <option >Czech</option>
+                            <option >Danish</option>
+                            <option >Dominican</option>
+                            <option >Ecuadorian</option>
+                            <option >Egyptian</option>
+                            <option >Salvadorian</option>
+                            <option >English</option>
+                            <option >Estonian</option>
+                            <option >Ethiopian</option>
+                            <option >Fijian</option>
+                            <option >Finnish</option>
+                            <option >German</option>
+                            <option >Ghanaian</option>
+                            <option >Greek</option>
+                            <option >Guatemalan</option>
+                            <option >Haitian</option>
+                            <option >Honduran</option>
+                            <option >Hungarian</option>
+                            <option >Icelandic</option>
+                            <option >Indian</option>
+                            <option >Indonesian</option>
+                            <option >Iranian</option>
+                            <option >Iraqi</option>
+                            <option >Irish</option>
+                            <option >Israeli</option>
+                            <option >Italian</option>
+                            <option >Jamaican</option>
+                            <option >Japanese</option>
+                            <option >Jordanian</option>
+                            <option >Kenyan</option>
+                            <option >Kuwaiti</option>
+                            <option >Lao</option>
+                            <option >Latvian</option>
+                            <option >Lebanese</option>
+                            <option >Libyan</option>
+                            <option >Lithuanian</option>
+                            <option >Malagasy</option>
+                            <option >Malaysian</option>
+                            <option >Malian</option>
+                            <option >Maltese</option>
+                            <option >Mexican</option>
+                            <option >Mongolian</option>
+                            <option >Moroccan</option>
+                            <option >Mozambican</option>
+                            <option >Namibian</option>
+                            <option >Nepalese</option>
+                            <option >Dutch</option>
+                            <option >New Zealand</option>
+                            <option >Nicaraguan</option>
+                            <option >Nigerian</option>
+                            <option >Norwegian</option>
+                            <option >Pakistani</option>
+                            <option >Panamanian</option>
+                            <option >Paraguayan</option>
+                            <option >Peruvian</option>
+                            <option >Philippine</option>
+                            <option >Polish</option>
+                            <option >Portuguese</option>
+                            <option >Romanian</option>
+                            <option >Russian</option>
+                            <option >Saudi</option>
+                            <option >Scottish</option>
+                            <option >Senegalese</option>
+                            <option >Serbian</option>
+                            <option >Singaporean</option>
+                            <option >Slovak</option>
+                            <option >South African</option>
+                            <option >Korean</option>
+                            <option >Spanish</option>
+                            <option >Sri Lankan</option>
+                            <option >Sudanese</option>
+                            <option >Swedish</option>
+                            <option >Swiss</option>
+                            <option >Syrian</option>
+                            <option >Taiwanese</option>
+                            <option >Tajikistani</option>
+                            <option >Thai</option>
+                            <option >Tongan</option>
+                            <option >Tunisian	</option>
+                            <option >Turkish</option>
+                            <option >Ukrainian</option>
+                            <option >Emirati</option>
+                            <option >British</option>
+                            <option >American</option>
+                            <option >Uruguayan</option>
+                            <option >Venezuelan</option>
+                            <option >Vietnamese</option>
+                            <option >Welsh</option>
+                            <option >Zambian</option>
+                            <option >Zimbabwean</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Marital status</label>
+                    </td>
+                    <td>
+                        <select class="select form-control" name="marital_status">
+                            <option >-- Select --</option>
+                            <option >Married</option>
+                            <option >Single</option>
+                            <option >Divorced</option>
+                            <option >Separated</option>
+                            <option >Widowed</option>
+                            <option >Others</option>
+                        </select>
+                    </td>
+                    <td><label class="col-form-label" style="padding-top: calc(.375rem + 6px);">No of Children</label></td>
+                    <td>
+                        <input class="form-control" placeholder="No of Children" name="noofChildren" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Persnol Phone Number</label>
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" name="PersnolPhoneNumber" placeholder="Persnol Phone Number">
+                    </td>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Personal Email Address</label>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="PersnolEmailAddress" placeholder="Persnol Email Address">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Employment of spouse</label>
+                    </td>
+                    <td>
+                        <div class="onoffswitch" style="margin-left: 0;">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                id="switch_hospitalisation2">
+                            <label class="onoffswitch-label" for="switch_hospitalisation2">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                            <!-- <small>Same as Present Address</small> -->
+                        </div>
+                    </td>
+                    <td>
+                        <label class="col-form-label "  style="padding-top: calc(.375rem + 6px);">Blood Group</label>
+                    </td>
+                    <td>
+                        <select class="select form-control" name="blood_group">
+                            <option >--Select--</option>
+                            <option > A+</option>
+                            <option > A- </option>
+                            <option > B+ </option>
+                            <option > B- </option>
+                            <option > O+ </option>
+                            <option > O- </option>
+                            <option > AB+ </option>
+                            <option > AB- </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label"  style="padding-top: calc(.375rem + 10px);">Educational Qualifications</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" type="text" name="EducationalQualifications" placeholder="Educational Qualifications"></textarea>
+                    </td>
+                    <td>
+                        <label class="col-form-label"  style="padding-top: calc(.375rem + 10px);">Work Experience</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" type="text" name="work_experience" placeholder="Work Experience"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 10px);">Skill Set</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" placeholder="Skill Set" name="skillSet" type="text"></textarea>
+                    </td>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 10px);">Reference Details</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" placeholder="Reference Details" name="reference_details" type="text"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Identity Proof Name</label>
+                    </td>
+                    <td>
+                        <select class="select form-control" name="IdentityProofName">
+                            <option >--Select--</option>
+                            <option >National ID</option>
+                            <option >Passport</option>
+                            <option >Driving License</option>
+                            <option >PAN Card</option>
+                            <option >TAN Card</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Identity Proof Details</label>
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" name="IdentityProofDetails" placeholder="Identity Proof Details">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">Present Address <i class="fa fa-question-circle"></i></label>
+                        <input class="form-control" type="text"  placeholder="Address1" name="present_address1">
+                        <br>
+                        <input class="form-control" type="text" placeholder="Address2" name="present_address2">
+                        <br>
+                        <div style="display:flex;">
+                            <input class="form-control" type="text"  placeholder="City/Town" name="PresentCityTown">
+                            <input class="form-control" type="text" placeholder="Postal Code" name="postal_code">
+                        </div>
+                        <br>
+                        <div style="display:flex;">
+                            <input class="form-control" type="text" placeholder="Country" name="PresentCountry">
+                            <input class="form-control" type="text" placeholder="State" name="state">
+                        </div>
+                    </td>
+                    <td>
+                        <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">Permanent Address</label>
+                        <input class="form-control" type="text"  placeholder="Address1" name="permanent_address1">
+                         <br>
+                        <input class="form-control" type="text" placeholder="Address2"  name="permanent_address2">
+                        <br>
+                        <div style="display:flex;">
+                            <input class="form-control" type="text"  placeholder="City/Town" name="PermanentCityTown">
+                            <input class="form-control" type="text" placeholder="Postal Code" name="postal_code2">
+                        </div>
+                        <br>
+                        <div style="display:flex;">
+                            <input class="form-control" type="text" placeholder="Country" name="PermanentCountry">
+                            <input class="form-control" type="text" placeholder="State" name="state2">
+                        </div>
+                    </td>
+                    <td colspan="2">
+                        <label class="col-form-label">Employee Photo</label>
+                        <input class="form-control" type="file" name="Employee_Photo">
+                        <small>adduser.Maximum allowed file size is 20KB</small>
+                    </td>
+                    <!-- <td>
+                        
+                    </td> -->
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>

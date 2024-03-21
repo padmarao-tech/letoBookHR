@@ -1,0 +1,496 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Salary Master </h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Leave Request</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <a class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i>
+                    Add salary</a>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="tblsalarymaster" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                    class="table table-striped custom-table mb-0 datatable">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Emp. Name</th>
+                            <th>Effect year </th>
+                            <th>Effect Month </th>
+                            <th>Bssic </th>
+                            <th>HRA</th>
+                            <th>DA</th>
+                            <th>Convey.</th>
+                            <th>Allowance</th>
+                            <th>Medical Allo.</th>
+                            <th>others</th>
+                            <th>G.Salary</th>
+                            <th>N.Salary</th>
+                            <th>Total Deduction</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of salarymasterlst;let i = index">
+                            <td>{{row.uid}}</td>
+                            <td> {{row.employee}}</td>
+                            <td>{{row.effect_year}}</td>
+                            <td>{{row.effect_month}}</td>
+                            <td>{{row.basic}} </td>
+                            <td>{{row.hra}}</td>
+                            <td>{{row.da}}</td>
+                            <td>{{row.conveyance}}</td>
+                            <td>{{row.allowance}}</td>  
+                            <td>{{row.medicalallowance}}</td>   
+                            <td>{{row.others}}</td>   
+                            <td>{{row.gross_salary}}</td>
+                            <td>{{row.net_salary}}</td> 
+                            <td>{{row.total_deduction}}</td>     
+                           
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_salary"
+                                            (click)="edit(row.uid)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_approve"
+                                            (click)="tempId = row.uid"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!-- Add Leave Modal -->
+
+<div id="add_salary" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-target="#add_leave">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addsalarymaster()" [formGroup]="addsalarymasterform">
+                    <div class="row">
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Effect year <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                    [bsConfig]="{ dateInputFormat: 'YYYY',  returnFocusToInput: true }"
+                                    [class.invalid]="addsalarymasterform.get('aeffect_year').invalid && addsalarymasterform.get('aeffect_year').touched"
+                                    formControlName="aeffect_year"  (bsValueChange)="addfromdt()">
+                                   <div *ngIf="addsalarymasterform.get('aeffect_year').invalid && addsalarymasterform.get('aeffect_year').touched">
+                                    <small
+                                        *ngIf="addsalarymasterform.get('aeffect_year').invalid && addsalarymasterform.get('aeffect_year').touched"
+                                        class="text-danger"> *year is required</small> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Effect Month <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                    [bsConfig]="{ dateInputFormat: 'MM',  returnFocusToInput: true }"
+                                    [class.invalid]="addsalarymasterform.get('aeffect_month').invalid && addsalarymasterform.get('aeffect_month').touched"
+                                    formControlName="aeffect_month"  (bsValueChange)="addfromdt()">
+                                   <div *ngIf="addsalarymasterform.get('aeffect_month').invalid && addsalarymasterform.get('aeffect_month').touched">
+                                    <small
+                                        *ngIf="addsalarymasterform.get('aeffect_month').invalid && addsalarymasterform.get('aeffect_month').touched"
+                                        class="text-danger"> *year is required</small> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label> Employee Name <span class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="aempmaster_uid"  >
+                            <option [ngValue]="null" disabled>Select employee</option>
+                            <option *ngFor="let empid of emplist" value={{empid.uid}}>
+                                {{empid.Name}}</option>
+                          </select>
+                        <div
+                            *ngIf="addsalarymasterform.get('aempmaster_uid').invalid && addsalarymasterform.get('aempmaster_uid').touched">
+                            <small
+                                *ngIf="addsalarymasterform.get('aempmaster_uid').invalid && addsalarymasterform.get('aempmaster_uid').touched"
+                                class="text-danger"> *Leave type is required</small>
+                        </div>
+                    </div>
+                    </div>
+
+
+                   <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Basic <span class="text-danger">*</span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationA()"
+                            [class.invalid]="addsalarymasterform.get('abasic').invalid && addsalarymasterform.get('abasic').touched"
+                            formControlName="abasic" >
+                        <div
+                            *ngIf="addsalarymasterform.get('abasic').invalid && addsalarymasterform.get('abasic').touched">
+                            <small
+                                *ngIf="addsalarymasterform.get('abasic').invalid && addsalarymasterform.get('abasic').touched"
+                                class="text-danger"> *Basic amount is required</small>
+                        </div>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-4">
+                    <div class="form-group">
+                        <label>HRA <span class="text-danger">*</span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('ahra').invalid && addsalarymasterform.get('ahra').touched"
+                        formControlName="ahra" >
+                      </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>DA <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('ada').invalid && addsalarymasterform.get('ada').touched"
+                         formControlName="ada" >
+                     </div>
+                </div>
+               
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Conveyance <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" 
+                        [class.invalid]="addsalarymasterform.get('aconveyance').invalid && addsalarymasterform.get('aconveyance').touched"
+                         formControlName="aconveyance" >
+                     </div>
+                </div>
+                 <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Allowance <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationA()" 
+                        [class.invalid]="addsalarymasterform.get('aallowance').invalid && addsalarymasterform.get('aallowance').touched"
+                        formControlName="aallowance" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Medical <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('amedicalallowance').invalid && addsalarymasterform.get('amedicalallowance').touched"
+                        formControlName="amedicalallowance" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Others <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('aothers').invalid && addsalarymasterform.get('aothers').touched"
+                        formControlName="aothers" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>ESI(-) <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('aesi').invalid && addsalarymasterform.get('aesi').touched"
+                        formControlName="aesi" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>TDS(-) <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('atds').invalid && addsalarymasterform.get('atds').touched"
+                        formControlName="atds" >
+                     </div>
+                </div>
+            
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>PF(-) <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationA()"
+                        [class.invalid]="addsalarymasterform.get('apf').invalid && addsalarymasterform.get('apf').touched"
+                        formControlName="apf" >
+                     </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Gross Salary <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" value="{{grosssalary}}"
+                        [class.invalid]="addsalarymasterform.get('agross_salary').invalid && addsalarymasterform.get('agross_salary').touched"
+                        formControlName="agross_salary" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Total Deduction <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  value="{{totaldeduction}}"
+                        [class.invalid]="addsalarymasterform.get('atotal_deduction').invalid && addsalarymasterform.get('atotal_deduction').touched"
+                        formControlName="atotal_deduction" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Net Salary <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" value="{{netsalary}}"
+                        [class.invalid]="addsalarymasterform.get('anet_salary').invalid && addsalarymasterform.get('anet_salary').touched"
+                        formControlName="anet_salary" >
+                     </div>
+                </div>
+
+                     <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                       </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Leave Modal -->
+
+
+<!-- Edit Leave Modal -->
+<div id="edit_salary" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">update Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-target="#add_leave">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="editsalarymaster()" [formGroup]="editsalarymasterform">
+                    <div class="row">
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Effect year <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                    [bsConfig]="{ dateInputFormat: 'YYYY',  returnFocusToInput: true }"
+                                    [class.invalid]="editsalarymasterform.get('eeffect_year').invalid && editsalarymasterform.get('eeffect_year').touched"
+                                    formControlName="eeffect_year"  (bsValueChange)="addfromdt()">
+                                   <div *ngIf="editsalarymasterform.get('eeffect_year').invalid && editsalarymasterform.get('eeffect_year').touched">
+                                    <small
+                                        *ngIf="editsalarymasterform.get('eeffect_year').invalid && editsalarymasterform.get('eeffect_year').touched"
+                                        class="text-danger"> *year is required</small> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Effect Month <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                    [bsConfig]="{ dateInputFormat: 'MM',  returnFocusToInput: true }"
+                                    [class.invalid]="editsalarymasterform.get('eeffect_month').invalid && editsalarymasterform.get('eeffect_month').touched"
+                                    formControlName="eeffect_month"  (bsValueChange)="addfromdt()">
+                                   <div *ngIf="editsalarymasterform.get('eeffect_month').invalid && editsalarymasterform.get('eeffect_month').touched">
+                                    <small
+                                        *ngIf="editsalarymasterform.get('eeffect_month').invalid && editsalarymasterform.get('eeffect_month').touched"
+                                        class="text-danger"> *year is required</small> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label> Employee Name <span class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="eempmaster_uid"  >
+                            <option [ngValue]="null" disabled>Select employee</option>
+                            <option *ngFor="let empid of emplist" value={{empid.uid}}>
+                                {{empid.Name}}</option>
+                          </select>
+                        <div
+                            *ngIf="editsalarymasterform.get('eempmaster_uid').invalid && editsalarymasterform.get('eempmaster_uid').touched">
+                            <small
+                                *ngIf="editsalarymasterform.get('eempmaster_uid').invalid && editsalarymasterform.get('eempmaster_uid').touched"
+                                class="text-danger"> *Employee is required</small>
+                        </div>
+                    </div>
+                    </div>
+
+
+                   <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Basic <span class="text-danger">*</span></label>
+                        <input class="form-control" type="number" (change)="findcalculationE()"
+                            [class.invalid]="editsalarymasterform.get('ebasic').invalid && editsalarymasterform.get('ebasic').touched"
+                            formControlName="ebasic" >
+                        <div
+                            *ngIf="editsalarymasterform.get('ebasic').invalid && editsalarymasterform.get('ebasic').touched">
+                            <small
+                                *ngIf="editsalarymasterform.get('ebasic').invalid && editsalarymasterform.get('ebasic').touched"
+                                class="text-danger"> *Basic amount is required</small>
+                        </div>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-4">
+                    <div class="form-group">
+                        <label>HRA <span class="text-danger">*</span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('ehra').invalid && editsalarymasterform.get('ehra').touched"
+                        formControlName="ehra" >
+                      </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>DA <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('eda').invalid && editsalarymasterform.get('eda').touched"
+                         formControlName="eda" >
+                     </div>
+                </div>
+               
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Conveyance <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('econveyance').invalid && editsalarymasterform.get('econveyance').touched"
+                         formControlName="econveyance" >
+                     </div>
+                </div>
+                 <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Allowance <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('eallowance').invalid && editsalarymasterform.get('eallowance').touched"
+                        formControlName="eallowance" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Medical <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('emedicalallowance').invalid && editsalarymasterform.get('emedicalallowance').touched"
+                        formControlName="emedicalallowance" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Others <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('eothers').invalid && editsalarymasterform.get('eothers').touched"
+                        formControlName="eothers" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>ESI(-) <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('eesi').invalid && editsalarymasterform.get('eesi').touched"
+                        formControlName="eesi" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>TDS(-) <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('etds').invalid && editsalarymasterform.get('etds').touched"
+                        formControlName="etds" >
+                     </div>
+                </div>
+            
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>PF(-) <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" (change)="findcalculationE()"
+                        [class.invalid]="editsalarymasterform.get('epf').invalid && editsalarymasterform.get('epf').touched"
+                        formControlName="epf" >
+                     </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Gross Salary <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" value="{{grosssalary}}"
+                        [class.invalid]="editsalarymasterform.get('egross_salary').invalid && editsalarymasterform.get('egross_salary').touched"
+                        formControlName="egross_salary" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Total Deduction <span class="text-danger"></span></label>
+                        <input class="form-control" type="number"  value="{{totaldeduction}}"
+                        [class.invalid]="editsalarymasterform.get('etotal_deduction').invalid && editsalarymasterform.get('etotal_deduction').touched"
+                        formControlName="etotal_deduction" >
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Net Salary <span class="text-danger"></span></label>
+                        <input class="form-control" type="number" value="{{netsalary}}"
+                        [class.invalid]="editsalarymasterform.get('enet_salary').invalid && editsalarymasterform.get('enet_salary').touched"
+                        formControlName="enet_salary" >
+                     </div>
+                </div>
+
+                     <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                       </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- /Edit Leave Modal -->
+
+<!-- Delete Leave Modal -->
+<div class="modal custom-modal fade" id="delete_approve" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Leave</h3>
+                    <p>Are you sure want to Cancel this leave?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="deleteleaves()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Leave Modal -->

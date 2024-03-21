@@ -1,0 +1,440 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">Performance</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Performance</a></li>
+                    <li class="breadcrumb-item active">Performance Review</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+    <div id="print-section-full">
+        <section class="review-section information">
+            <h3 class="page-title prt-header text-center">Performance Review</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+            <div class="review-header text-center">
+                <h3 class="review-title">Employee Basic Information</h3>
+                <!-- <p class="text-muted">Organizational</p> -->
+                <div class="leave-action text-right prt">
+                    <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section-full" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-nowrap review-table mb-0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <form>
+                                            <div class="select form-group">
+                                                <label for="name">Emp Name</label>
+                                                <select type="text" placeholder="Emp Name" class="form-control" id="name">
+                                                        <option>--Select--</option>
+                                                        <option>John Deo</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="depart3">Department</label>
+                                                <input type="text" placeholder="Department" class="form-control" id="depart3">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="departa">Designation</label>
+                                                <input type="text" placeholder="Designation" class="form-control" id="departa">
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label for="qualif">Qualification: </label>
+                                                <input type="text" placeholder="Qualification" class="form-control" id="qualif">
+                                            </div> -->
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="doj">Emp ID</label>
+                                                <input type="text" placeholder="Emp ID" class="form-control" value="DGT-009">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="doj">Date of Join</label>
+                                                <input type="text" placeholder="Date of Join" class="form-control" id="doj">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="doc">Review Date </label>
+                                                <input type="text" placeholder="Review Date " class="form-control datetimepicker" id="doc" bsDatepicker>
+                                            </div>
+                                            <!--<div class="form-group">
+                                                <label for="qualif1">Previous years of Exp</label>
+                                                <input type="text" placeholder="Previous years of Exp" class="form-control" id="qualif1">
+                                            </div> -->
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <div class="select form-group">
+                                                <label for="name1"> Supervisor Name</label>
+                                                <select type="text" placeholder="Supervisor Name" class="form-control" id="name1">
+                                                        <option>--Select--</option>
+                                                        <option>John Deo</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="depart1"> Supervisor Designation: </label>
+                                                <input type="text" placeholder="Supervisor Designation" class="form-control" id="depart1">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="review-section professional-excellence"  id="print-section">
+            <div class="row printClass">
+                <div class="col-sm-6 m-b-20">
+                    <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                    <ul class="list-unstyled mb-0">
+                        <li>Leto Systems Pvt.Ltd</li>
+                        <li>No.47. 1st Floor</li>
+                        <li>Prestige Tower,Haddows Road,</li>
+                        <li>Nungamabakkam, Chennai - 600006</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- -->
+            <div class="review-header text-center">
+                <h3 class="review-title">Professional Excellence</h3>
+                <p class="text-muted">Organizational</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered review-table nowrap mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px;">#</th>
+                                    <th>Key Result Area</th>
+                                    <th>Key Performance Indicators</th>
+                                    <th>Weightage</th>
+                                    <th>Percentage achieved <br>( self Score )</th>
+                                    <th>Points Scored <br>( self )</th>
+                                    <th>Percentage achieved <br>( RO's Score )</th>
+                                    <th>Points Scored <br>( RO )</th>
+                                    <th class="text-center prt">Print</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">1</td>
+                                    <td rowspan="2">Production</td>
+                                    <td>Quality</td>
+                                    <td><input type="text" class="form-control" readonly value="30"></td>
+                                    <td><input type="text" class="form-control" placeholder="0"></td>
+                                    <td><input type="text" class="form-control" readonly value="0"></td>
+                                    <td><input type="text" class="form-control" placeholder="0"></td>
+                                    <td><input type="text" class="form-control" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>TAT (turn around time)</td>
+                                    <td><input type="text" class="form-control" readonly value="30"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Process Improvement</td>
+                                    <td>PMS,New Ideas</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="10"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Team Management</td>
+                                    <td>Team Productivity,dynaics,attendance,attrition</td>
+                                    <td><input type="text" class="form-control"   placeholder="0" readonly value="5"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Knowledge Sharing</td>
+                                    <td>Sharing the knowledge for team productivity </td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="5"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Reporting and Communication</td>
+                                    <td>Emails/Calls/Reports and Other Communication</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="5"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center">Total </td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="85"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="review-section personal-excellence" id="print-section2">
+            <div class="row printClass">
+                <div class="col-sm-6 m-b-20">
+                    <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                    <ul class="list-unstyled mb-0">
+                        <li>Leto Systems Pvt.Ltd</li>
+                        <li>No.47. 1st Floor</li>
+                        <li>Prestige Tower,Haddows Road,</li>
+                        <li>Nungamabakkam, Chennai - 600006</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- -->
+            <div class="review-header text-center">
+                <h3 class="review-title">Personal Excellence</h3>
+                <p class="text-muted">Personal Score</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered nowrap review-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px;">#</th>
+                                    <th>Personal Attributes</th>
+                                    <th>Key Indicators</th>
+                                    <th>Weightage</th>
+                                    <th>Percentage achieved <br>( self Score )</th>
+                                    <th>Points Scored <br>( self )</th>
+                                    <th>Percentage achieved <br>( RO's Score )</th>
+                                    <th>Points Scored <br>( RO )</th>
+                                    <th class="text-center prt">Print</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">1</td>
+                                    <td rowspan="2">Attendance</td>
+                                    <td>Planned or Unplanned Leaves</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="2"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Time Consciousness</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="2"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">2</td>
+                                    <td rowspan="2">Attitude & Behavior</td>
+                                    <td>Team Collaboration</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="2"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Professionalism & Responsiveness</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="2"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Policy & Procedures </td>
+                                    <td>Adherence to policies and procedures</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="2"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Initiatives</td>
+                                    <td>Special Efforts, Suggestions,Ideas,etc.</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="2"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Continuous Skill Improvement</td>
+                                    <td>Preparedness to move to next level & Training utilization</td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="3"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center">Total </td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="15"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td><input type="text" class="form-control"  placeholder="0" readonly value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center"><b>Total Percentage(%)</b></td>
+                                    <td colspan="5" class="text-center"><input type="text"  placeholder="0" class="form-control" readonly
+                                            value="0"></td>
+                                    <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section2" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                        </div>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td colspan="9" class="text-center">
+                                        <div class="grade-span">
+                                            <h4>Grade</h4>
+                                            <span class="badge bg-inverse-danger">Below 65 Poor</span>
+                                            <span class="badge bg-inverse-warning">65-74 Average</span>
+                                            <span class="badge bg-inverse-info">75-84 Satisfactory</span>
+                                            <span class="badge bg-inverse-purple">85-92 Good</span>
+                                            <span class="badge bg-inverse-success">Above 92 Excellent</span>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- /Page Content -->
+
+
+
+
+
+

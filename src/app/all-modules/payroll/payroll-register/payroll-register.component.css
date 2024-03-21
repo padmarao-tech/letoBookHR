@@ -1,0 +1,17 @@
+.printClass {
+    display:none;
+}
+.prt-header{
+    display:none; 
+}
+@media print {
+    .printClass {
+        display:block !important;
+    }   
+    .prt{
+        display:none; 
+    } 
+    .prt-header{
+        display:block; 
+    } 
+ }

@@ -1,0 +1,495 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+    
+
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Banks</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Banks</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                &nbsp;
+                <button  class="btn btn-primary" style="border-radius: 5px;" data-toggle="modal" data-target="#add_Bank"><i
+                        class="fa fa-plus"></i> Add Banks</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive  print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Banks</h3> 
+                
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                    class="table table-striped custom-table datatable nowrap mb-0 " id="pdfSection">
+                    <div style="display:none;">
+                        <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                        <h3>No:47, 1st Floor, </h3>
+                        <h3>Prestige Tower,Haddows Road,</h3>
+                        <h3>Nungamabakkam,Chennai - 600006</h3>
+                        <h3 class="text-center">Banks</h3>
+                        <!-- <colgroup align="center"></colgroup> -->
+                    </div>
+                        
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">#</th>
+                            <th>Company uid</th>
+                            <th>Bank Code</th>
+                            <th>Bank Name</th>
+                            <!-- <th>Bank Account No</th> -->
+                            <th>Routing Code</th>
+                            <!-- <th>IFSC Code</th> -->
+                            <th>Branch</th>
+                            <th>Manager Name</th>
+                            <th>Person Mobile No</th>
+                            <th>Bank Mobile No</th>
+                            <th>Email Id</th>
+                            <th>Bank Address</th>
+                            <th>Status</th>
+                            <th class="text-right prt">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of lstBank">
+                            <td>{{item.uid}}</td>
+                            <td>1</td>
+                            <td>{{item.bankCode}}</td>
+                            <td>{{item.bankName}}</td>
+                            <!-- <td>68787978999</td> -->
+                            <td>{{item.RoutingCode}}</td>
+                            <!-- <td>SBI1234567</td> -->
+                            <td>{{item.branch}}</td>
+                            <td>{{item.managerName}}</td>
+                            <td>{{item.personMobileNo}}</td>
+                            <td>{{item.bankMobileNo}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>{{item.bankAddress}}</td>
+                            <td class="text-center">
+                                <div class="dropdown action-label">
+                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa fa-dot-circle-o text-purple"></i>{{status || statusValue}}
+                                        {{item.status}}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- getStatus()    added item.id-->
+                                        <a class="dropdown-item" (click)="getStatus('Active',item.uid)"><i
+                                                class="fa fa-dot-circle-o text-purple"></i>
+                                            Active</a>
+                                        <a class="dropdown-item" (click)="getStatus('Deactive',item.uid)"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>
+                                            Inactive</a>
+                                        <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                        <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>
+                                            Declined</a> -->
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td class="text-right prt">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_Bank" (click)="edit(item.uid)"><i
+                                                class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_Bank" (click)="tempId = item.uid"><i
+                                                class="fa fa-trash-o m-r-5"></i>
+                                            Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="submit-section">
+        <button class="btn btn-sm btn-primary"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+        &nbsp;
+        <button class="btn btn-sm btn-danger get-pdf"><i class="fa fa-file-pdf-o"></i> Pdf</button>
+        &nbsp;
+        <button class="btn btn-sm btn-success exceller"><i class="fa fa-file-excel-o"></i> Excel</button>  
+    </div>  -->
+<!-- /Page Content -->
+
+<!-- Add Location Modal -->
+<div id="add_Bank" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Banks</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addBank()" [formGroup]="addBankForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Bank Code </label>
+                                <input class="form-control" type="text" placeholder="Bank Name"
+                                [class.invalid]="addBankForm.get('BankCode').invalid && addBankForm.get('BankCode').touched"
+                                formControlName="BankCode">
+                                <div
+                                    *ngIf="addBankForm.get('BankCode').invalid && addBankForm.get('BankCode').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('BankCode').invalid && addBankForm.get('BankCode').touched"
+                                        class="text-danger"> *Bank Code required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Bank Name </label>
+                                <input class="form-control" type="text" placeholder="Bank Name" [class.invalid]="addBankForm.get('BankName').invalid && addBankForm.get('BankName').touched"
+                                formControlName="BankName">
+                                <div
+                                    *ngIf="addBankForm.get('BankName').invalid && addBankForm.get('BankName').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('BankName').invalid && addBankForm.get('BankName').touched"
+                                        class="text-danger"> *Bank Name required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Routing Code</label>
+                                <input class="form-control " placeholder="Bank Routing Code" type="text" 
+                                [class.invalid]="addBankForm.get('RoutingCode').invalid && addBankForm.get('RoutingCode').touched"
+                                formControlName="RoutingCode">
+                                <div
+                                    *ngIf="addBankForm.get('RoutingCode').invalid && addBankForm.get('RoutingCode').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('RoutingCode').invalid && addBankForm.get('RoutingCode').touched"
+                                        class="text-danger"> *Routing Code required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <input class=" form-control " type="text" placeholder="Branch" 
+                                [class.invalid]="addBankForm.get('Branch').invalid && addBankForm.get('Branch').touched"
+                                formControlName="Branch">
+                                <div
+                                    *ngIf="addBankForm.get('Branch').invalid && addBankForm.get('Branch').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('Branch').invalid && addBankForm.get('Branch').touched"
+                                        class="text-danger"> *Branch required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Manager Name</label>
+                                <input class="form-control" type="text" placeholder="Manager Name" 
+                                [class.invalid]="addBankForm.get('ManagerName').invalid && addBankForm.get('ManagerName').touched"
+                                formControlName="ManagerName">
+                                <div
+                                    *ngIf="addBankForm.get('ManagerName').invalid && addBankForm.get('ManagerName').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('ManagerName').invalid && addBankForm.get('ManagerName').touched"
+                                        class="text-danger"> *Manager Name required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Person Mobile No</label>
+                                <input class="form-control"  type="text" placeholder="Person Phone No" 
+                                [class.invalid]="addBankForm.get('PersonMobileNo').invalid && addBankForm.get('PersonMobileNo').touched"
+                                formControlName="PersonMobileNo">
+                                <div
+                                    *ngIf="addBankForm.get('PersonMobileNo').invalid && addBankForm.get('PersonMobileNo').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('PersonMobileNo').invalid && addBankForm.get('PersonMobileNo').touched"
+                                        class="text-danger"> *Person Mobile No required</small>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Bank Mobile No</label>
+                                <input class="form-control" type="text" placeholder="Bank Phone No" 
+                                [class.invalid]="addBankForm.get('BankMobileNo').invalid && addBankForm.get('BankMobileNo').touched"
+                                formControlName="BankMobileNo">
+                                <div
+                                    *ngIf="addBankForm.get('BankMobileNo').invalid && addBankForm.get('BankMobileNo').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('BankMobileNo').invalid && addBankForm.get('BankMobileNo').touched"
+                                        class="text-danger"> *Bank Mobile No required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email Id</label>
+                                <input class="form-control" type="text" placeholder="Bank Phone No" 
+                                [class.invalid]="addBankForm.get('EmailId').invalid && addBankForm.get('EmailId').touched"
+                                formControlName="EmailId">
+                                <div
+                                    *ngIf="addBankForm.get('EmailId').invalid && addBankForm.get('EmailId').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('EmailId').invalid && addBankForm.get('EmailId').touched"
+                                        class="text-danger"> *Email Id required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Bank Address</label>
+                                <textarea class="form-control" placeholder="Bank Address" type="text"[class.invalid]="addBankForm.get('BankAddress').invalid && addBankForm.get('BankAddress').touched"
+                                formControlName="BankAddress">
+                                <div
+                                    *ngIf="addBankForm.get('BankAddress').invalid && addBankForm.get('BankAddress').touched">
+                                    <small
+                                        *ngIf="addBankForm.get('BankAddress').invalid && addBankForm.get('BankAddress').touched"
+                                        class="text-danger"> *Bank Address required</small>
+                                </div>
+                            </textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea class="form-control" type="text" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Location Modal -->
+
+<!-- Edit Location Modal -->
+<div id="edit_Bank" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Banks</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="editBank()" [formGroup]="editBankForm">
+                    <div class="row"> 
+                        <div class="col-sm-6"> 
+                            <div class="form-group">
+                                <label>Bank Code <span class="text-danger">*</span></label>
+                                <input class="form-control" value="IT Management" type="text" placeholder="Bank Code"
+                                    [class.invalid]="editBankForm.get('BankCode').invalid && editBankForm.get('BankCode').touched"
+                                    formControlName="BankCode">
+                                <div
+                                    *ngIf="editBankForm.get('BankCode').invalid && editBankForm.get('BankCode').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('BankCode').invalid && editBankForm.get('BankCode').touched"
+                                        class="text-danger"> *Bank Code required</small>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-sm-6">   
+                            <div class="form-group">
+                                <label>Bank Name <span class="text-danger">*</span></label>
+                                <input class="form-control" value="IT Management" type="text" placeholder="Bank Name"
+                                    [class.invalid]="editBankForm.get('BankName').invalid && editBankForm.get('BankName').touched"
+                                    formControlName="BankName">
+                                <div
+                                    *ngIf="editBankForm.get('BankName').invalid && editBankForm.get('BankName').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('BankName').invalid && editBankForm.get('BankName').touched"
+                                        class="text-danger"> *Bank Name required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Routing Code</label>
+                                <input class="form-control " placeholder="Bank Routing Code" type="text" 
+                                [class.invalid]="editBankForm.get('RoutingCode').invalid && editBankForm.get('RoutingCode').touched"
+                                formControlName="RoutingCode">
+                                <div
+                                    *ngIf="editBankForm.get('RoutingCode').invalid && editBankForm.get('RoutingCode').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('RoutingCode').invalid && editBankForm.get('RoutingCode').touched"
+                                        class="text-danger"> *Routing Code required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <input class=" form-control " type="text" placeholder="Branch" 
+                                [class.invalid]="editBankForm.get('Branch').invalid && editBankForm.get('Branch').touched"
+                                formControlName="Branch">
+                                <div
+                                    *ngIf="editBankForm.get('Branch').invalid && editBankForm.get('Branch').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('Branch').invalid && editBankForm.get('Branch').touched"
+                                        class="text-danger"> *Branch required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Manager Name</label>
+                                <input class="form-control" type="text" placeholder="Manager Name" 
+                                [class.invalid]="editBankForm.get('ManagerName').invalid && editBankForm.get('ManagerName').touched"
+                                formControlName="ManagerName">
+                                <div
+                                    *ngIf="editBankForm.get('ManagerName').invalid && editBankForm.get('ManagerName').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('ManagerName').invalid && editBankForm.get('ManagerName').touched"
+                                        class="text-danger"> *Manager Name required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Person Mobile No</label>
+                                <input class="form-control"  type="text" placeholder="Person Phone No" 
+                                [class.invalid]="editBankForm.get('PersonMobileNo').invalid && editBankForm.get('PersonMobileNo').touched"
+                                formControlName="PersonMobileNo">
+                                <div
+                                    *ngIf="editBankForm.get('PersonMobileNo').invalid && editBankForm.get('PersonMobileNo').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('PersonMobileNo').invalid && editBankForm.get('PersonMobileNo').touched"
+                                        class="text-danger"> *Person Mobile No required</small>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Bank Mobile No</label>
+                                <input class="form-control" type="text" placeholder="Bank Phone No" 
+                                [class.invalid]="editBankForm.get('BankMobileNo').invalid && editBankForm.get('BankMobileNo').touched"
+                                formControlName="BankMobileNo">
+                                <div
+                                    *ngIf="editBankForm.get('BankMobileNo').invalid && editBankForm.get('BankMobileNo').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('BankMobileNo').invalid && editBankForm.get('BankMobileNo').touched"
+                                        class="text-danger"> *Bank Mobile No required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email Id</label>
+                                <input class="form-control" type="text" placeholder="Bank Phone No" 
+                                [class.invalid]="editBankForm.get('EmailId').invalid && editBankForm.get('EmailId').touched"
+                                formControlName="EmailId">
+                                <div
+                                    *ngIf="editBankForm.get('EmailId').invalid && editBankForm.get('EmailId').touched">
+                                    <small
+                                        *ngIf="editBankForm.get('EmailId').invalid && editBankForm.get('EmailId').touched"
+                                        class="text-danger"> *Email Id required</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Bank Address</label>
+                                <textarea class="form-control" placeholder="Bank Address" type="text"
+                                    [class.invalid]="editBankForm.get('BankAddress').invalid && editBankForm.get('BankAddress').touched"
+                                    formControlName="BankAddress">
+                                    <div
+                                        *ngIf="editBankForm.get('BankAddress').invalid && editBankForm.get('BankAddress').touched">
+                                        <small
+                                            *ngIf="editBankForm.get('BankAddress').invalid && editBankForm.get('BankAddress').touched"
+                                            class="text-danger"> *Bank Address required</small>
+                                    </div>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea class="form-control" type="text" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Location Modal -->
+
+<!-- Delete Location Modal -->
+<div class="modal custom-modal fade" id="delete_Bank" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Bank</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="deleteBank()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="editor"></div>
+<!-- /Delete Location Modal -->
+    
+    
+</div>
+<!-- /Page Content -->

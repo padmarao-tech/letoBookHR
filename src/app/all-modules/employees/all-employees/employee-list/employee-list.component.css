@@ -1,0 +1,39 @@
+.printClass {
+  display: none;
+}
+.prt-header {
+  display: none;
+}
+@media print {
+  .printClass {
+    display: block;
+  }
+  .prt {
+    display: none;
+  }
+  .prt-header {
+    display: block;
+  }
+}
+
+.model-pop {
+  padding-right: 0px !important;
+}
+@media print {
+  .form-control {
+    border: none;
+  }
+  .prt-Button {
+    display: none;
+  }
+  .pdf-Button {
+    display: none;
+  }
+  select {
+    -webkit-appearance: none;
+  }
+}
+.profile {
+  height: 261px;
+  width: 100%;
+}

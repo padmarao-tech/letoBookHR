@@ -1,0 +1,238 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title" *ngIf="!id">Create Timesheet</h3>
+                <h3 class="page-title" *ngIf="id">Edit Timesheet</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink = "/payroll/daily-timesheet-details">Back</a></li>
+                    <li class="breadcrumb-item active">Create Timesheet</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div id="dts-div" class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12 text-center">
+               <div class="green">
+                <label for="Month">Month:</label>
+                <input class="form-control datetimepicker" [(ngModel)]="tmonth"  bsDatepicker type="number"
+                [bsConfig]="{ dateInputFormat: 'MM',  returnFocusToInput: true }">
+               
+                </div>
+             </div>
+             <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12  text-center">
+               <div class="green">
+                <label for="Year">Year:</label>
+                <input class="form-control datetimepicker" [(ngModel)]="tyear"  bsDatepicker type="number"
+                [bsConfig]="{ dateInputFormat: 'YYYY',  returnFocusToInput: true }">
+               </div>
+             </div>
+             <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12  text-center">
+               <div class="green">
+                <button id="filldts" (click)="run_timesheet_proc()" class="btn btn-primary"><i class="fa fa-plus"></i> Fill Timesheet</button>
+                 </div>
+             </div>
+        </div>
+      
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+    <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+               style="width:100%" class="table table-bordered table-striped mb-0" id="pdfSection">
+              
+                <thead> 
+                    <tr>
+                        <th>ID#</th>
+                        <th>Name</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                        <th>13</th>
+                        <th>14</th>
+                        <th>15</th>
+                        <th>16</th>
+                        <th>17</th>
+                        <th>18</th>
+                        <th>19</th>
+                        <th>20</th>
+                        <th>21</th>
+                        <th>22</th>
+                        <th>23</th>
+                        <th>24</th>
+                        <th>25</th>
+                        <th>26</th>
+                        <th>27</th>
+                        <th>28</th>
+                        <th>29</th>
+                        <th>30</th>
+                        <th>31</th>
+                        <th>T.Hrs</th>
+                        <th>T.OTHrs</th>
+                        <!-- <th class="text-center prt">Print</th> -->
+                        <th class="text-right prt">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of timesheetdetailslist">
+                        <td>{{item.empmaster_uid}}</td>
+                        <td>{{item.empname}}</td>
+                        <td>{{item.DAY1_nrhrs}}</td>
+                        <td>{{item.DAY2_nrhrs}}</td>
+                        <td>{{item.DAY3_nrhrs}}</td>
+                        <td>{{item.DAY4_nrhrs}}</td>
+                        <td>{{item.DAY5_nrhrs}}</td>
+                        <td>{{item.DAY6_nrhrs}}</td>
+                        <td>{{item.DAY7_nrhrs}}</td>
+                        <td>{{item.DAY8_nrhrs}}</td>
+                        <td>{{item.DAY9_nrhrs}}</td>
+                        <td>{{item.DAY10_nrhrs}}</td>
+                        <td>{{item.DAY11_nrhrs}}</td>
+                        <td>{{item.DAY12_nrhrs}}</td>
+                        <td>{{item.DAY13_nrhrs}}</td>
+                        <td>{{item.DAY14_nrhrs}}</td>
+                        <td>{{item.DAY15_nrhrs}}</td>
+                        <td>{{item.DAY16_nrhrs}}</td>
+                        <td>{{item.DAY17_nrhrs}}</td>
+                        <td>{{item.DAY18_nrhrs}}</td>
+                        <td>{{item.DAY19_nrhrs}}</td>
+                        <td>{{item.DAY20_nrhrs}}</td>
+                        <td>{{item.DAY21_nrhrs}}</td>
+                        <td>{{item.DAY22_nrhrs}}</td>
+                        <td>{{item.DAY23_nrhrs}}</td>
+                        <td>{{item.DAY24_nrhrs}}</td>
+                        <td>{{item.DAY25_nrhrs}}</td>
+                        <td>{{item.DAY26_nrhrs}}</td>
+                        <td>{{item.DAY27_nrhrs}}</td>
+                        <td>{{item.DAY28_nrhrs}}</td>
+                        <td>{{item.DAY29_nrhrs}}</td>
+                        <td>{{item.DAY30_nrhrs}}</td>
+                        <td>{{item.DAY31_nrhrs}}</td>
+                        <td>{{item.totalhrs}}</td>
+                        <td>{{item.totalothrs}}</td>
+   
+                          <td class="text-right prt">
+                            <div class="dropdoempmaster_uidwn dropdown-action">
+                                <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item"  data-toggle="modal"
+                                        data-target="#get_timesheetdetail" (click)="viewtimesheet(item.empmaster_uid)"><i
+                                            class="fa fa-pencil m-r-5"></i> Get Details</a>
+                                    <a class="dropdown-item"  data-toggle="modal"
+                                        data-target="#delete_emptimesheet" (click)="tempId = item.empmaster_uid"><i
+                                            class="fa fa-trash-o m-r-5"></i>
+                                        Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
+</div>
+                <div class="submit-section" *ngIf="!id">
+                    <button class="btn btn-primary submit-btn m-r-10" (click)="savesend()">Save & Send</button>
+                    <button class="btn btn-primary submit-btn" (click)="savesend()">Save</button>
+                </div>
+                <div class="submit-section" *ngIf="id">
+                    <button class="btn btn-primary submit-btn">Save</button>
+                </div>
+           
+      
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!--view employee details-->
+<div id="get_timesheetdetail" class="modal custom-modal fade" role="dialog">
+    
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View Employee Timehseet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+  <div class="modal-body">
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive print-box" id="print-section">
+            <h3 class="page-title prt-header text-center">Timesheet details</h3>    
+                <!-- -->
+                <table id="tblsalarymaster" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                class="table table-striped custom-table mb-0 datatable">
+                     <thead>
+                    <tr>
+                        <th>Date </th>
+                        <td>L.Type</td>
+                        <th>T.Hrs </th>
+                        <th>N.Hrs </th>
+                        <th>OT Hrs </th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of viewemplist;let i = index">
+                        <th>{{row.dates  | date :  "dd-MM-y" }} </th>
+                        <td>{{row.leavetype_code}}</td>
+                        <td>{{row.totalhrs}}</td>
+                        <td>{{row.normalhrs}}</td>
+                        <td>{{row.othrs}} </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  <!--
+    <div class="leave-action">
+        <button class="btn btn-sm btn-primary"  (click)="insertheaderanddetails()"><i class="fa fa-plus"></i>Update and save</button>
+    </div>
+    -->
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<!--End of view employee details-->
+
+ <!-- Delete timesheet Modal -->
+ <div class="modal custom-modal fade" id="delete_emptimesheet" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete timesheet</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn" (click)="deletetimesheet()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- /Delete timeshseet Modal -->

@@ -1,0 +1,902 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_dts_detail` AS
+    SELECT 
+        `dailytimesheetdetails`.`company_uid` AS `company_uid`,
+        `dailytimesheetdetails`.`tyear` AS `tyear`,
+        `dailytimesheetdetails`.`tmonth` AS `tmonth`,
+        `dailytimesheetdetails`.`empmaster_uid` AS `empmaster_uid`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 1) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day1_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 1) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day1_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 2) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day2_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 2) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day2_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 3) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day3_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 3) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day3_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 4) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day4_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 4) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day4_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 5) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day5_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 5) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day5_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 6) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day6_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 6) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day6_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 7) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day7_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 7) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day7_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 8) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day8_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 8) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day8_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 9) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day9_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 9) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day9_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 10) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day10_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 10) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day10_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 11) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day11_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 11) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day11_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 12) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day12_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 12) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day12_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 13) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day13_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 13) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day13_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 14) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day14_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 14) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day14_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 15) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day15_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 15) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day15_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 16) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day16_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 16) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day16_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 17) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day17_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 17) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day17_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 18) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day18_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 18) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day18_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 19) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day19_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 19) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day19_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 20) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day20_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 20) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day20_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 21) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day21_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 21) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day21_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 22) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day22_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 22) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day22_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 23) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day23_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 23) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day23_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 24) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day24_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 24) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day24_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 25) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day25_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 25) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day25_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 26) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day26_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 26) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day26_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 27) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day27_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 27) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day27_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 28) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day28_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 28) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day28_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 29) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day29_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 29) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day29_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 30) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day30_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 30) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day30_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 31) THEN `dailytimesheetdetails`.`normalhrs`
+                END),
+                0) AS `day31_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dailytimesheetdetails`.`dates`) = 31) THEN `dailytimesheetdetails`.`othrs`
+                END),
+                0) AS `day31_othrs`
+    FROM
+        `dailytimesheetdetails`
+
+=============
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_dts_detail_temp` AS
+    SELECT 
+        `dts_temp`.`empmaster_uid` AS `empmaster_uid`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 1) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day1_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 1) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day1_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 2) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day2_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 2) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day2_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 3) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day3_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 3) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day3_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 4) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day4_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 4) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day4_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 5) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day5_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 5) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day5_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 6) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day6_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 6) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day6_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 7) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day7_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 7) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day7_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 8) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day8_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 8) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day8_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 9) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day9_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 9) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day9_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 10) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day10_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 10) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day10_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 11) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day11_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 11) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day11_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 12) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day12_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 12) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day12_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 13) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day13_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 13) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day13_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 14) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day14_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 14) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day14_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 15) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day15_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 15) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day15_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 16) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day16_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 16) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day16_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 17) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day17_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 17) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day17_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 18) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day18_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 18) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day18_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 19) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day19_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 19) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day19_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 20) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day20_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 20) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day20_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 21) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day21_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 21) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day21_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 22) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day22_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 22) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day22_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 23) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day23_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 23) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day23_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 24) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day24_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 24) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day24_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 25) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day25_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 25) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day25_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 26) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day26_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 26) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day26_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 27) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day27_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 27) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day27_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 28) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day28_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 28) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day28_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 29) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day29_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 29) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day29_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 30) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day30_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 30) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day30_othrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 31) THEN `dts_temp`.`normalhrs`
+                END),
+                0) AS `day31_nrhrs`,
+        IFNULL((CASE
+                    WHEN (DAYOFMONTH(`dts_temp`.`dates`) = 31) THEN `dts_temp`.`othrs`
+                END),
+                0) AS `day31_othrs`
+    FROM
+        `dts_temp`
+===========
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_dts_summary` AS
+    SELECT 
+        `a`.`company_uid` AS `company_uid`,
+        `a`.`tyear` AS `tyear`,
+        `a`.`tmonth` AS `tmonth`,
+        `a`.`empmaster_uid` AS `empmaster_uid`,
+        GET_EMPNAME(`a`.`empmaster_uid`) AS `empname`,
+        SUM(`a`.`day1_nrhrs`) AS `DAY1_nrhrs`,
+        SUM(`a`.`day2_nrhrs`) AS `DAY2_nrhrs`,
+        SUM(`a`.`day3_nrhrs`) AS `DAY3_nrhrs`,
+        SUM(`a`.`day4_nrhrs`) AS `DAY4_nrhrs`,
+        SUM(`a`.`day5_nrhrs`) AS `DAY5_nrhrs`,
+        SUM(`a`.`day6_nrhrs`) AS `DAY6_nrhrs`,
+        SUM(`a`.`day7_nrhrs`) AS `DAY7_nrhrs`,
+        SUM(`a`.`day8_nrhrs`) AS `DAY8_nrhrs`,
+        SUM(`a`.`day9_nrhrs`) AS `DAY9_nrhrs`,
+        SUM(`a`.`day10_nrhrs`) AS `DAY10_nrhrs`,
+        SUM(`a`.`day11_nrhrs`) AS `DAY11_nrhrs`,
+        SUM(`a`.`day12_nrhrs`) AS `DAY12_nrhrs`,
+        SUM(`a`.`day13_nrhrs`) AS `DAY13_nrhrs`,
+        SUM(`a`.`day14_nrhrs`) AS `DAY14_nrhrs`,
+        SUM(`a`.`day15_nrhrs`) AS `DAY15_nrhrs`,
+        SUM(`a`.`day16_nrhrs`) AS `DAY16_nrhrs`,
+        SUM(`a`.`day17_nrhrs`) AS `DAY17_nrhrs`,
+        SUM(`a`.`day18_nrhrs`) AS `DAY18_nrhrs`,
+        SUM(`a`.`day19_nrhrs`) AS `DAY19_nrhrs`,
+        SUM(`a`.`day20_nrhrs`) AS `DAY20_nrhrs`,
+        SUM(`a`.`day21_nrhrs`) AS `DAY21_nrhrs`,
+        SUM(`a`.`day22_nrhrs`) AS `DAY22_nrhrs`,
+        SUM(`a`.`day23_nrhrs`) AS `DAY23_nrhrs`,
+        SUM(`a`.`day24_nrhrs`) AS `DAY24_nrhrs`,
+        SUM(`a`.`day25_nrhrs`) AS `DAY25_nrhrs`,
+        SUM(`a`.`day26_nrhrs`) AS `DAY26_nrhrs`,
+        SUM(`a`.`day27_nrhrs`) AS `DAY27_nrhrs`,
+        SUM(`a`.`day28_nrhrs`) AS `DAY28_nrhrs`,
+        SUM(`a`.`day29_nrhrs`) AS `DAY29_nrhrs`,
+        SUM(`a`.`day30_nrhrs`) AS `DAY30_nrhrs`,
+        SUM(`a`.`day31_nrhrs`) AS `DAY31_nrhrs`,
+        ((((((((((((((((((((((((((((((SUM(`a`.`day1_nrhrs`) + SUM(`a`.`day2_nrhrs`)) + SUM(`a`.`day3_nrhrs`)) + SUM(`a`.`day4_nrhrs`)) + SUM(`a`.`day5_nrhrs`)) + SUM(`a`.`day6_nrhrs`)) + SUM(`a`.`day7_nrhrs`)) + SUM(`a`.`day8_nrhrs`)) + SUM(`a`.`day9_nrhrs`)) + SUM(`a`.`day10_nrhrs`)) + SUM(`a`.`day11_nrhrs`)) + SUM(`a`.`day12_nrhrs`)) + SUM(`a`.`day12_nrhrs`)) + SUM(`a`.`day14_nrhrs`)) + SUM(`a`.`day15_nrhrs`)) + SUM(`a`.`day16_nrhrs`)) + SUM(`a`.`day17_nrhrs`)) + SUM(`a`.`day18_nrhrs`)) + SUM(`a`.`day19_nrhrs`)) + SUM(`a`.`day20_nrhrs`)) + SUM(`a`.`day21_nrhrs`)) + SUM(`a`.`day22_nrhrs`)) + SUM(`a`.`day23_nrhrs`)) + SUM(`a`.`day24_nrhrs`)) + SUM(`a`.`day25_nrhrs`)) + SUM(`a`.`day26_nrhrs`)) + SUM(`a`.`day27_nrhrs`)) + SUM(`a`.`day28_nrhrs`)) + SUM(`a`.`day29_nrhrs`)) + SUM(`a`.`day30_nrhrs`)) + SUM(`a`.`day31_nrhrs`)) AS `totalhrs`,
+        ((((((((((((((((((((((((((((((SUM(`a`.`day1_othrs`) + SUM(`a`.`day2_othrs`)) + SUM(`a`.`day3_othrs`)) + SUM(`a`.`day4_othrs`)) + SUM(`a`.`day5_othrs`)) + SUM(`a`.`day6_othrs`)) + SUM(`a`.`day7_othrs`)) + SUM(`a`.`day8_othrs`)) + SUM(`a`.`day9_othrs`)) + SUM(`a`.`day10_othrs`)) + SUM(`a`.`day11_othrs`)) + SUM(`a`.`day12_othrs`)) + SUM(`a`.`day12_othrs`)) + SUM(`a`.`day14_othrs`)) + SUM(`a`.`day15_othrs`)) + SUM(`a`.`day16_othrs`)) + SUM(`a`.`day17_othrs`)) + SUM(`a`.`day18_othrs`)) + SUM(`a`.`day19_othrs`)) + SUM(`a`.`day20_othrs`)) + SUM(`a`.`day21_othrs`)) + SUM(`a`.`day22_othrs`)) + SUM(`a`.`day23_othrs`)) + SUM(`a`.`day24_othrs`)) + SUM(`a`.`day25_othrs`)) + SUM(`a`.`day26_othrs`)) + SUM(`a`.`day27_othrs`)) + SUM(`a`.`day28_othrs`)) + SUM(`a`.`day29_othrs`)) + SUM(`a`.`day30_othrs`)) + SUM(`a`.`day31_othrs`)) AS `totalothrs`
+    FROM
+        `vw_dts_detail` `a`
+    GROUP BY `a`.`company_uid` , `a`.`tyear` , `a`.`tmonth` , `a`.`empmaster_uid`
+================
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_dts_summary_temp` AS
+    SELECT 
+        `a`.`empmaster_uid` AS `empmaster_uid`,
+        GET_EMPNAME(`a`.`empmaster_uid`) AS `empname`,
+        SUM(`a`.`day1_nrhrs`) AS `DAY1_nrhrs`,
+        SUM(`a`.`day2_nrhrs`) AS `DAY2_nrhrs`,
+        SUM(`a`.`day3_nrhrs`) AS `DAY3_nrhrs`,
+        SUM(`a`.`day4_nrhrs`) AS `DAY4_nrhrs`,
+        SUM(`a`.`day5_nrhrs`) AS `DAY5_nrhrs`,
+        SUM(`a`.`day6_nrhrs`) AS `DAY6_nrhrs`,
+        SUM(`a`.`day7_nrhrs`) AS `DAY7_nrhrs`,
+        SUM(`a`.`day8_nrhrs`) AS `DAY8_nrhrs`,
+        SUM(`a`.`day9_nrhrs`) AS `DAY9_nrhrs`,
+        SUM(`a`.`day10_nrhrs`) AS `DAY10_nrhrs`,
+        SUM(`a`.`day11_nrhrs`) AS `DAY11_nrhrs`,
+        SUM(`a`.`day12_nrhrs`) AS `DAY12_nrhrs`,
+        SUM(`a`.`day13_nrhrs`) AS `DAY13_nrhrs`,
+        SUM(`a`.`day14_nrhrs`) AS `DAY14_nrhrs`,
+        SUM(`a`.`day15_nrhrs`) AS `DAY15_nrhrs`,
+        SUM(`a`.`day16_nrhrs`) AS `DAY16_nrhrs`,
+        SUM(`a`.`day17_nrhrs`) AS `DAY17_nrhrs`,
+        SUM(`a`.`day18_nrhrs`) AS `DAY18_nrhrs`,
+        SUM(`a`.`day19_nrhrs`) AS `DAY19_nrhrs`,
+        SUM(`a`.`day20_nrhrs`) AS `DAY20_nrhrs`,
+        SUM(`a`.`day21_nrhrs`) AS `DAY21_nrhrs`,
+        SUM(`a`.`day22_nrhrs`) AS `DAY22_nrhrs`,
+        SUM(`a`.`day23_nrhrs`) AS `DAY23_nrhrs`,
+        SUM(`a`.`day24_nrhrs`) AS `DAY24_nrhrs`,
+        SUM(`a`.`day25_nrhrs`) AS `DAY25_nrhrs`,
+        SUM(`a`.`day26_nrhrs`) AS `DAY26_nrhrs`,
+        SUM(`a`.`day27_nrhrs`) AS `DAY27_nrhrs`,
+        SUM(`a`.`day28_nrhrs`) AS `DAY28_nrhrs`,
+        SUM(`a`.`day29_nrhrs`) AS `DAY29_nrhrs`,
+        SUM(`a`.`day30_nrhrs`) AS `DAY30_nrhrs`,
+        SUM(`a`.`day31_nrhrs`) AS `DAY31_nrhrs`,
+        ((((((((((((((((((((((((((((((SUM(`a`.`day1_nrhrs`) + SUM(`a`.`day2_nrhrs`)) + SUM(`a`.`day3_nrhrs`)) + SUM(`a`.`day4_nrhrs`)) + SUM(`a`.`day5_nrhrs`)) + SUM(`a`.`day6_nrhrs`)) + SUM(`a`.`day7_nrhrs`)) + SUM(`a`.`day8_nrhrs`)) + SUM(`a`.`day9_nrhrs`)) + SUM(`a`.`day10_nrhrs`)) + SUM(`a`.`day11_nrhrs`)) + SUM(`a`.`day12_nrhrs`)) + SUM(`a`.`day12_nrhrs`)) + SUM(`a`.`day14_nrhrs`)) + SUM(`a`.`day15_nrhrs`)) + SUM(`a`.`day16_nrhrs`)) + SUM(`a`.`day17_nrhrs`)) + SUM(`a`.`day18_nrhrs`)) + SUM(`a`.`day19_nrhrs`)) + SUM(`a`.`day20_nrhrs`)) + SUM(`a`.`day21_nrhrs`)) + SUM(`a`.`day22_nrhrs`)) + SUM(`a`.`day23_nrhrs`)) + SUM(`a`.`day24_nrhrs`)) + SUM(`a`.`day25_nrhrs`)) + SUM(`a`.`day26_nrhrs`)) + SUM(`a`.`day27_nrhrs`)) + SUM(`a`.`day28_nrhrs`)) + SUM(`a`.`day29_nrhrs`)) + SUM(`a`.`day30_nrhrs`)) + SUM(`a`.`day31_nrhrs`)) AS `totalhrs`,
+        ((((((((((((((((((((((((((((((SUM(`a`.`day1_othrs`) + SUM(`a`.`day2_othrs`)) + SUM(`a`.`day3_othrs`)) + SUM(`a`.`day4_othrs`)) + SUM(`a`.`day5_othrs`)) + SUM(`a`.`day6_othrs`)) + SUM(`a`.`day7_othrs`)) + SUM(`a`.`day8_othrs`)) + SUM(`a`.`day9_othrs`)) + SUM(`a`.`day10_othrs`)) + SUM(`a`.`day11_othrs`)) + SUM(`a`.`day12_othrs`)) + SUM(`a`.`day12_othrs`)) + SUM(`a`.`day14_othrs`)) + SUM(`a`.`day15_othrs`)) + SUM(`a`.`day16_othrs`)) + SUM(`a`.`day17_othrs`)) + SUM(`a`.`day18_othrs`)) + SUM(`a`.`day19_othrs`)) + SUM(`a`.`day20_othrs`)) + SUM(`a`.`day21_othrs`)) + SUM(`a`.`day22_othrs`)) + SUM(`a`.`day23_othrs`)) + SUM(`a`.`day24_othrs`)) + SUM(`a`.`day25_othrs`)) + SUM(`a`.`day26_othrs`)) + SUM(`a`.`day27_othrs`)) + SUM(`a`.`day28_othrs`)) + SUM(`a`.`day29_othrs`)) + SUM(`a`.`day30_othrs`)) + SUM(`a`.`day31_othrs`)) AS `totalothrs`
+    FROM
+        `vw_dts_detail_temp` `a`
+    GROUP BY `a`.`empmaster_uid`
+================
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_empleave` AS
+    SELECT 
+        `e`.`company_uid` AS `company_uid`,
+        `e`.`uid` AS `empmaster_uid`,
+        `e`.`EmpCode` AS `empcode`,
+        `e`.`Firstname` AS `firstname`,
+        `lt`.`Code` AS `leavecode`,
+        `lt`.`Uid` AS `leavetype_uid`,
+        `lr`.`Leave_from` AS `leave_from`,
+        `lr`.`Leave_upto` AS `leave_upto`,
+        `lt`.`Allocate_hours` AS `Al_hrs`
+    FROM
+        ((`empmaster` `e`
+        JOIN `leaverequest` `lr` ON ((`e`.`uid` = `lr`.`Empmaster_uid`)))
+        JOIN `leavetype` `lt` ON ((`lr`.`Leavetype_uid` = `lt`.`Uid`)))
+======================
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_loan_tobe_paid` AS
+    SELECT 
+        `ls`.`uid` AS `uid`,
+        `ls`.`Company_uid` AS `company_uid`,
+        `ls`.`Empmaster_uid` AS `empmaster_uid`,
+        `ls`.`Loantype_uid` AS `loantype_uid`,
+        `ls`.`Amount` AS `loanamount`,
+        `d`.`Total_Paidamount` AS `total_paidamount`,
+        `ls`.`Monthly_deduction` AS `monthly_deduction`,
+        (`ls`.`Amount` - `d`.`Total_Paidamount`) AS `still_tobe_paid`,
+        (CASE
+            WHEN ((`ls`.`Amount` - `d`.`Total_Paidamount`) > `ls`.`Monthly_deduction`) THEN `ls`.`Monthly_deduction`
+            ELSE (`ls`.`Amount` - `d`.`Total_Paidamount`)
+        END) AS `thismonth_due`
+    FROM
+        ((`loansettings` `ls`
+        JOIN `vw_loanpaidamount` `d` ON (((`ls`.`uid` = `d`.`loansettings_uid`)
+            AND (`ls`.`Empmaster_uid` = `d`.`empmaster_uid`))))
+        JOIN `loantype` `m` ON (((`m`.`company_uid` = `ls`.`Company_uid`)
+            AND (`m`.`uid` = `ls`.`Loantype_uid`))))
+    WHERE
+        (`ls`.`Activestatus` = 'Y')
+===================
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_loanpaidamount` AS
+    SELECT 
+        `loandetail`.`LoanSettings_uid` AS `loansettings_uid`,
+        `loandetail`.`empmaster_uid` AS `empmaster_uid`,
+        SUM(`loandetail`.`Amount`) AS `Total_Paidamount`
+    FROM
+        `loandetail`
+    GROUP BY `loandetail`.`LoanSettings_uid` , `loandetail`.`empmaster_uid`
+==============
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_monthly_loan_deducted` AS
+    SELECT 
+        `h`.`Company_uid` AS `Company_uid`,
+        `h`.`Tyear` AS `Tyear`,
+        `h`.`Tmonth` AS `Tmonth`,
+        `d`.`empmaster_uid` AS `empmaster_uid`,
+        `d`.`Amount` AS `Amount`
+    FROM
+        ((`loanheader` `h`
+        JOIN `loandetail` `d` ON ((`h`.`UID` = `d`.`loanheader_uid`)))
+        JOIN `loantype` `m` ON (((`m`.`company_uid` = `h`.`Company_uid`)
+            AND (`m`.`uid` = `d`.`Loantype_uid`))))
+===================
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_monthlyaddition` AS
+    SELECT 
+        `h`.`company_uid` AS `Company_UID`,
+        `h`.`tyear` AS `Tyear`,
+        `h`.`tmonth` AS `Tmonth`,
+        `d`.`empmaster_uid` AS `Empmaster_UID`,
+        `d`.`adddeduct_type_uid` AS `AddDeduct_type_uid`,
+        `d`.`amount` AS `amount`
+    FROM
+        ((`adddeductheader` `h`
+        JOIN `adddeductdetail` `d` ON ((`h`.`uid` = `d`.`adddeductheader_uid`)))
+        JOIN `adddeductmaster` `m` ON (((`m`.`company_uid` = `h`.`company_uid`)
+            AND (`m`.`uid` = `d`.`adddeduct_type_uid`))))
+    WHERE
+        (`m`.`Action` = 1)
+===================
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_monthlydeduction` AS
+    SELECT 
+        `h`.`company_uid` AS `Company_UID`,
+        `h`.`tyear` AS `Tyear`,
+        `h`.`tmonth` AS `Tmonth`,
+        `d`.`empmaster_uid` AS `Empmaster_UID`,
+        `d`.`adddeduct_type_uid` AS `AddDeduct_type_uid`,
+        `d`.`amount` AS `amount`
+    FROM
+        ((`adddeductheader` `h`
+        JOIN `adddeductdetail` `d` ON ((`h`.`uid` = `d`.`adddeductheader_uid`)))
+        JOIN `adddeductmaster` `m` ON (((`m`.`company_uid` = `h`.`company_uid`)
+            AND (`m`.`uid` = `d`.`adddeduct_type_uid`))))
+    WHERE
+        (`m`.`Action` = -(1))
+====================
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_dts_real`()
+    COMMENT 'insert into daily timesheet details'
+BEGIN
+INSERT INTO dailytimesheetdetails
+SELECT *
+from dts_temp ;
+
+END
+===============
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_sp`(
+	IN `cmpy_uid` INT,
+	IN `ttyear` INT,
+	IN `ttmonth` INT
+)
+BEGIN
+
+insert into salaryprocessdetail (company_uid,empmaster_uid,tyear,tmonth,empname,totalhrs,normalhrs,othrs,
+grosssalary,salarydeduct,perhrrate,basic,hra,da,conveyance,allowance,
+medicalallowance,others,cbasic,chra,cda,cconveyance,callowance,
+cmedicalallowance,cothers,tds,esi,pf,loanAmount,addition,deduction,totalsalary,netdeduction,netsalary)
+
+SELECT cmpy_uid,empmaster_uid,ttyear,ttmonth,empname,totalhrs,normalhrs,othrs,
+grosssalary,salarydeduct,perhrrate,basic,hra,da,conveyance,allowance,
+medicalallowance,others,cbasic,chra,cda,cconveyance,callowance,
+cmedicalallowance,cothers,tds,esi,pf,loanAmount,addition,deduction,totalsalary,netdeduction,netsalary
+ FROM salaryprocess_temp;
+
+END
+=================
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_timesheet_temp`(
+	IN `cmpy_uid` INT,
+	IN `ttyear` INT,
+	IN `ttmonth` INT
+)
+BEGIN
+DECLARE Startdate DATE;
+DECLARE Enddate DATE;
+declare StartDay INT;
+DECLARE lastday INT;
+DECLARE counter INT;
+DECLARE emp_uid INT;
+ DECLARE finished BOOLEAN DEFAULT FALSE;
+ DECLARE cur1 CURSOR FOR SELECT uid from empmaster
+  WHERE company_uid=cmpy_uid AND empactive='Y' 
+   AND uid NOT IN   (SELECT empmaster_uid FROM dailytimesheetdetails 
+	WHERE tyear=ttyear AND tmonth=ttmonth AND   company_uid=cmpy_uid);
+ DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = true;
+SET @Startdate=    DATE_FORMAT(concat(REPLACE(ttyear,',',''),'-', REPLACE(ttmonth,',',''),'-','01'),'%Y-%m-%d') ;
+SET @Enddate=LAST_DAY(@startdate);
+SET @lastday=DAY(@enddate);
+
+TRUNCATE TABLE monthlydatestemp;
+TRUNCATE TABLE dts_temp;
+-- DELETE FROM  dailytimesheetdetails WHERE company_uid=cmpy_uid AND tyear=ttyear AND tmonth=ttmonth;
+OPEN cur1;
+SET @counter=0;
+
+  WHILE  @counter < @lastday DO
+    SELECT @counter;
+    INSERT INTO monthlydatestemp (dates)
+    VALUES( @Startdate);
+    SET @Startdate=DATE_ADD(@Startdate, INTERVAL 1 DAY); 
+    SET @counter=@counter+1;
+   END WHILE;
+ 
+ SET @Startdate=DATE_ADD(@Startdate, INTERVAL 1 DAY); 
+read_loop: LOOP
+FETCH  cur1 INTO emp_uid;
+
+
+   IF finished THEN
+     LEAVE read_loop;
+   END IF;
+ -- default time sheet insert into temparary table
+    INSERT INTO dts_temp (company_uid,empmaster_uid,leavetype_uid,dates,tyear,tmonth,normalhrs,totalhrs,leavetype_code)
+    SELECT  cmpy_uid,emp_uid,1, dates,ttyear,ttmonth,8,8,'P' FROM monthlydatestemp;
+   
+ 
+ END LOOP;
+
+close cur1;
+
+-- update leave detail and holiday details
+
+UPDATE dts_temp a   inner JOIN holidaysetting b ON a.company_uid=b.company_uid 
+SET a.normalhrs =8 , a.leavetype_uid =b.leavetype_uid  , a.leavetype_code=b.HolidayType
+WHERE b.company_uid=cmpy_uid
+AND year(b.holidaydate)=ttyear AND month(b.holidaydate)=ttmonth  AND a.dates=b.holidaydate  ;
+
+ UPDATE dts_temp a   inner JOIN vw_empleave b ON a.company_uid=b.company_uid 
+ AND a.Empmaster_uid=b.Empmaster_uid 
+ SET a.normalhrs =B.Al_hrs , a.leavetype_uid =b.leavetype_uid  , a.leavetype_code=b.leavecode
+ WHERE b.company_uid=cmpy_uid  and b.empmaster_uid =a.empmaster_uid 
+ AND (year(b.leave_from)=ttyear OR year(b.leave_upto)=ttyear)
+ AND (month(b.leave_from)=ttmonth  OR  month(b.leave_upto)=ttmonth)
+-- AND 1 between DAY(b.leave_from)  and  DAY(b.leave_upto) AND b.empmaster_uid =emp_uid ;
+   AND a.dates between b.leave_from  and  b.leave_upto  ;
+  
+END
+=================
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_SalaryProcess`(
+	IN `cmpy_uid` VARCHAR(20),
+	IN `TTyear` VARCHAR(5),
+	IN `TTmonth` VARCHAR(2)
+)
+BEGIN
+DECLARE Startdate DATE;
+DECLARE Enddate DATE;
+declare StartDay INT;
+DECLARE lastday INT;
+SET @Startdate=    DATE_FORMAT(concat(REPLACE(ttyear,',',''),'-', REPLACE(ttmonth,',',''),'-','01'),'%Y-%m-%d') ;
+SET @Enddate=LAST_DAY(@startdate);
+SET @lastday=DAY(@enddate);
+TRUNCATE TABLE salaryprocess_temp;
+INSERT INTO salaryprocess_temp(
+ company_uid,empmaster_uid,empname,totalhrs,normalhrs,othrs,grosssalary,salarydeduct,perhrrate,basic,hra,da,conveyance,
+allowance,medicalallowance,others,cbasic,chra,cda,cconveyance,callowance,cmedicalallowance,cothers,tds,esi,pf,loanAmount,
+addition,deduction)
+SELECT e.company_uid,e.uid empmaster_uid, get_empname(e.uid) empname,ts.totalhrs,ts.normalhrs,ts.othrs,s.grosssalary,s.salarydeduct,
+ (s.grosssalary/ts.totalhrs) perhrrate,
+s.basic,s.hra,da,s.conveyance,s.allowance,s.medicalallowance,s.others, 
+(case when ts.totalhrs=ts.normalhrs then s.basic ELSE (s.basic/ts.totalhrs) * ts.normalhrs END) cbasic,
+(case when ts.totalhrs=ts.normalhrs then s.hra ELSE (s.hra/ts.totalhrs) * ts.normalhrs END) chra,
+(case when ts.totalhrs=ts.normalhrs then s.da ELSE (s.da/ts.totalhrs) * ts.normalhrs END) cda,
+(case when ts.totalhrs=ts.normalhrs then s.conveyance ELSE (s.conveyance/ts.totalhrs) * ts.normalhrs END) cconveyance,
+(case when ts.totalhrs=ts.normalhrs then s.allowance ELSE (s.allowance/ts.totalhrs) * ts.normalhrs END) callowance,
+(case when ts.totalhrs=ts.normalhrs then s.medicalallowance ELSE (s.medicalallowance/ts.totalhrs) * ts.normalhrs END) cmedicalallowance,
+(case when ts.totalhrs=ts.normalhrs then s.others ELSE (s.others/ts.totalhrs) * ts.normalhrs END) cothers,
+
+	s.tds ,s.esi, s.pf, ifnull(l.amount,0) loanAmount, ifnull(ma.addition,0) addition, ifnull(md.deduction,0) deduction 
+	  FROM empmaster e 
+INNER JOIN (SELECT company_uid,empmaster_uid,tyear,tmonth,sum(totalhrs) totalhrs , sum(normalhrs) normalhrs , sum(othrs) othrs
+ FROM dailytimesheetdetails WHERE company_uid=cmpy_uid AND tyear=TTyear AND tmonth=TTmonth
+  GROUP BY company_uid,empmaster_uid,tyear,tmonth) ts
+ ON e.uid=ts.empmaster_uid 	     
+INNER JOIN  -- find out the maximum slary
+   (SELECT s.company_uid, s.empmaster_uid,
+	IFNULL(s.basic,0)+IFNULL(s.hra,0)+IFNULL(s.da,0)+IFNULL(s.conveyance,0)+ ifnull(s.allowance,0)
+	+ifnull(s.medicalallowance,0)+IFNULL(s.others,0) grosssalary,
+	IFNULL( s.tds,0)+IFNULL(s.esi,0)+IFNULL(s.pf,0) salarydeduct,
+	IFNULL(s.basic,0) basic ,IFNULL(s.hra,0) hra,
+	IFNULL(s.da,0) da, IFNULL(s.conveyance,0) conveyance, ifnull(s.allowance,0) allowance,
+	ifnull(s.medicalallowance,0) medicalallowance, IFNULL(s.others,0) others,
+	IFNULL( s.tds,0) tds ,IFNULL(s.esi,0) esi , IFNULL(s.pf,0) pf FROM salarymaster s 
+	INNER JOIN
+	(SELECT MAX(effect_from_date) effect_from_date , company_uid,empmaster_uid FROM salarymaster 
+	WHERE effect_year<=ttyear AND effect_month<=ttmonth
+	GROUP BY company_uid,empmaster_uid ) sm
+	on s.company_uid =sm.company_uid AND s.empmaster_uid =sm.empmaster_uid 
+	AND s.effect_from_date=sm.effect_from_date
+	WHERE effect_year<=ttyear AND effect_month<=ttmonth) s ON e.company_uid=s.company_uid AND e.uid=s.empmaster_uid
+LEFT outer JOIN  -- find out the loan poid data for this month
+   (SELECT  company_uid,Tyear,Tmonth,empmaster_uid,amount FROM  vw_monthly_loan_deducted 
+   WHERE  tyear=ttyear AND tmonth=ttmonth) l ON  l.company_uid =e.company_uid AND l.empmaster_uid =e.uid 
+LEFT outer JOIN  -- find out the monthly deduction amount
+   ( SELECT  company_uid, empmaster_uid,Tyear,Tmonth, amount deduction
+		 FROM  vw_monthlydeduction 
+   WHERE  tyear=ttyear AND tmonth=ttmonth) md ON e.company_uid= md.company_uid  AND e.uid =md.empmaster_uid 
+LEFT outer JOIN  -- find out the monthly Addition amount
+   ( SELECT  company_uid, empmaster_uid,Tyear,Tmonth, amount addition
+		 FROM  vw_monthlyaddition
+   WHERE  tyear=ttyear AND tmonth=ttmonth) ma ON e.company_uid= ma.company_uid  AND e.uid =ma.empmaster_uid 
+WHERE e.company_uid=cmpy_uid;
+
+UPDATE salaryprocess_temp SET totalsalary= (cbasic+chra+cda+cconveyance+
+ callowance+cmedicalallowance+cothers+addition)  , 
+ netdeduction=(salarydeduct+loanAmount+deduction),
+netsalary=(cbasic+chra+cda+cconveyance+callowance+cmedicalallowance+
+cothers+addition) -(salarydeduct+loanAmount+deduction);
+END
+================
+

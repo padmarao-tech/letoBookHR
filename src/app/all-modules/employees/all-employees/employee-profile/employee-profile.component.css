@@ -1,0 +1,24 @@
+.model-pop {
+  padding-right: 0px !important;
+}
+@media print {
+  .form-control {
+    border: none;
+  }
+  .prt-Button {
+    display: none;
+  }
+  .pdf-Button {
+    display: none;
+  }
+  select {
+    -webkit-appearance: none;
+  }
+}
+.profile {
+  height: 186px;
+  width: 186px;
+}
+.onoffswitch {
+  margin-left: 0;
+}

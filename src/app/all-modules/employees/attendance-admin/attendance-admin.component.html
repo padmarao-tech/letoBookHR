@@ -1,0 +1,1118 @@
+<!-- Page Content -->
+
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">Attendance</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Attendance</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Search Filter -->
+    <div class="row filter-row">
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating">
+                <label class="focus-label">Department</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating">
+                <label class="focus-label">Location</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus select-focus">
+                <select class="select floating form-control">
+                    <option>-</option>
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                </select>
+                <label class="focus-label">Select Month</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus select-focus">
+                <select class="select floating form-control">
+                    <option>-</option>
+                    <option>2019</option>
+                    <option>2018</option>
+                    <option>2017</option>
+                    <option>2016</option>
+                    <option>2015</option>
+                </select>
+                <label class="focus-label">Select Year</label>
+            </div>
+        </div>
+       
+    </div>
+    <!-- /Search Filter -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Attendance Admin</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                <table class="table table-striped custom-table table-nowrap mb-0" id="pdfSection">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                            <th>25</th>
+                            <th>26</th>
+                            <th>27</th>
+                            <th>28</th>
+                            <th>29</th>
+                            <th>30</th>
+                            <th>31</th>
+                            <th>Leave Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-09.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">John Doe</a>
+                                </h2>
+                            </td>
+                            <td><a>
+                                <!-- data-toggle="modal" data-target="#attendance_info" -->
+                                    <i class="fa fa-check text-success tik"></i>
+                                    <i class="fa fa-close text-danger untik" data-toggle="modal" data-target="#attendance_info" style="display:none;"></i>
+                                </a>
+                            </td>
+                            
+                            <!-- data-toggle="modal" data-target="#attendance_info" -->
+                            <td><a>
+                                    <i class="fa fa-check text-success tik1"></i>
+                                    <i class="fa fa-close text-danger untik1" data-toggle="modal" data-target="#attendance_info" style="display:none;"></i>
+                                </a>
+                            </td>
+                            <td><a><i class="fa fa-check text-success tik2"></i>
+                                <i class="fa fa-close text-danger untik2" data-toggle="modal" data-target="#attendance_info" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik3"></i>
+                                <i class="fa fa-close text-danger untik3" data-toggle="modal" data-target="#attendance_info" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik4"></i>
+                                    <i class="fa fa-close text-danger untik4" data-toggle="modal" data-target="#attendance_info" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik5"></i>
+                                <i class="fa fa-close text-danger untik5" data-toggle="modal" data-target="#attendance_info" style="display:none;"></i></a></td>
+                            <td><a>
+                                <!-- <div class="half-day">
+                                    <span class="first-off"><a  data-toggle="modal"
+                                            data-target="#attendance_info"><i
+                                                class="fa fa-check text-success"></i></a></span>
+                                    <span class="first-off"><i class="fa fa-close text-danger"></i></span>
+                                </div> -->
+                                <i class="fa fa-check text-success tik6"></i>
+                                <i class="fa fa-close text-danger untik6" style="display:none;"></i></a>
+                            </td>
+                            <td><a><i class="fa fa-check text-success tik7"></i>
+                                <i class="fa fa-close text-danger untik7" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik8"></i>
+                                <i class="fa fa-close text-danger untik8" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik9"></i>
+                                <i class="fa fa-close text-danger untik9" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik10"></i>
+                                <i class="fa fa-close text-danger untik10" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik11"></i>
+                                <i class="fa fa-close text-danger untik11" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik12"></i>
+                                <i class="fa fa-close text-danger untik12" style="display:none;"></i></a></td>
+                            
+                            <td><a><i class="fa fa-check text-success tik13"></i>
+                                <i class="fa fa-close text-danger untik13" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik14"></i>
+                                    <i class="fa fa-close text-danger untik14" style="display:none;"></i></a></td>
+                            <td><a><i class="fa fa-check text-success tik15"></i>
+                                <i class="fa fa-close text-danger untik15" style="display:none;"></i></a></td>
+                            <td><a><i class="fa fa-check text-success tik16"></i>
+                                <i class="fa fa-close text-danger untik16" style="display:none;"></i></a></td>
+                            
+                            <td><i class="fa fa-check text-success tik17"></i>
+                                <i class="fa fa-close text-danger untik17" style="display:none;"></i></td>
+
+                            <td><a><i class="fa fa-check text-success tik18"></i>
+                                    <i class="fa fa-close text-danger untik18" style="display:none;"></i></a></td>
+                            <!-- <td>
+                                <div class="half-day">
+                                    <span class="first-off"><i class="fa fa-close text-danger"></i></span>
+                                    <span class="first-off"><a  data-toggle="modal"
+                                            data-target="#attendance_info"><i
+                                                class="fa fa-check text-success"></i></a></span>
+                                </div>
+                            </td> -->
+                            <td><a><i class="fa fa-check text-success tik19"></i>
+                                <i class="fa fa-close text-danger untik19" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik20"></i>
+                                <i class="fa fa-close text-danger untik20" style="display:none;"></i></a></td>
+
+                            <td><i class="fa fa-check text-success tik21"></i>
+                                <i class="fa fa-close text-danger untik21" style="display:none;"></i> </td>
+
+                            <td><a><i class="fa fa-check text-success tik22"></i>
+                                <i class="fa fa-close text-danger untik22" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik23"></i>
+                                <i class="fa fa-close text-danger untik23" style="display:none;"></i></a></td>
+                            
+                                <td><a><i class="fa fa-check text-success tik24"></i>
+                                    <i class="fa fa-close text-danger untik24" style="display:none;"></i></a></td>
+
+                            <td><i class="fa fa-check text-success tik25"></i>
+                                <i class="fa fa-close text-danger untik25" style="display:none;"></i></td>
+
+                            <td><a><i class="fa fa-check text-success tik26"></i>
+                                <i class="fa fa-close text-danger untik26" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik27"></i>
+                                <i class="fa fa-close text-danger untik27" style="display:none;"></i></a></td>
+
+                            <td><a><i class="fa fa-check text-success tik28"></i>
+                                    <i class="fa fa-close text-danger untik28" style="display:none;"></i></a></td>
+
+                             <td><a><i class="fa fa-check text-success tik29"></i>
+                                        <i class="fa fa-close text-danger untik29" style="display:none;"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-09.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Richard Miles</a>
+                                </h2>
+                            </td>
+                            <td><a>
+                                <!-- data-toggle="modal" data-target="#attendance_info" -->
+                                <i class="fa fa-check text-success tik30"></i>
+                                <i class="fa fa-close text-danger untik30" style="display:none;"></i>
+                            </a>
+                        </td>
+                        
+                        <!-- data-toggle="modal" data-target="#attendance_info" -->
+                        <td><a>
+                                <i class="fa fa-check text-success tik31"></i>
+                                <i class="fa fa-close text-danger untik31" style="display:none;"></i>
+                            </a>
+                        </td>
+                        <td><a><i class="fa fa-check text-success tik32"></i>
+                            <i class="fa fa-close text-danger untik32" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik33"></i>
+                            <i class="fa fa-close text-danger untik33" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik34"></i>
+                                <i class="fa fa-close text-danger untik34" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik35"></i>
+                            <i class="fa fa-close text-danger untik35" style="display:none;"></i></a></td>
+                        <td><a>
+                            <!-- <div class="half-day">
+                                <span class="first-off"><a  data-toggle="modal"
+                                        data-target="#attendance_info"><i
+                                            class="fa fa-check text-success"></i></a></span>
+                                <span class="first-off"><i class="fa fa-close text-danger"></i></span>
+                            </div> -->
+                            <i class="fa fa-check text-success tik36"></i>
+                            <i class="fa fa-close text-danger untik36" style="display:none;"></i></a>
+                        </td>
+                        <td><a><i class="fa fa-check text-success tik37"></i>
+                            <i class="fa fa-close text-danger untik37" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik38"></i>
+                            <i class="fa fa-close text-danger untik38" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik39"></i>
+                            <i class="fa fa-close text-danger untik39" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik40"></i>
+                            <i class="fa fa-close text-danger untik40" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik41"></i>
+                            <i class="fa fa-close text-danger untik41" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik42"></i>
+                            <i class="fa fa-close text-danger untik42" style="display:none;"></i></a></td>
+                        
+                        <td><a><i class="fa fa-check text-success tik43"></i>
+                            <i class="fa fa-close text-danger untik43" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik44"></i>
+                                <i class="fa fa-close text-danger untik44" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik45"></i>
+                            <i class="fa fa-close text-danger untik45" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik46"></i>
+                            <i class="fa fa-close text-danger untik46" style="display:none;"></i></a></td>
+                        
+                        <td><i class="fa fa-check text-success tik47"></i>
+                            <i class="fa fa-close text-danger untik47" style="display:none;"></i></td>
+
+                        <td><a><i class="fa fa-check text-success tik48"></i>
+                                <i class="fa fa-close text-danger untik48" style="display:none;"></i></a></td>
+                        <!-- <td>
+                            <div class="half-day">
+                                <span class="first-off"><i class="fa fa-close text-danger"></i></span>
+                                <span class="first-off"><a  data-toggle="modal"
+                                        data-target="#attendance_info"><i
+                                            class="fa fa-check text-success"></i></a></span>
+                            </div>
+                        </td> -->
+                        <td><a><i class="fa fa-check text-success tik49"></i>
+                            <i class="fa fa-close text-danger untik49" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik50"></i>
+                            <i class="fa fa-close text-danger untik50" style="display:none;"></i></a></td>
+
+                        <td><i class="fa fa-check text-success tik51"></i>
+                            <i class="fa fa-close text-danger untik51" style="display:none;"></i> </td>
+
+                        <td><a><i class="fa fa-check text-success tik52"></i>
+                            <i class="fa fa-close text-danger untik52" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik53"></i>
+                            <i class="fa fa-close text-danger untik53" style="display:none;"></i></a></td>
+                        
+                            <td><a><i class="fa fa-check text-success tik54"></i>
+                                <i class="fa fa-close text-danger untik54" style="display:none;"></i></a></td>
+
+                        <td><i class="fa fa-check text-success tik55"></i>
+                            <i class="fa fa-close text-danger untik55" style="display:none;"></i></td>
+
+                        <td><a><i class="fa fa-check text-success tik56"></i>
+                            <i class="fa fa-close text-danger untik56" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik57"></i>
+                            <i class="fa fa-close text-danger untik57" style="display:none;"></i></a></td>
+
+                        <td><a><i class="fa fa-check text-success tik58"></i>
+                                <i class="fa fa-close text-danger untik58" style="display:none;"></i></a></td>
+
+                         <td><a><i class="fa fa-check text-success tik59"></i>
+                                    <i class="fa fa-close text-danger untik59" style="display:none;"></i></a></td>
+                         <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-010.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">John Smith</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-05.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Mike Litorus</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-011.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Wilmer Deluna</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-012.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Jeffrey Warden</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-013.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Bernardo Galaviz</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-01.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Lesley Grauer</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-016.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Jeffery Lalor</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a class="avatar avatar-xs" routerLink="/employees/employeeprofile"><img alt=""
+                                            src="assets/img/profiles/avatar-04.jpg"></a>
+                                    <a routerLink="/employees/employeeprofile">Loren Gatlin</a>
+                                </h2>
+                            </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><i class="fa fa-close text-danger"></i> </td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><a><i
+                                        class="fa fa-check text-success"></i></a></td>
+                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#leaveDetails_info">Leave Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="submit-section">
+                <button  class="btn btn-primary submit-btn"> Submit </button>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!-- Attendance Modal -->
+<!-- <div class="modal custom-modal fade" id="attendance_info" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Attendance Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card punch-status">
+                            <div class="card-body">
+                                <h5 class="card-title">Timesheet <small class="text-muted">11 Mar 2019</small></h5>
+                                <div class="punch-det">
+                                    <h6>Punch In at</h6>
+                                    <p>Wed, 11th Mar 2019 10.00 AM</p>
+                                </div>
+                                <div class="punch-info">
+                                    <div class="punch-hours">
+                                        <span>3.45 hrs</span>
+                                    </div>
+                                </div>
+                                <div class="punch-det">
+                                    <h6>Punch Out at</h6>
+                                    <p>Wed, 20th Feb 2019 9.00 PM</p>
+                                </div>
+                                <div class="statistics">
+                                    <div class="row">
+                                        <div class="col-md-6 col-6 text-center">
+                                            <div class="stats-box">
+                                                <p>Break</p>
+                                                <h6>1.21 hrs</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-6 text-center">
+                                            <div class="stats-box">
+                                                <p>Overtime</p>
+                                                <h6>3 hrs</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card recent-activity">
+                            <div class="card-body">
+                                <h5 class="card-title">Activity</h5>
+                                <ul class="res-activity-list">
+                                    <li>
+                                        <p class="mb-0">Punch In at</p>
+                                        <p class="res-activity-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            10.00 AM.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0">Punch Out at</p>
+                                        <p class="res-activity-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            11.00 AM.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0">Punch In at</p>
+                                        <p class="res-activity-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            11.15 AM.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0">Punch Out at</p>
+                                        <p class="res-activity-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            1.30 PM.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0">Punch In at</p>
+                                        <p class="res-activity-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            2.00 PM.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0">Punch Out at</p>
+                                        <p class="res-activity-time">
+                                            <i class="fa fa-clock-o"></i>
+                                            7.30 PM.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- /Attendance Modal -->
+
+<div class="modal custom-modal fade" id="attendance_info" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Attendance Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card punch-status">
+                            <div class="card-body">
+                                <!-- <h5 class="card-title">Timesheet <small class="text-muted">11 Mar 2019</small></h5> -->
+                                <div class="form-group">
+                                    <label>Employee Id</label>
+                                    <input class="form-control" placeholder="Employee Id">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee Name</label>
+                                    <input class="form-control" placeholder="Employee Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Attendance Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker" placeholder="Attendance Date" bsDatepicker>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Leave Type</label>
+                                    <select class="select form-control">
+                                        <option>--Select--</option>
+                                        <option>Casual Leave</option>
+                                        <option>Medical Leave</option>
+                                        <option>Loss of Pay</option>
+                                        <option>Medical Leave</option>
+                                        <option>Personal Leave</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Notes</label>
+                                    <textarea class=" form-control" placeholder="Notes"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leave Details Modal -->
+<div class="modal custom-modal fade" id="leaveDetails_info" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Attendance Leave Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card punch-status">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Employee Id</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee Name</label>
+                                    <input class="form-control" placeholder="Employee Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input class="form-control" placeholder="Designation">
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Date</th>
+                                                <th>Leave Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Doe</td>
+                                                <td>john@example.com</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Moe</td>
+                                                <td>mary@example.com</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Dooley</td>
+                                                <td>july@example.com</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Leave Details Modal -->

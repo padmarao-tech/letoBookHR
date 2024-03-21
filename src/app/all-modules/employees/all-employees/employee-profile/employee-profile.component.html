@@ -1,0 +1,1737 @@
+<!-- Page Content -->
+        <!-- Page Content -->
+        <div class="content container-fluid">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Designations</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Designations</li>
+                        </ul>
+                    </div>
+                    <div class="col-auto float-right ml-auto">
+                        <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                        &nbsp;
+                        <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                        &nbsp;
+                        <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                        &nbsp;  
+                        <a  class="btn add-btn " style="border-radius: 5px;" data-toggle="modal" (click)="formtype ='NEW'" data-target="#edit_employee"><i
+                                class="fa fa-plus"></i> Add Employee</a> 
+                                
+                    </div>
+                   
+                </div>
+            </div>
+            <!-- /Page Header -->
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive print-box" id="print-section">
+                        <h3 class="page-title prt-header text-center">Designation</h3>    
+                        <div class="row printClass">
+                            <div class="col-sm-6 m-b-20">
+                                <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                                <ul class="list-unstyled mb-0">
+                                    <li>Leto Systems Pvt.Ltd</li>
+                                    <li>No.47. 1st Floor</li>
+                                    <li>Prestige Tower,Haddows Road,</li>
+                                    <li>Nungamabakkam, Chennai - 600006</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1"
+                            class="table table-striped custom-table mb-0 nowrap datatable" id="pdfSection">
+                            <div style="display:none;">
+                                <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                                <h3>No:47, 1st Floor, </h3>
+                                <h3>Prestige Tower,Haddows Road,</h3>
+                                <h3>Nungamabakkam,Chennai - 600006</h3>
+                                <h3 class="text-center">Designation</h3>
+                                <!-- <colgroup align="center"></colgroup> -->
+                            </div>
+                            <thead>
+                                <tr>
+                                    <th class="text-right prt">Action</th>
+                                    <th style="width: 30px;">ID#</th>
+                                    <th>Employee Code</th>
+                                    <th>Employee Name</th>
+                                    <th>Last name</th>
+                                    <th>Joining date</th>
+                                    <th>Company EmaiID</th>
+                                    <th>Emp. Status</th>
+                                    <th>Cmp. PhoneNo</th>
+                                    <th>Department</th>
+                                    <th>Designation</th>
+                                    <th>Sitemaster</th>
+                                    <th>Supervisior</th>
+                                    <th>Location</th>
+                                    <th>Grade</th>
+                                  
+                                    <th class="text-center">Status </th>
+                                    <!-- <th class="text-center prt">Print</th> -->
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of lstEmployee">
+                                    <!-- <td style="text-align: center;">
+                                        <input type="checkbox" [(ngModel)]="item.myselect" (change)="item.myselect = $event.target.checked ? 1: 0">
+                                      </td> -->
+                                      <td class="text-right prt">
+                                        <div class="dropdown dropdown-action">
+                                            <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#edit_employee" (click)="editEmp(item.uid)"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit master data</a>
+                                                
+                                                    <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#personal_info_modal" (click)="editPer(item.uid)">
+                                                    <i class="fa fa-pencil-o m-r-5"></i> Edit Personal Details</a>
+                                                
+                                                    <a class="dropdown-item"  data-toggle="modal"
+                                                    data-target="#edit_bank" (click)="editBankINFO(item.uid)">
+                                                    <i class="fa fa-pencil-o m-r-5"></i> Edit Bank</a>
+                                               
+                                                     <a class="dropdown-item"  data-toggle="modal"
+                                                     data-target="#edit_education" (click)="tempId = item.uid">
+                                                    <i class="fa fa-pencil-o m-r-5"></i> Edit Education</a>
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{item.uid}}</td>
+                                    <td>{{item.EmpCode}}</td>
+                                    <td>{{item.firstname}}</td>
+                                    <td>{{item.LastName}}</td>
+                                    <td>{{item.Joiningdate}}</td>
+                                    <td>{{item.CompanyEmaiID}}</td>
+                                    <td>{{item.EmpStatus}}</td>
+                                    <td>{{item.CmpPhoneNo}}</td>
+                                    <td>{{item.department}}</td>
+                                    <td>{{item.designation}}</td>
+                                    <td>{{item.sitemaster}}</td>
+                                    <td>{{item.supervisior}}</td>
+                                    <td>{{item.location}}</td>
+                                    <td>{{item.grade}}</td>
+                                    <td>{{item.empcurrency}}</td>
+                                    <td class="text-center">
+                                        <div class="dropdown action-label">
+                                            <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa fa-dot-circle-o text-purple"></i>{{status || statusValue}}
+                                                {{item.status}}
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <!-- getStatus()    added item.id-->
+                                                <a class="dropdown-item" (click)="getStatus('Active',item.uid)"><i
+                                                        class="fa fa-dot-circle-o text-purple"></i>
+                                                    Active</a>
+                                                <a class="dropdown-item" (click)="getStatus('Deactive',item.uid)"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Inactive</a>
+                                                <!-- <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                        class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                                <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                        class="fa fa-dot-circle-o text-danger"></i>
+                                                    Declined</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td class="prt">
+                                        <div class="leave-action text-center">
+                                            <button class="btn btn-sm btn-primary"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-danger get-pdf"><i class="fa fa-file-pdf-o"></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-success exceller"><i class="fa fa-file-excel-o"></i></button>
+                                        </div>
+                                    </td> -->
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+
+
+<!-- Employee Details Modal -->
+<div id="edit_employee" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="CompanyName" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 17px;">Leto Systems Pvt.Ltd</h5>
+                </div>
+                <div id="CompanyAddress" style="display: none;">
+                    <p style="font-size: 12px;">No.47. 1st Floor ,<br>Prestige Tower,Haddows Road,<br>Nungamabakkam, Chennai - 600006</p>
+                </div>
+                <div id="EmpDetailsTitle" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 16px;">Employee Details</h5>
+                </div>
+               
+                
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+                      
+            <div class="modal-body">
+                <form (ngSubmit)="editEmployee()" [formGroup]="editEmployeeForm" id="employees">
+                
+                    <div>
+                        <div class="">
+                            <h4 class="card-title mb-0" style="text-align: center;font-size: 19px;
+                            font-weight: 600;">Employee Details</h4>
+                        </div>
+                        <div>
+                            <div>
+                                <div style="padding:10px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Employee Photo</label>
+                                            <input type='file' (change)="onSelectFile($event)">
+                                            <img class="profile" style="border:none;" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+                                            <!-- <br>
+                                            <small>adduser.Maximum allowed file size is 20KB</small> -->
+                                        </div>
+                                        <div  class="col-md-4">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input class="form-control" type="text" placeholder="First Name" name="firstname" 
+                                                [class.invalid]="editEmployeeForm.get('firstname').invalid && editEmployeeForm.get('firstname').touched"
+                                                formControlName="firstname">
+                                                <div
+                                                *ngIf="editEmployeeForm.get('firstname').invalid && editEmployeeForm.get('firstname').touched">
+                                                    <small *ngIf="editEmployeeForm.get('firstname').invalid && editEmployeeForm.get('firstname').touched"
+                                                    class="text-danger"> *First Name required</small>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Joining Date</label>
+                                                <div class="cal-icon">
+                                                    <input class="form-control datetimepicker" type="text" bsDatepicker name="joingDate" placeholder="Joining Date" 
+                                                    [class.invalid]="editEmployeeForm.get('Joiningdate').invalid && editEmployeeForm.get('Joiningdate').touched"
+                                                    formControlName="Joiningdate">
+                                                    <div
+                                                    *ngIf="editEmployeeForm.get('Joiningdate').invalid && editEmployeeForm.get('Joiningdate').touched">
+                                                        <small *ngIf="editEmployeeForm.get('Joiningdate').invalid && editEmployeeForm.get('Joiningdate').touched"
+                                                        class="text-danger"> *Joining Date required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Employment Status</label>
+                                                <select class="select form-control" name="employment_status" 
+                                                [class.invalid]="editEmployeeForm.get('EmpStatus').invalid && editEmployeeForm.get('EmpStatus').touched"
+                                                formControlName="EmpStatus">
+                                                    <option>--Select--</option>
+                                                    <option>Permanent</option>
+                                                    <option>Temporary</option>
+                                                    <option>Consultant</option>
+                                                    <option>Contract</option>
+                                                    <option>Probation</option>
+                                                    <option>On Long Leave</option>
+                                                </select>
+                                                <div
+                                                *ngIf="editEmployeeForm.get('EmpStatus').invalid && editEmployeeForm.get('EmpStatus').touched">
+                                                    <small *ngIf="editEmployeeForm.get('EmpStatus').invalid && editEmployeeForm.get('EmpStatus').touched"
+                                                    class="text-danger"> *Employment Status required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div  class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input class="form-control" type="text" name="lastname" placeholder="Last Name" 
+                                                [class.invalid]="editEmployeeForm.get('LastName').invalid && editEmployeeForm.get('LastName').touched"
+                                                formControlName="LastName">
+                                                <div
+                                                *ngIf="editEmployeeForm.get('LastName').invalid && editEmployeeForm.get('LastName').touched">
+                                                    <small *ngIf="editEmployeeForm.get('LastName').invalid && editEmployeeForm.get('LastName').touched"
+                                                    class="text-danger"> *Last Name required</small>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Employee ID</label>
+                                                <input class="form-control" type="text" name="Emp_id" placeholder="Employee ID"
+                                                [class.invalid]="editEmployeeForm.get('EmpCode').invalid && editEmployeeForm.get('EmpCode').touched"
+                                                formControlName="EmpCode">
+                                                <div
+                                                *ngIf="editEmployeeForm.get('EmpCode').invalid && editEmployeeForm.get('EmpCode').touched">
+                                                    <small *ngIf="editEmployeeForm.get('EmpCode').invalid && editEmployeeForm.get('EmpCode').touched"
+                                                    class="text-danger"> *Employee ID required</small>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Company Phone</label>
+                                                <input class="form-control" type="number" name="company_phone" placeholder="Company Phone"
+                                                [class.invalid]="editEmployeeForm.get('CmpPhoneNo').invalid && editEmployeeForm.get('CmpPhoneNo').touched"
+                                                formControlName="CmpPhoneNo">
+                                                <div *ngIf="editEmployeeForm.get('CmpPhoneNo').invalid && editEmployeeForm.get('CmpPhoneNo').touched">
+                                                    <small *ngIf="editEmployeeForm.get('CmpPhoneNo').invalid && editEmployeeForm.get('CmpPhoneNo').touched"
+                                                    class="text-danger"> *Company Phone required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div  class="col-md-6">
+                                            <label>Location</label>
+                                            <select class="select form-control" (change)="PmtSelected($event)" placeholder="Location" 
+                                            [class.invalid]="editEmployeeForm.get('Location_uid').invalid && editEmployeeForm.get('Location_uid').touched"
+                                            formControlName="Location_uid">
+                                                <option [ngValue]="null" disabled>Select Country</option>
+                                                <option *ngFor="let location of locationName;let i = index" [ngValue]="location.uid">{{location.name}}</option>
+                                            </select>
+                                            <div
+                                                *ngIf="editEmployeeForm.get('Location_uid').invalid && editEmployeeForm.get('Location_uid').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('Location_uid').invalid && editEmployeeForm.get('Location_uid').touched"
+                                                    class="text-danger"> *Location required</small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label>Department</label>
+                                            <select class="select form-control" (change)="PmtSelected($event)" name="department" placeholder="Department" 
+                                            [class.invalid]="editEmployeeForm.get('Department_uid').invalid && editEmployeeForm.get('Department_uid').touched"
+                                            formControlName="Department_uid">
+                                                <option [ngValue]="null" disabled>Select Country</option>
+                                                <option *ngFor="let department of departmentName;" [ngValue]="department.uid">{{department.name}}</option>
+                                            </select>
+                                            <div
+                                                *ngIf="editEmployeeForm.get('Department_uid').invalid && editEmployeeForm.get('Department_uid').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('Department_uid').invalid && editEmployeeForm.get('Department_uid').touched"
+                                                    class="text-danger"> *Department required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Designation</label>
+                                            <select class="select form-control" (change)="PmtSelected($event)"  name="designation" placeholder="Designation" 
+                                            [class.invalid]="editEmployeeForm.get('Designation_uid').invalid && editEmployeeForm.get('Designation_uid').touched"
+                                            formControlName="Designation_uid">
+                                                <option [ngValue]="null" disabled>Select Country</option>
+                                                <option *ngFor="let designation of designationName;" [ngValue]="designation.uid">{{designation.name}}</option>
+                                            </select>
+                                            <div
+                                                *ngIf="editEmployeeForm.get('Designation_uid').invalid && editEmployeeForm.get('Designation_uid').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('Designation_uid').invalid && editEmployeeForm.get('Designation_uid').touched"
+                                                    class="text-danger"> *Designation required</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Employee Company Email ID </label>
+                                            <input class="form-control" type="text" name="Emp_CompanyEmailID" placeholder="Employee Company Email ID" 
+                                            [class.invalid]="editEmployeeForm.get('CompanyEmaiID').invalid && editEmployeeForm.get('CompanyEmaiID').touched"
+                                            formControlName="CompanyEmaiID">
+                                            <div
+                                                *ngIf="editEmployeeForm.get('CompanyEmaiID').invalid && editEmployeeForm.get('CompanyEmaiID').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('CompanyEmaiID').invalid && editEmployeeForm.get('CompanyEmaiID').touched"
+                                                    class="text-danger"> *Employee Company Email ID required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Login ID </label>
+                                            <input class="form-control" type="text" name="user_id" placeholder="User ID"
+                                            [class.invalid]="editEmployeeForm.get('UserID').invalid && editEmployeeForm.get('UserID').touched"
+                                            formControlName="UserID">
+                                            <div
+                                                *ngIf="editEmployeeForm.get('UserID').invalid && editEmployeeForm.get('UserID').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('UserID').invalid && editEmployeeForm.get('UserID').touched"
+                                                    class="text-danger"> *User ID required</small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label>User Password </label>
+                                            <input class="form-control" type="password"  name="user_password" placeholder="User Password"
+                                            [class.invalid]="editEmployeeForm.get('EmpPassword').invalid && editEmployeeForm.get('EmpPassword').touched"
+                                            formControlName="EmpPassword">
+                                            <div
+                                                *ngIf="editEmployeeForm.get('EmpPassword').invalid && editEmployeeForm.get('EmpPassword').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('EmpPassword').invalid && editEmployeeForm.get('EmpPassword').touched"
+                                                    class="text-danger" >*User Password required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Salary </label>
+                                            <input class="form-control" type="number" name="Salary" placeholder="Salary" 
+                                            [class.invalid]="editEmployeeForm.get('Salary').invalid && editEmployeeForm.get('Salary').touched"
+                                            formControlName="Salary">
+                                            <div
+                                                *ngIf="editEmployeeForm.get('Salary').invalid && editEmployeeForm.get('Salary').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('Salary').invalid && editEmployeeForm.get('Salary').touched"
+                                                    class="text-danger"> *Salary required</small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label>Employee Currency </label>
+                                            <input class="form-control" type="text"  name="EmpCurrency" placeholder="Employee Currency" 
+                                            [class.invalid]="editEmployeeForm.get('EmpCurrency').invalid && editEmployeeForm.get('EmpCurrency').touched"
+                                            formControlName="EmpCurrency">
+                                            <div
+                                                *ngIf="editEmployeeForm.get('EmpCurrency').invalid && editEmployeeForm.get('EmpCurrency').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('EmpCurrency').invalid && editEmployeeForm.get('EmpCurrency').touched"
+                                                    class="text-danger"> *Employee Currency  required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Site </label>
+                                            <select class="select form-control" (change)="PmtSelected($event)" name="user_id" placeholder="Site" 
+                                            [class.invalid]="editEmployeeForm.get('sitemaster_uid').invalid && editEmployeeForm.get('sitemaster_uid').touched"
+                                            formControlName="sitemaster_uid">
+                                                <option [ngValue]="null" disabled>Select Country</option>
+                                                <option *ngFor="let site of siteName;let i = index" [ngValue]="site.uid">{{site.name}}</option>
+                                            </select>
+                                            <div
+                                                *ngIf="editEmployeeForm.get('sitemaster_uid').invalid && editEmployeeForm.get('sitemaster_uid').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('sitemaster_uid').invalid && editEmployeeForm.get('sitemaster_uid').touched"
+                                                    class="text-danger"> *Site required</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Supervisor</label>
+                                            <select class="select form-control" (change)="PmtSelected($event)" placeholder="Location" 
+                                            [class.invalid]="editEmployeeForm.get('Supervisor_uid').invalid && editEmployeeForm.get('Supervisor_uid').touched"
+                                            formControlName="Supervisor_uid">
+                                                <option [ngValue]="null" disabled>Select Country</option>
+                                                <option *ngFor="let Supervisor of supervisorName;let i = index" [ngValue]="Supervisor.uid">{{Supervisor.name}}</option>
+                                            </select>
+                                            <div
+                                                *ngIf="editEmployeeForm.get('Supervisor_uid').invalid && editEmployeeForm.get('Supervisor_uid').touched">
+                                                <small
+                                                    *ngIf="editEmployeeForm.get('Supervisor_uid').invalid && editEmployeeForm.get('Supervisor_uid').touched"
+                                                    class="text-danger"> *Supervisor required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="" >Active:</label>
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                    id="switch_hospitalisation">
+                                                <label class="onoffswitch-label" for="switch_hospitalisation">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn prt-Button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Employee Details Modal End -->
+
+<!-- /Personal Info Modal -->
+
+<div id="personal_info_modal" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+           
+                <div class="modal-header">
+                    <h5 class="modal-title">Personal Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+                  
+            
+            <div class="modal-body">
+                <form (ngSubmit)="editPersonalDetails()" [formGroup]="editEmpPersnalForm">
+                   
+                    <div class="">
+                   
+                        <div>
+                            <div class="table table-striped mb-0">
+                                <div style="padding: 10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="" >Gender</label>
+                                                <select class="select form-control" name="Genter" 
+                                                [class.invalid]="editEmpPersnalForm.get('Genter').invalid && editEmpPersnalForm.get('Genter').touched"
+                                                formControlName="Genter">
+                                                    <option>-- Select --</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                    <option>Others</option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                *ngIf="editEmpPersnalForm.get('Genter').invalid && editEmpPersnalForm.get('Genter').touched">
+                                                <small
+                                                    *ngIf="editEmpPersnalForm.get('Genter').invalid && editEmpPersnalForm.get('Genter').touched"
+                                                    class="text-danger"> *Genter required</small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="" >Date Of Birth</label>
+                                                <div  class="cal-icon">
+                                                    <input class="form-control datetimepicker" type="text" bsDatepicker type="text" placeholder="Date of Birth" name="dob"
+                                                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD',  returnFocusToInput: true }"
+                                                    [class.invalid]="editEmpPersnalForm.get('DateOfBirth').invalid && editEmpPersnalForm.get('DateOfBirth').touched"
+                                                    formControlName="DateOfBirth">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div  class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="" >Religion</label>
+                                                <select class="select form-control" name="Relegion"
+                                                [class.invalid]="editEmpPersnalForm.get('Religion').invalid && editEmpPersnalForm.get('Religion').touched"
+                                                formControlName="Religion">
+                                                    <option>-- Select --</option>
+                                                    <option>Atheism/Agnosticism</option>
+                                                    <option>Bahá’í</option>
+                                                    <option>Buddhism</option>
+                                                    <option>Christianity</option>
+                                                    <option>Confucianism</option>
+                                                    <option> Druze</option>
+                                                    <option>Gnosticism</option>
+                                                    <option>Hinduism</option>
+                                                    <option>Islam</option>
+                                                    <option>Jainism</option>
+                                                    <option>Judaism</option>
+                                                    <option>Rastafarianism</option>
+                                                    <option>Shinto</option>
+                                                    <option>Sikhism</option>
+                                                    <option>Zoroastrianism</option>
+                                                    <option>Traditional African Religions</option>
+                                                    <option> African Diaspora Religions</option>
+                                                    <option>Indigenous American Religions</option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                *ngIf="editEmpPersnalForm.get('Religion').invalid && editEmpPersnalForm.get('Religion').touched">
+                                                <small
+                                                    *ngIf="editEmpPersnalForm.get('Religion').invalid && editEmpPersnalForm.get('Religion').touched"
+                                                    class="text-danger"> *Religion required</small>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="" >Nationality</label>
+                                                <select class="select form-control" name="nationality" 
+                                                [class.invalid]="editEmpPersnalForm.get('Nationality').invalid && editEmpPersnalForm.get('Nationality').touched"
+                                                formControlName="Nationality">
+                                                    <option >-- Select --</option>
+                                                    <option >Afghan</option>
+                                                    <option >Albanian</option>
+                                                    <option >Algerian</option>
+                                                    <option >Argentine & Argentinian</option>
+                                                    <option >Australian</option>
+                                                    <option > Austrian</option>
+                                                    <option >Bangladeshi</option>
+                                                    <option >Belgian</option>
+                                                    <option >Bolivian</option>
+                                                    <option >Batswana</option>
+                                                    <option >Brazilian</option>
+                                                    <option >Bulgarian</option>
+                                                    <option >Cambodian</option>
+                                                    <option >Cameroonian</option>
+                                                    <option >Canadian</option>
+                                                    <option >Chilean</option>
+                                                    <option > Chinese</option>
+                                                    <option >Colombian</option>
+                                                    <option >Costa Rican</option>
+                                                    <option >Croatian</option>
+                                                    <option >Cuban</option>
+                                                    <option >Czech</option>
+                                                    <option >Danish</option>
+                                                    <option >Dominican</option>
+                                                    <option >Ecuadorian</option>
+                                                    <option >Egyptian</option>
+                                                    <option >Salvadorian</option>
+                                                    <option >English</option>
+                                                    <option >Estonian</option>
+                                                    <option >Ethiopian</option>
+                                                    <option >Fijian</option>
+                                                    <option >Finnish</option>
+                                                    <option >German</option>
+                                                    <option >Ghanaian</option>
+                                                    <option >Greek</option>
+                                                    <option >Guatemalan</option>
+                                                    <option >Haitian</option>
+                                                    <option >Honduran</option>
+                                                    <option >Hungarian</option>
+                                                    <option >Icelandic</option>
+                                                    <option >Indian</option>
+                                                    <option >Indonesian</option>
+                                                    <option >Iranian</option>
+                                                    <option >Iraqi</option>
+                                                    <option >Irish</option>
+                                                    <option >Israeli</option>
+                                                    <option >Italian</option>
+                                                    <option >Jamaican</option>
+                                                    <option >Japanese</option>
+                                                    <option >Jordanian</option>
+                                                    <option >Kenyan</option>
+                                                    <option >Kuwaiti</option>
+                                                    <option >Lao</option>
+                                                    <option >Latvian</option>
+                                                    <option >Lebanese</option>
+                                                    <option >Libyan</option>
+                                                    <option >Lithuanian</option>
+                                                    <option >Malagasy</option>
+                                                    <option >Malaysian</option>
+                                                    <option >Malian</option>
+                                                    <option >Maltese</option>
+                                                    <option >Mexican</option>
+                                                    <option >Mongolian</option>
+                                                    <option >Moroccan</option>
+                                                    <option >Mozambican</option>
+                                                    <option >Namibian</option>
+                                                    <option >Nepalese</option>
+                                                    <option >Dutch</option>
+                                                    <option >New Zealand</option>
+                                                    <option >Nicaraguan</option>
+                                                    <option >Nigerian</option>
+                                                    <option >Norwegian</option>
+                                                    <option >Pakistani</option>
+                                                    <option >Panamanian</option>
+                                                    <option >Paraguayan</option>
+                                                    <option >Peruvian</option>
+                                                    <option >Philippine</option>
+                                                    <option >Polish</option>
+                                                    <option >Portuguese</option>
+                                                    <option >Romanian</option>
+                                                    <option >Russian</option>
+                                                    <option >Saudi</option>
+                                                    <option >Scottish</option>
+                                                    <option >Senegalese</option>
+                                                    <option >Serbian</option>
+                                                    <option >Singaporean</option>
+                                                    <option >Slovak</option>
+                                                    <option >South African</option>
+                                                    <option >Korean</option>
+                                                    <option >Spanish</option>
+                                                    <option >Sri Lankan</option>
+                                                    <option >Sudanese</option>
+                                                    <option >Swedish</option>
+                                                    <option >Swiss</option>
+                                                    <option >Syrian</option>
+                                                    <option >Taiwanese</option>
+                                                    <option >Tajikistani</option>
+                                                    <option >Thai</option>
+                                                    <option >Tongan</option>
+                                                    <option >Tunisian	</option>
+                                                    <option >Turkish</option>
+                                                    <option >Ukrainian</option>
+                                                    <option >Emirati</option>
+                                                    <option >British</option>
+                                                    <option >American</option>
+                                                    <option >Uruguayan</option>
+                                                    <option >Venezuelan</option>
+                                                    <option >Vietnamese</option>
+                                                    <option >Welsh</option>
+                                                    <option >Zambian</option>
+                                                    <option >Zimbabwean</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <label class="" >Marital status</label>
+                                            <select class="select form-control" name="marital_status" 
+                                            [class.invalid]="editEmpPersnalForm.get('Maritalstatus').invalid && editEmpPersnalForm.get('Maritalstatus').touched"
+                                            formControlName="Maritalstatus">
+                                                <option >-- Select --</option>
+                                                <option >Married</option>
+                                                <option >Single</option>
+                                                <option >Divorced</option>
+                                                <option >Separated</option>
+                                                <option >Widowed</option>
+                                                <option >Others</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class="" >No of Children</label>
+                                            <input class="form-control" placeholder="No of Children" name="noofChildren" type="text" 
+                                            [class.invalid]="editEmpPersnalForm.get('NoofChildren').invalid && editEmpPersnalForm.get('NoofChildren').touched"
+                                            formControlName="NoofChildren">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="" >Persnol Phone Number</label>
+                                            <input class="form-control" type="number" name="PersnolPhoneNumber" placeholder="Persnol Phone Number" 
+                                            [class.invalid]="editEmpPersnalForm.get('PersonalPhoneNumber').invalid && editEmpPersnalForm.get('PersonalPhoneNumber').touched"
+                                            formControlName="PersonalPhoneNumber">
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class="" >Personal Email Address</label>
+                                            <input class="form-control" type="text" name="PersnolEmailAddress" placeholder="Persnol Email Address"
+                                            [class.invalid]="editEmpPersnalForm.get('PersonalEmailAddress').invalid && editEmpPersnalForm.get('PersonalEmailAddress').touched"
+                                            formControlName="PersonalEmailAddress">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="" >Employment of spouse</label>
+                                            <div class="onoffswitch" style="margin-left: 0;">
+                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                    id="switch_hospitalisation2" 
+                                                    [class.invalid]="editEmpPersnalForm.get('EmploymentOfSpouse').invalid && editEmpPersnalForm.get('EmploymentOfSpouse').touched"
+                                                    formControlName="EmploymentOfSpouse">
+                                                <label class="onoffswitch-label" for="switch_hospitalisation2">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class=" "  >Blood Group</label>
+                                            <select class="select form-control" name="blood_group" 
+                                            [class.invalid]="editEmpPersnalForm.get('BloodGroup').invalid && editEmpPersnalForm.get('BloodGroup').touched"
+                                            formControlName="BloodGroup">
+                                                <option >--Select--</option>
+                                                <option > A+</option>
+                                                <option > A- </option>
+                                                <option > B+ </option>
+                                                <option > B- </option>
+                                                <option > O+ </option>
+                                                <option > O- </option>
+                                                <option > AB+ </option>
+                                                <option > AB- </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class=""  style="padding-top: calc(.375rem + 10px);">Educational Qualifications</label>
+                                            <textarea class="form-control" type="text" name="EducationalQualifications" placeholder="Educational Qualifications" 
+                                            [class.invalid]="editEmpPersnalForm.get('EducationalQualifications').invalid && editEmpPersnalForm.get('EducationalQualifications').touched"
+                                            formControlName="EducationalQualifications"></textarea>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class=""  style="padding-top: calc(.375rem + 10px);">Work Experience</label>
+                                            <textarea class="form-control" type="text" name="work_experience" placeholder="Work Experience"
+                                            [class.invalid]="editEmpPersnalForm.get('WorkExperience').invalid && editEmpPersnalForm.get('WorkExperience').touched"
+                                            formControlName="WorkExperience"></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="" style="padding-top: calc(.375rem + 10px);">Skill Set</label>
+                                            <textarea class="form-control" placeholder="Skill Set" name="skillSet" type="text"
+                                            [class.invalid]="editEmpPersnalForm.get('SkillSet').invalid && editEmpPersnalForm.get('SkillSet').touched"
+                                            formControlName="SkillSet"></textarea>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class="" style="padding-top: calc(.375rem + 10px);">Reference Details</label>
+                                            <textarea class="form-control" placeholder="Reference Details" name="reference_details" type="text"
+                                            [class.invalid]="editEmpPersnalForm.get('ReferenceDetails').invalid && editEmpPersnalForm.get('ReferenceDetails').touched"
+                                            formControlName="ReferenceDetails"></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="" >Identity Proof Name</label>
+                                            <select class="select form-control" 
+                                            [class.invalid]="editEmpPersnalForm.get('IdentityProofName').invalid && editEmpPersnalForm.get('IdentityProofName').touched"
+                                            formControlName="IdentityProofName">
+                                                <option >--Select--</option>
+                                                <option >National ID</option>
+                                                <option >Passport</option>
+                                                <option >Driving License</option>
+                                                <option >PAN Card</option>
+                                                <option >TAN Card</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class="" >Identity Proof Details</label>
+                                            <input class="form-control" type="text" name="IdentityProofDetails" placeholder="Identity Proof Details"
+                                            [class.invalid]="editEmpPersnalForm.get('IdentityProofDetails').invalid && editEmpPersnalForm.get('IdentityProofDetails').touched"
+                                            formControlName="IdentityProofDetails">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="" >Present Address <i class="fa fa-question-circle"></i></label>
+                                            <input class="form-control" type="text"  placeholder="Address1" name="present_address1"
+                                            [class.invalid]="editEmpPersnalForm.get('PresentAddress').invalid && editEmpPersnalForm.get('PresentAddress').touched"
+                                            formControlName="PresentAddress">
+                                            <br>
+                                            <input class="form-control" type="text" placeholder="Address2" name="present_address2"
+                                            [class.invalid]="editEmpPersnalForm.get('PresentAddress2').invalid && editEmpPersnalForm.get('PresentAddress2').touched"
+                                            formControlName="PresentAddress2">
+                                            <br>
+                                            <div style="display:flex;">
+                                                <input class="form-control" type="text"  placeholder="City/Town" name="PresentCityTown"
+                                                [class.invalid]="editEmpPersnalForm.get('PresentCityTown').invalid && editEmpPersnalForm.get('PresentCityTown').touched"
+                                                formControlName="PresentCityTown">
+                                                &nbsp;
+                                                <input class="form-control" type="text" placeholder="Postal Code" name="postal_code"
+                                                [class.invalid]="editEmpPersnalForm.get('PresentPostal_code').invalid && editEmpPersnalForm.get('PresentPostal_code').touched"
+                                                formControlName="PresentPostal_code">
+                                            </div>
+                                            <br>
+                                            <div style="display:flex;">
+                                                <input class="form-control" type="text" placeholder="Country" name="PresentCountry"
+                                                [class.invalid]="editEmpPersnalForm.get('PresentCountry').invalid && editEmpPersnalForm.get('PresentCountry').touched"
+                                                formControlName="PresentCountry">
+                                                &nbsp;
+                                                <input class="form-control" type="text" placeholder="State" name="state"
+                                                [class.invalid]="editEmpPersnalForm.get('PresentState').invalid && editEmpPersnalForm.get('PresentState').touched"
+                                                formControlName="PresentState">
+                                            </div>
+                                        </div>
+                        
+                                        <div class="col-md-6">
+                                            <label class=""  >Permanent Address</label>
+                                            <input class="form-control" type="text"  placeholder="Address1" name="permanent_address1"
+                                            [class.invalid]="editEmpPersnalForm.get('PermanentAddress').invalid && editEmpPersnalForm.get('PermanentAddress').touched"
+                                            formControlName="PermanentAddress">
+                                            <br>
+                                            <input class="form-control" type="text" placeholder="Address2"  name="permanent_address2"
+                                            [class.invalid]="editEmpPersnalForm.get('PermanentAddress2').invalid && editEmpPersnalForm.get('PermanentAddress2').touched"
+                                            formControlName="PermanentAddress2">
+                                            <br>
+                                            <div style="display:flex;">
+                                                <input class="form-control" type="text"  placeholder="City/Town" name="PermanentCityTown"
+                                                [class.invalid]="editEmpPersnalForm.get('PermanentCityTown').invalid && editEmpPersnalForm.get('PermanentCityTown').touched"
+                                                formControlName="PermanentCityTown">
+                                                &nbsp;&nbsp;
+                                                <input class="form-control" type="text" placeholder="Postal Code" name="postal_code2"
+                                                [class.invalid]="editEmpPersnalForm.get('PermanentPostal_code').invalid && editEmpPersnalForm.get('PermanentPostal_code').touched"
+                                            formControlName="PermanentPostal_code">
+                                            </div>
+                                            <br>
+                                            <div style="display:flex;">
+                                                <input class="form-control" type="text" placeholder="Country" name="PermanentCountry"
+                                                [class.invalid]="editEmpPersnalForm.get('PermanentCountry').invalid && editEmpPersnalForm.get('PermanentCountry').touched"
+                                                formControlName="PermanentCountry">
+                                                &nbsp;&nbsp;
+                                                <input class="form-control" type="text" placeholder="State" name="state2"
+                                                [class.invalid]="editEmpPersnalForm.get('PermanentState').invalid && editEmpPersnalForm.get('PermanentState').touched"
+                                                formControlName="PermanentState">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn prt-Button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Add Persnal Details-->
+
+<!--Model Add Bank Info-->
+<div id="edit_bank" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document" style="max-width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+               <!-- <div id="CompanyName" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 17px;">Leto Systems Pvt.Ltd</h5>
+                </div>
+                <div id="CompanyAddress" style="display: none;">
+                    <p style="font-size: 12px;">No.47. 1st Floor ,<br>Prestige Tower,Haddows Road,<br>Nungamabakkam, Chennai - 600006</p>
+                </div>
+                <div id="EmpDetailsTitle" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 16px;">Employee Details</h5>
+                </div> -->
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="col-md-6 m-b-20">
+                            <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                            <ul class="list-unstyled mb-0">
+                                <li>Leto Systems Pvt.Ltd</li>
+                                <li>No.47. 1st Floor</li>
+                                <li>Prestige Tower,Haddows Road,</li>
+                                <li>Nungamabakkam, Chennai - 600006</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+            
+            <div class="modal-body">
+                <form (ngSubmit)="editBank()" [formGroup]="editBankForm">
+                    <div>
+                        <div class="">
+                            <h4 class="card-title mb-0" style="text-align: center;font-size: 19px;
+                            font-weight: 600;">Bank Information</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">Bank Name</label>
+                                <select class="form-control" type="text" name="BankName"  placeholder="Bank Name"
+                                [class.invalid]="editBankForm.get('BankName').invalid && editBankForm.get('BankName').touched"
+                                formControlName="BankName">
+                                    <option>State Bank of India</option>
+                                    <option>ICICI</option>
+                                    <option>Indian Bank</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">Bank Account Name</label>
+                                <input class="form-control" type="text" name="BankAccountName" placeholder="Bank Account Name"
+                                [class.invalid]="editBankForm.get('BankAccountName').invalid && editBankForm.get('BankAccountName').touched"
+                                formControlName="BankAccountName">
+                            </div>
+                            <div  class="col-md-6">
+                                <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Bank Account No</label>
+                                <input class="form-control" type="number" name="BankAccountNo" placeholder="Bank Account No"
+                                [class.invalid]="editBankForm.get('BankAccountNo').invalid && editBankForm.get('BankAccountNo').touched"
+                                formControlName="BankAccountNo">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label">IFSC Code</label>
+                                <input class="form-control" type="text" name="ifscCode"  placeholder="IFSC Code"
+                                [class.invalid]="editBankForm.get('IFSCCode').invalid && editBankForm.get('IFSCCode').touched"
+                                formControlName="IFSCCode">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">PAN No</label>
+                                <input class="form-control" type="number" name="pan_no" placeholder="PAN No"
+                                [class.invalid]="editBankForm.get('PANno').invalid && editBankForm.get('PANno').touched"
+                                formControlName="PANno">
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">IBAN NO</label>
+                                <input class="form-control" type="number" name="iban_no" placeholder="IBAN NO"
+                                [class.invalid]="editBankForm.get('IBANno').invalid && editBankForm.get('IBANno').touched"
+                                formControlName="IBANno">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn prt-Button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Model Edit Bank Info-->
+
+<!--Model Edit Emergency Details-->
+<div id="edit_EmergencyDel" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document" style="max-width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+               <!-- <div id="CompanyName" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 17px;">Leto Systems Pvt.Ltd</h5>
+                </div>
+                <div id="CompanyAddress" style="display: none;">
+                    <p style="font-size: 12px;">No.47. 1st Floor ,<br>Prestige Tower,Haddows Road,<br>Nungamabakkam, Chennai - 600006</p>
+                </div>
+                <div id="EmpDetailsTitle" style="display: none;">
+                    <h5 class="modal-title" style="font-size: 16px;">Employee Details</h5>
+                </div> -->
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="col-md-6 m-b-20">
+                            <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                            <ul class="list-unstyled mb-0">
+                                <li>Leto Systems Pvt.Ltd</li>
+                                <li>No.47. 1st Floor</li>
+                                <li>Prestige Tower,Haddows Road,</li>
+                                <li>Nungamabakkam, Chennai - 600006</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+            
+            <div class="modal-body">
+                <form (ngSubmit)="editEmergencyDel()" [formGroup]="editEmergencyDelForm">
+                    
+                    <div>
+                        <div>
+                            <h4 class="card-title mb-0" style="text-align: center;font-size: 19px;font-weight: 600;">Emergency Details</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">Contact Name</label>
+                                <input class="form-control" type="text"  name="contact_name" placeholder="Contact Name"
+                                [class.invalid]="editEmergencyDelForm.get('ContactName').invalid && editEmergencyDelForm.get('ContactName').touched"
+                                formControlName="ContactName">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="col-form-label"  style="padding-top: calc(.375rem + 6px);">Relationship</label>
+                                <input class="form-control" type="text" name="relationship" placeholder="Contact Relationship"
+                                [class.invalid]="editEmergencyDelForm.get('Relationship').invalid && editEmergencyDelForm.get('Relationship').touched"
+                                formControlName="Relationship">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Contact Number</label>
+                                <input class="form-control" type="number" name="contact_no" placeholder="Contact Number"
+                                [class.invalid]="editEmergencyDelForm.get('ContactNumber').invalid && editEmergencyDelForm.get('ContactNumber').touched"
+                                formControlName="ContactNumber">
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Contact Email ID</label>
+                                <input class="form-control" type="email" name="contact_emailId" placeholder="Contact  Email ID"
+                                [class.invalid]="editEmergencyDelForm.get('ContactEmailID').invalid && editEmergencyDelForm.get('ContactEmailID').touched"
+                                formControlName="ContactEmailID">
+                            </div>
+                        
+                            <div class="col-md-6" colspan="3">
+                                <label class="col-form-label" style="padding-top: calc(.375rem + 6px);">Notes</label>
+                                <textarea class="form-control" type="text" name="notes" placeholder="Notes"
+                                [class.invalid]="editEmergencyDelForm.get('Notes').invalid && editEmergencyDelForm.get('Notes').touched"
+                                formControlName="Notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn prt-Button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Model Edit Emergency Details-->
+
+
+<!-- Profile Modal -->
+<!-- <div id="profile_info" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Profile Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="profile-img-wrap edit-img">
+                                <img class="inline-block" src="assets/img/profiles/avatar-02.jpg" alt="user">
+                                <div class="fileupload btn">
+                                    <span class="btn-text">edit</span>
+                                    <input class="upload" type="file">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" value="John">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" value="Doe">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Birth Date</label>
+                                        <div class="cal-icon">
+                                            <input class="form-control datetimepicker" type="text" bsDatepicker
+                                                type="text"
+                                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                value="05/06/1985">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select class="select form-control">
+                                            <option value="male selected">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control" value="4487 Snowbird Lane">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" class="form-control" value="New York">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" value="United States">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pin Code</label>
+                                <input type="text" class="form-control" value="10523">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" value="631-889-3206">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Department <span class="text-danger">*</span></label>
+                                <select class="select form-control">
+                                    <option>Select Department</option>
+                                    <option>Web Development</option>
+                                    <option>IT Management</option>
+                                    <option>Marketing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Designation <span class="text-danger">*</span></label>
+                                <select class="select form-control">
+                                    <option>Select Designation</option>
+                                    <option>Web Designer</option>
+                                    <option>Web Developer</option>
+                                    <option>Android Developer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Reports To <span class="text-danger">*</span></label>
+                                <select class="select form-control">
+                                    <option>-</option>
+                                    <option>Wilmer Deluna</option>
+                                    <option>Lesley Grauer</option>
+                                    <option>Jeffery Lalor</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- /Profile Modal -->
+
+<!-- Personal Info Modal -->
+<div id="personal_info_modal2" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Personal Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Passport No</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Passport Expiry Date</label>
+                                <div class="cal-icon">
+                                    <input class="form-control datetimepicker" type="text" bsDatepicker type="text"
+                                        [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tel</label>
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nationality <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Religion</label>
+                                <div class="cal-icon">
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Marital status <span class="text-danger">*</span></label>
+                                <select class="select form-control">
+                                    <option>-</option>
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Employment of spouse</label>
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>No. of children </label>
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Family Info Modal -->
+<div id="family_info_modal" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Family Informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-scroll">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Family Member <a 
+                                        class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Name <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Relationship <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Date of birth <span class="text-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" bsDatepicker
+                                                type="text"
+                                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Phone <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Education Informations <a 
+                                        class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Name <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Relationship <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Date of birth <span class="text-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" bsDatepicker
+                                                type="text"
+                                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Phone <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-more">
+                                    <a ><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Family Info Modal -->
+
+<!-- Emergency Contact Modal -->
+<div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Personal Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Primary Contact</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Relationship <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone 2</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Primary Contact</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Relationship <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone 2</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Emergency Contact Modal -->
+
+<!-- Education Modal -->
+<div id="education_info" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Education Informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-scroll">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Education Informations <a 
+                                        class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="Oxford University" class="form-control floating">
+                                            <label class="focus-label">Institution</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="Computer Science" class="form-control floating">
+                                            <label class="focus-label">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input class="form-control datetimepicker" type="text" bsDatepicker
+                                                    type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    value="01/05/2006">
+                                            </div>
+                                            <label class="focus-label">Starting Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input class="form-control datetimepicker" type="text" bsDatepicker
+                                                    type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    value="31/05/2006">
+                                            </div>
+                                            <label class="focus-label">Complete Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="BE Computer Science"
+                                                class="form-control floating">
+                                            <label class="focus-label">Degree</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="Grade A" class="form-control floating">
+                                            <label class="focus-label">Grade</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Education Informations <a
+                                        class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="Oxford University" class="form-control floating">
+                                            <label class="focus-label">Institution</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="Computer Science" class="form-control floating">
+                                            <label class="focus-label">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input value="01/06/2002" class="form-control datetimepicker"
+                                                    type="text" bsDatepicker type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }">
+                                            </div>
+                                            <label class="focus-label">Starting Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input type="text" bsDatepicker type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    value="31/05/2006" class="form-control floating datetimepicker">
+                                            </div>
+                                            <label class="focus-label">Complete Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="BE Computer Science"
+                                                class="form-control floating">
+                                            <label class="focus-label">Degree</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" value="Grade A" class="form-control floating">
+                                            <label class="focus-label">Grade</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-more">
+                                    <a><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Education Modal -->
+
+<!-- Experience Modal -->
+<div id="experience_info" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Experience Informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-scroll">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Experience Informations <a
+                                        class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating"
+                                            >
+                                            <label class="focus-label">Company Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating">
+                                            <label class="focus-label">Location</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating">
+                                            <label class="focus-label">Job Position</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" bsDatepicker type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    class="form-control floating datetimepicker">
+                                            </div>
+                                            <label class="focus-label">Period From</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" bsDatepicker type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    class="form-control floating datetimepicker">
+                                            </div>
+                                            <label class="focus-label">Period To</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Experience Informations <a 
+                                        class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating"
+                                                >
+                                            <label class="focus-label">Company Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" >
+                                            <label class="focus-label">Location</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" >
+                                            <label class="focus-label">Job Position</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" bsDatepicker type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    class="form-control floating datetimepicker">
+                                            </div>
+                                            <label class="focus-label">Period From</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" bsDatepicker type="text"
+                                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                                    class="form-control floating datetimepicker" >
+                                            </div>
+                                            <label class="focus-label">Period To</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-more">
+                                    <a ><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Experience Modal -->

@@ -1,0 +1,5 @@
+option:first {
+    color: #ccc !important;
+    opacity: 1 !important; /* Firefox */
+    font-weight: 100 !important;
+}

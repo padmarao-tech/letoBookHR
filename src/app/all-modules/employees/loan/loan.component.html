@@ -1,0 +1,358 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Loan</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">loan</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <a class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i class="fa fa-plus"></i>
+                    Add Loan</a>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+      <!-- Search Filter -->
+    <div class="row filter-row">
+        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 col-12">
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating" (input)="searchName($event.target.value)">
+                <label class="focus-label">Employee Name</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 col-12">
+            <div class="form-group form-focus select-focus">
+                <select class="select floating form-control" (input)="searchType($event.target.value)">
+                    <option> -- Select -- </option>
+                    <option>Casual Loan</option>
+                    <option>Medical Loan</option>
+                    <option>Others</option>
+                </select>
+                <label class="focus-label">Loan Type</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 col-12">
+            <div class="form-group form-focus select-focus">
+                <select class="select floating form-control" (input)="searchStatus($event.target.value)">
+                    <option> -- Select -- </option>
+                    <option> Pending </option>
+                    <option> Approved </option>
+                    <option> Rejected </option>
+                </select>
+                <label class="focus-label">Loan Status</label>
+            </div>
+        </div>
+      
+        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 col-12">
+            <a class="btn btn-success btn-block"> Search </a>
+        </div>
+    </div>
+    <!-- /Search Filter -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                    class="table table-striped custom-table mb-0 datatable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Employee Name</th>
+                            <th>Loan Type</th>
+                            <th>Req. Date</th>
+                            <th>Amount</th>
+                            <th>No of Inst..</th>
+                            <th>Monthly Deduction</th>
+                            <th>reason</th>
+                            <th>Approver</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of lstloanlist;let i = index">
+                            <td>{{row.uid}}</td>
+                            <td>{{row.employee}}</td>
+                            <td>{{row.loantype}}</td>
+                            <td>{{row.req_date}}</td>
+                            <td>{{row.amount}}</td>
+                            <td>{{row.noofintallment}}</td>
+                            <td>{{row.monthly_deduction}}</td>
+                            <td>{{row.reason}}</td>
+                            <td>{{row.approver}}</td>
+                                                      
+                            <td class="text-center">
+                                <div class="dropdown action-label">
+                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa fa-dot-circle-o text-purple"></i>{{row.Apr_status || statusValue}}
+                                    </a>
+                                    
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" (click)="getStatus('New')"><i
+                                                class="fa fa-dot-circle-o text-purple"></i>
+                                            New</a>
+                                        <a class="dropdown-item" (click)="getStatus('Pending')"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>
+                                            Pending</a>
+                                        <a class="dropdown-item" (click)="getStatus('Approved')"><i
+                                                class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                        <a class="dropdown-item" (click)="getStatus('Declined')"><i
+                                                class="fa fa-dot-circle-o text-danger"></i>
+                                            Declined</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_leave"
+                                            (click)="edit(row.uid)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_approve"
+                                            (click)="tempId = row.uid"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!-- Add Leave Modal -->
+<div id="add_leave" class=" modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Loan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-target="#add_leave">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addloan()" [formGroup]="addLoanForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Employee Name <span class="text-danger">*</span></label>
+                                <select class="select form-control" formControlName="aempmaster_uid">
+                                    <option [ngValue]="null" disabled>Select employee</option>
+                                    <option *ngFor="let empid of emplist"  value={{empid.uid}}>
+                                        {{empid.Name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="addLoanForm.get('aempmaster_uid').invalid && addLoanForm.get('aempmaster_uid').touched">
+                                    <small
+                                        *ngIf="addLoanForm.get('aempmaster_uid').invalid && addLoanForm.get('aempmaster_uid').touched"
+                                        class="text-danger"> *Employee name is  required</small>
+                                </div>
+                            </div>
+                        </div>    
+                      
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Loan Type <span class="text-danger">*</span></label>
+                                <select class="select form-control" formControlName="aleavetype_uid">
+                                    <option [ngValue]="null" disabled>Select Type</option>
+                                    <option *ngFor="let leaveid of loantypelist"  value={{leaveid.uid}}>
+                                        {{leaveid.Name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="addLoanForm.get('aleavetype_uid').invalid && addLoanForm.get('aleavetype_uid').touched">
+                                    <small
+                                        *ngIf="addLoanForm.get('aleavetype_uid').invalid && addLoanForm.get('aleavetype_uid').touched"
+                                        class="text-danger"> *Leave type is required</small>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="col-md-6">  
+                                <div class="form-group">
+                                    <label>Request Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control" type="text" bsDatepicker type="text"
+                                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                            [class.invalid]="addLoanForm.get('areq_date').invalid && addLoanForm.get('areq_date').touched"
+                                            formControlName="areq_date">
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label>Amount</label>
+                                    <input class="form-control" value="12" type="text"
+                                        [class.invalid]="addLoanForm.get('aamount').invalid && addLoanForm.get('aamount').touched"
+                                        formControlName="aamount">
+                                </div>
+                            </div>
+                            <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label>Installment </label>
+                                    <input class="form-control" value="12" type="text"
+                                        [class.invalid]="addLoanForm.get('anoofintallment').invalid && addLoanForm.get('anoofintallment').touched"
+                                        formControlName="anoofintallment"    (input)="installmentchange(this)"  type="number">
+                                </div>
+                            </div>
+                            <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label>Monthly Deduction </label>
+                                    <input class="form-control" value="12" type="text"
+                                        [class.invalid]="addLoanForm.get('amonthly_deduction').invalid && addLoanForm.get('amonthly_deduction').touched"
+                                        formControlName="amonthly_deduction">
+                                </div>
+                            </div>
+                                               
+                        <div class="col-md-12 form-group">
+                            <label>Reason </label>
+                            <textarea style="width:100%;" rows="4" class="form-control"
+                                [class.invalid]="addLoanForm.get('areason').invalid && addLoanForm.get('areason').touched"
+                                formControlName="areason"></textarea>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Leave Modal -->
+
+<!-- Edit Leave Modal -->
+<div id="edit_leave" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Loan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-target="#edit_leave">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="editLeaves()" [formGroup]="editLoanForm">
+                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Employee Name <span class="text-danger">*</span></label>
+                                <select class="select form-control" formControlName="eempmaster_uid">
+                                    <option [ngValue]="null" disabled>Select employee</option>
+                                    <option *ngFor="let empid of emplist"  value={{empid.uid}}>
+                                        {{empid.Name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="editLoanForm.get('eempmaster_uid').invalid && editLoanForm.get('eempmaster_uid').touched">
+                                    <small
+                                        *ngIf="editLoanForm.get('eempmaster_uid').invalid && editLoanForm.get('eempmaster_uid').touched"
+                                        class="text-danger"> *Employee name is  required</small>
+                                </div>
+                            </div>
+                        </div>    
+                      
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Loan Type <span class="text-danger">*</span></label>
+                                <select class="select form-control" formControlName="eloantype_uid">
+                                    <option [ngValue]="null" disabled>Select Type</option>
+                                    <option *ngFor="let leaveid of loantypelist"  value={{leaveid.uid}}>
+                                        {{leaveid.Name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="editLoanForm.get('eloantype_uid').invalid && editLoanForm.get('eloantype_uid').touched">
+                                    <small
+                                        *ngIf="editLoanForm.get('eloantype_uid').invalid && editLoanForm.get('eloantype_uid').touched"
+                                        class="text-danger"> *Leave type is required</small>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="col-md-6">  
+                                <div class="form-group">
+                                    <label>Request Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control" type="text" bsDatepicker type="text"
+                                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }"
+                                            [class.invalid]="editLoanForm.get('ereq_date').invalid && editLoanForm.get('ereq_date').touched"
+                                            formControlName="ereq_date">
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label>Amount</label>
+                                    <input class="form-control" value="0" type="number"
+                                        [class.invalid]="editLoanForm.get('eamount').invalid && editLoanForm.get('eamount').touched"
+                                        formControlName="eamount">
+                                </div>
+                            </div>
+                            <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label>Installment </label>
+                                    <input class="form-control" value="0" type="number"
+                                        [class.invalid]="editLoanForm.get('enoofintallment').invalid && editLoanForm.get('enoofintallment').touched"
+                                        formControlName="enoofintallment"    (change)="installmentchange(this)"  type="number">
+                                </div>
+                            </div>
+                            <div class="col-md-6"> 
+                                <div class="form-group">
+                                    <label>Monthly Deduction </label>
+                                    <input class="form-control" value="0" type="number"
+                                        [class.invalid]="editLoanForm.get('emonthly_deduction').invalid && editLoanForm.get('emonthly_deduction').touched"
+                                        formControlName="emonthly_deduction">
+                                </div>
+                            </div>
+                                               
+                        <div class="col-md-12 form-group">
+                            <label>Reason </label>
+                            <textarea style="width:100%;" rows="4" class="form-control"
+                                [class.invalid]="editLoanForm.get('ereason').invalid && editLoanForm.get('ereason').touched"
+                                formControlName="ereason"></textarea>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Edit Leave Modal -->
+
+<!-- Delete Leave Modal -->
+<div class="modal custom-modal fade" id="delete_approve" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Loan</h3>
+                    <p>Are you sure want to delete this loan?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="deleteleaves()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Leave Modal -->

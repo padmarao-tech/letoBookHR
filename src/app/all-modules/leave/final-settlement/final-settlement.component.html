@@ -1,0 +1,714 @@
+<!--Page Content-->
+<div class="content container-fluid">
+    <div class="row" style="display:none;">
+        <div class="col-md-12" style="position: relative;left: 13px;">
+            <!-- <ngx-extended-pdf-viewer
+            [src]="'assets/pdf/Leave_settlement1.pdf'" [useBrowserLocale]="true"
+            zoom="50%" class="print-box" id="print-section" width="100%" height="700"></ngx-extended-pdf-viewer> -->
+            <iframe src='assets/pdf/Leave_settlement1.pdf' 
+            class="print-box" id="print-section" width="100%" height="700"
+        	frameborder='0' style='border:0;' 
+            width="100%" height="700">
+            <!-- <embed [src]="assets/pdf/Leave_settlement1.pdf" [useBrowserLocale]="true"
+             class="print-box" id="print-section" width="100%" height="700"> -->
+            </iframe>
+        </div>
+    </div>
+    
+    <div class="page-header">
+        <div class="row">
+            <div class="col">
+                <h3 class="page-title">Full & Final Settlement</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Leave</a></li>
+                    <li class="breadcrumb-item active">Full & Final Settlement</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                &nbsp;  
+                <button  class="btn btn-primary" data-toggle="modal" data-target="#add_leave_settlement"><i
+                        class="fa fa-plus"></i> Add Final Settlement</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Final Settlement</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                <table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped custom-table datatable mb-0" id="pdfSection">
+                    <div style="display:none;">
+                        <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                        <h3>No:47, 1st Floor, </h3>
+                        <h3>Prestige Tower,Haddows Road,</h3>
+                        <h3>Nungamabakkam,Chennai - 600006</h3>
+                        <h3 class="text-center">Final Settlement</h3>
+                        <!-- <colgroup align="center"></colgroup> -->
+                    </div>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Employee Name</th>
+                            <th>F&F Date</th>
+                            <th>Exit Type</th>
+                            <th>Total Amount</th>
+                            <!-- <th class="text-center">Leave Settlement List</th> -->
+                            <th class="text-center">Status</th>
+                            <!-- <th class="text-center">Print</th> -->
+                            <th  class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Vijay1</td>
+                            <td>13-May-21</td>
+                            <td>0</td>
+                            <td>20000,00</td>
+                            <!-- <td class="text-center">0</td> -->
+                            <td class="text-center">
+                                <div class="dropdown action-label">
+                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop"
+                                        data-toggle="dropdown" aria-expanded="false"><i
+                                            class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                            <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop"
+                                        data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                            
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item penShowHide"><i class="fa fa-dot-circle-o text-danger"></i>
+                                            Pending</a>
+                                        <a class="dropdown-item comShowHide"><i class="fa fa-dot-circle-o text-success"></i>
+                                            Completed</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td>
+                                <div class="leave-action text-center">
+                                    
+                                    <a href="assets/pdf/Leave_settlement1.pdf" class="payslip-print"><button class="btn btn-sm btn-primary payslip-print"><i class="fa fa-print"></i></button>
+                                    </a>
+                                </div>
+                            </td> -->
+                            
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_leavetype" (click)="edit(leaveType.id)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_leavetype" (click)="tempId = leaveType.id"><i class="fa fa-trash-o m-r-5"></i>
+                                            Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            
+                            <td>Vijay1</td>
+                            <td>13-May-21</td>
+                            <td>0</td>
+                            <td>20000,00</td>
+                            <!-- <td class="text-center">0</td> -->
+                            <td class="text-center">
+                                <div class="dropdown action-label">
+                                    <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle penShowHideDrop2"
+                                        data-toggle="dropdown" aria-expanded="false"><i
+                                            class="fa fa-dot-circle-o text-danger"></i>Pending </a>
+                                            <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle comShowDrop2"
+                                        data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i>Completed</a>
+                                            
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item penShowHide2"><i class="fa fa-dot-circle-o text-danger"></i>
+                                            Pending</a>
+                                        <a class="dropdown-item comShowHide2"><i class="fa fa-dot-circle-o text-success"></i>
+                                            Completed</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td>
+                                <div class="leave-action text-center">
+                                    
+                                    <a href="assets/pdf/Leave_settlement1.pdf" class="payslip-print2"><button class="btn btn-sm btn-primary payslip-print2"><i class="fa fa-print"></i></button></a>
+                                </div>
+                            </td> -->
+                            
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#edit_leavetype" (click)="edit(leaveType.id)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item"  data-toggle="modal"
+                                            data-target="#delete_leavetype" (click)="tempId = leaveType.id"><i class="fa fa-trash-o m-r-5"></i>
+                                            Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Leavetype Modal -->
+    <div id="add_leave_settlement" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1200px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Full & Final Settlement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="col-md-6 m-b-20">
+                                <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                                <ul class="list-unstyled mb-0">
+                                    <li>Leto Systems Pvt.Ltd</li>
+                                    <li>No.47. 1st Floor</li>
+                                    <li>Prestige Tower,Haddows Road,</li>
+                                    <li>Nungamabakkam, Chennai - 600006</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-6 m-b-20">
+                        <div class="invoice-details">
+                            <h3 class="text-uppercase">Payslip #49029</h3>
+                            <ul class="list-unstyled">
+                                <li>Salary Month: <span>March, 2019</span></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- <div class="row">
+                    <div class="col-lg-12 m-b-20">
+                        <ul class="list-unstyled">
+                            <li>
+                                <h5 class="mb-0"><strong>John Doe</strong></h5>
+                            </li>
+                            <li><span>Web Designer</span></li>
+                            <li>Employee ID: FT-0009</li>
+                            <li>Joining Date: 1 Jan 2013</li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="modal-body">
+                    <form (ngSubmit)="addLeave()" [formGroup]="addLeaveType">
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <div clss="select form-group">
+                                    <label>Name of the Employee <span class="text-danger">*</span></label>
+                                    <select class="form-control" type="text">
+                                        <option>--Select--</option>
+                                        <option>John Deo</option>
+                                        <option>Amalesh</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee ID</label>
+                                    <br>
+                                    <b>0001</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <br>
+                                    <b>0</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <br>
+                                    <b>0</b>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>F&F Date<span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker " placeholder="F&F Date" type="text" bsDatepicker>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Joining Date</label>
+                                    <br>
+                                    <b>13-May-21</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date of Resignation</label>
+                                    <br>
+                                    <b>13-May-22</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date of Leaving</label>
+                                    <br>
+                                    <b>13-May-21</b>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <!-- <thead>
+                                        <tr>
+                                            <th>Earnings</th>
+                                            <th>Actual</th>
+                                            <th>Earned</th>
+                                        </tr>
+                                    </thead> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>Name of the Employee</td>
+                                            <td>
+                                                <div>
+                                                    <select class="select form-control" type="text">
+                                                        <option>--Select--</option>
+                                                        <option>John Deo</option>
+                                                        <option>Amalesh</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>F&F Date</td>
+                                            <td>
+                                                <div class="cal-icon">
+                                                    <input class="form-control datetimepicker " placeholder="F&F Date" type="text" bsDatepicker>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Employee ID</td>
+                                            <td>
+                                                001
+                                            </td>
+                                            <td>Joining Date</td>
+                                            <td>
+                                                13-May-21
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Designation</td>
+                                            <td>
+                                                0
+                                            </td>
+                                            <td>Date of Resignation</td>
+                                            <td>
+                                                0
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Department</td>
+                                            <td>
+                                                0
+                                            </td>
+                                            <td>Date of Leaving</td>
+                                            <td>
+                                                13-May-21
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="card-title mb-0" style="text-align: center;padding: 12px;font-size: 16px;">Gratuity particulars</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4  class="card-title mb-0" style="text-align: center;padding: 12px;font-size: 16px;">Leave particulars</h4>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <!-- <thead>
+                                        <tr>
+                                            <th><label style="text-align: center;">Gratuity particulars</label></th>
+                                            <th></th>
+                                            <th><label style="text-align: center;">Leave particulars</label></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>Total Working Days</td>
+                                            <td>
+                                                10
+                                            </td>
+                                            <td>Available Leaves</td>
+                                            <td>
+                                                10
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Adjusted Working Days</td>
+                                            <td>
+                                                <input class="form-control " placeholder="Payable Gratuity Days" type="number">
+                                            </td>
+                                            <td>Adjusted Leaves</td>
+                                            <td>
+                                                <input class="form-control " placeholder="Payable Leave Days" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payable Gratuity Days</td>
+                                            <td>
+                                                0
+                                            </td>
+                                            <td>Payable Leave Days</td>
+                                            <td>
+                                                0
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                       
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="modal-title">Gratuity particulars</h5>
+                                <br>
+                                <div class="form-group">
+                                    <label>Total Working Days</label>
+                                    <br>
+                                    <b>10</b>
+                                </div>
+                                <div class="select form-group">
+                                    <label>Adjusted Working Days </label>
+                                    <input class="form-control" type="number" placeholder="Adjusted Working Days" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Payable Gratuity Days</label>
+                                    <br>
+                                    <b>10</b>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="modal-title">Leave particulars</h5>
+                                <br>
+                                <div class="form-group">
+                                    <label>Available Leaves</label>
+                                    <br>
+                                    <b>0</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Adjusted Leaves</label>
+                                    <input class="form-control" placeholder="Adjusted Leaves" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Payable Leave Days</label>
+                                    <br>
+                                    <b>10</b>
+                                </div>
+                            </div>
+                        </div> -->
+                        <br>
+                        <div class="row">
+                            <!-- <div class="col-md-6">
+                                <h5 class="modal-title">Salary particulars</h5>
+                                <br>
+                                <div class="select form-group">
+                                    <label>Total Day in the month </label>
+                                    <br>
+                                    <b>31</b>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="modal-title">For the month</h5>
+                                <br>
+                                <div class="form-group">
+                                    <label>Paid days</label>
+                                    <br>
+                                    <b>30</b>
+                                </div>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <!-- <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card-header">
+                                                <h4 class="card-title mb-0" style="text-align: center;"></h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card-header">
+                                                <h4 class="card-title mb-0" style="text-align: center;"></h4>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Salary particulars</b></th>
+                                                    <th><b>For the Month</b></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Total Day in the Month</b></td>
+                                                    <td><b>Paid Days</b></td>
+                                                    <td><b>30</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Earnings</b></td>
+                                                    <td><b>Actual</b></td>
+                                                    <td><b>Earned</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Basic Salary</td>
+                                                    <td>15000</td>
+                                                    <td>14516</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>HRA</td>
+                                                    <td>6000</td>
+                                                    <td>5806</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Conveyance Allowance</td>
+                                                    <td>1600</td>
+                                                    <td>1548</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Medical Allowances</td>
+                                                    <td>1250</td>
+                                                    <td>1210</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Special allowances</td>
+                                                    <td>6150</td>
+                                                    <td>5952</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Others</td>
+                                                    <td></td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Total</b></td>
+                                                    <td><b>30000</b></td>
+                                                    <td><b>29032</b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0" style="text-align: center;font-size: 16px;">Less Deductions (-)</h4>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-0">
+                                            <!-- <thead>
+                                                <tr>
+                                                    <td>EPF</td>
+                                                    <td></td>
+                                                    <td>1742</td>
+                                                </tr>
+                                            </thead> -->
+                                            <tbody>
+                                                <tr>
+                                                    <td>EPF</td>
+                                                    <td></td>
+                                                    <td>1742</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Medical Insurance</td>
+                                                    <td></td>
+                                                    <td>500</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Professional Tax</td>
+                                                    <td></td>
+                                                    <td>200</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Salary advance</td>
+                                                    <td></td>
+                                                    <td>1548</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Notice pay</td>
+                                                    <td></td>
+                                                    <td>1210</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Others</td>
+                                                    <td></td>
+                                                    <td>5952</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td><b>Total Deductions</b></td>
+                                                    <td><b></b></td>
+                                                    <td><b>2442</b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0" style="text-align: center;font-size: 16px;">Other Earnings</h4>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-0">
+                                            <!-- <thead>
+                                                <tr>
+                                                    <td>EPF</td>
+                                                    <td></td>
+                                                    <td>1742</td>
+                                                </tr>
+                                            </thead> -->
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>Eligibility Period</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Leave encashment ( Days)</td>
+                                                    <td>20</td>
+                                                    <td>10000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Gratuity (Years)</td>
+                                                    <td>5</td>
+                                                    <td>43269</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Incentives if any</td>
+                                                    <td></td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Others</td>
+                                                    <td></td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Total</b></td>
+                                                    <td></td>
+                                                    <td><b>53269</b></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td><b>Net Payable (Rs)</b></td>
+                                                    <td><b></b></td>
+                                                    <td><b>79860</b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <!-- <div class="card-header">
+                                        <h4 class="card-title mb-0">Amount in Words</h4>
+                                    </div> -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-0">
+                                            <!-- <thead>
+                                                <tr>
+                                                    <td>EPF</td>
+                                                    <td></td>
+                                                    <td>1742</td>
+                                                </tr>
+                                            </thead> -->
+                                            <tbody>
+                                                <tr>
+                                                    <td>Amount in Words</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><br><br></td>
+                                                    <td><br><br></td>
+                                                    <td><br><br></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>PreparedBy</b></td>
+                                                    <td><b>Verified By</b></td>
+                                                    <td><b>Approved By</b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <!-- <div class="card-header">
+                                        <h4 class="card-title mb-0">Amount in Words</h4>
+                                    </div> -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <td style="text-align:center;"><b>Declaration</b></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <h5 style="display:flex;">
+                                                            <p style="position: relative;top: 21px;">I </p><input class="form-control" style="width:250px;border:none;border-bottom: 2px solid #ccc;background-color: #80808000;padding-top: 24px;">
+                                                            <p style="position: relative;top: 21px;">, received full and final settlement of my account with the ocmpany and confirm that nothing is due from company</p>
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Leavetype Modal -->
+
+</div>
+<!--/Page Content-->

@@ -1,0 +1,170 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Invoices</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Invoices</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <button class="btn btn-md btn-primary" style="border-radius: 5px;"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print</button>
+                &nbsp;
+                <button class="btn btn-md btn-danger get-pdf" style="border-radius: 5px;"><i class="fa fa-file-pdf-o"></i> Export to Pdf</button>
+                &nbsp;
+                <button class="btn btn-md btn-success exceller" style="border-radius: 5px;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                &nbsp;
+                <button routerLink = "/accounts/create-invoice" class="btn btn-primary"><i class="fa fa-plus"></i> Create Invoice</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Search Filter -->
+    <div class="row filter-row">
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus">
+                <div class="cal-icon">
+                    <input class="form-control floating datetimepicker"  type="text" bsDatepicker type="text" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }" (bsValueChange)="searchFromDate($event)">
+                </div>
+                <label class="focus-label">From</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus">
+                <div class="cal-icon">
+                    <input class="form-control floating datetimepicker" type="text" bsDatepicker type="text" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  returnFocusToInput: true }" (bsValueChange)="searchToDate($event)">
+                </div>
+                <label class="focus-label">To</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group form-focus select-focus">
+                <select class="select form-control" (input)="searchStatus($event.target.value)">
+                    <option value = ''>Select Status</option>
+                    <option value = "Pending">Pending</option>
+                    <option value = "Paid">Paid</option>
+                    <option value = "Partially Paid">Partially Paid</option>
+                </select>
+                <label class="focus-label">Status</label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <a  class="btn btn-success btn-block"> Search </a>
+        </div>
+    </div>
+    <!-- /Search Filter -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive print-box" id="print-section">
+                <h3 class="page-title prt-header text-center">Invoices</h3>    
+                <div class="row printClass">
+                    <div class="col-sm-6 m-b-20">
+                        <img src="assets/img/login-logo.png" class="inv-logo" alt="">
+                        <ul class="list-unstyled mb-0">
+                            <li>Leto Systems Pvt.Ltd</li>
+                            <li>No.47. 1st Floor</li>
+                            <li>Prestige Tower,Haddows Road,</li>
+                            <li>Nungamabakkam, Chennai - 600006</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped nowrap custom-table mb-0"  id="pdfSection">
+                    <div style="display:none;">
+                        <h3 style="font-weight:bold;">LetoSys Pvt Lt</h3>
+                        <h3>No:47, 1st Floor, </h3>
+                        <h3>Prestige Tower,Haddows Road,</h3>
+                        <h3>Nungamabakkam,Chennai - 600006</h3>
+                        <h3 class="text-center">Invoices</h3>
+                        <!-- <colgroup align="center"></colgroup> -->
+                    </div>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Invoice Number</th>
+                            <th>Client</th>
+                            <th>Created Date</th>
+                            <th>Due Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <!-- <th class="text-center prt">Print</th> -->
+                            <th class="text-right prt">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let invoice of invoices;let i=index;">
+                            <td>{{i+1}}</td>
+                            <td><a routerLink = "/accounts/invoice-view">{{invoice.number}}</a></td>
+                            <td>{{invoice.client}}</td>
+                            <td>{{invoice.invoice_date | customDate}}</td>
+                            <td>{{invoice.due_date | customDate}}</td>
+                            <td>{{invoice.grandTotal}}</td>
+                            <td class="text-center">
+                                <span class="badge bg-inverse-success">{{invoice.status}}</span>
+                            </td>
+                            <!-- <td class="prt">
+                                <div class="leave-action text-center">
+                                    <button class="btn btn-sm btn-primary payslip-print2"  printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i></button>
+                                </div>
+                            </td> -->
+                            <td class="text-right prt">
+                                <div class="dropdown dropdown-action">
+                                    <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" routerLink = "/accounts/edit-invoice" [queryParams]="{id: invoice.id}"><i
+                                                class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item" routerLink = "/accounts/edit-invoice" [queryParams]="{id: invoice.id}"><i
+                                                class="fa fa-eye m-r-5"></i> View</a>
+                                        <a class="dropdown-item" ><i class="fa fa-file-pdf-o m-r-5"></i>
+                                            Download</a>
+                                        <a class="dropdown-item"  data-toggle="modal" (click)="deleteInvoice(invoice)" data-target="#delete_estimate"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr *ngIf="invoices.length === 0">
+                            <td colspan="10">
+                                <h5 style="text-align: center;">No data found</h5>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!-- Delete Estimate Modal -->
+<div class="modal custom-modal fade" id="delete_estimate" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Invoice</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a (click)="delete()"  class="btn btn-primary continue-btn" data-dismiss="modal">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Estimate Modal -->

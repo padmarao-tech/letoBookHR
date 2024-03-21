@@ -1,0 +1,232 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title" *ngIf="!id">Generate Payroll process</h3>
+                <h3 class="page-title" *ngIf="id">Edit Timesheet</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink = "/payroll/payroll-process">Back</a></li>
+                    <li class="breadcrumb-item active">Generate Payroll process</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div id="sp-div" class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12 text-center">
+               <div class="green">
+                <label for="Month">Month:</label>
+                <input class="form-control datetimepicker" [(ngModel)]="tmonth"  bsDatepicker type="number"
+                [bsConfig]="{ dateInputFormat: 'MM',  returnFocusToInput: true }">
+               
+                </div>
+             </div>
+             <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12  text-center">
+               <div class="green">
+                <label for="Year">Year:</label>
+                <input class="form-control datetimepicker" [(ngModel)]="tyear"  bsDatepicker type="number"
+                [bsConfig]="{ dateInputFormat: 'YYYY',  returnFocusToInput: true }">
+               </div>
+             </div>
+             <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12  text-center">
+               <div class="green">
+                <button (click)="run_salary_proc()" class="btn btn-primary"><i class="fa fa-plus"></i> Process Salary</button>
+                 </div>
+             </div>
+        </div>
+      
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+    <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+               style="width:100%" class="table table-bordered table-striped mb-0" id="pdfSection">
+              
+                <thead> 
+                    <tr>
+                        <th>ID#</th>
+                        <th>Name</th>
+                        <th>Allocate Hrs</th>
+                        <th>Worked Hrs</th>
+                        <th>Worked OThrs</th>
+                        <th>Gross salary</th>
+                        <th>Deduction</th>
+                        <th>Rate/PerHr</th>
+                        <th>Basic</th>
+                        <th>Hra</th>
+                        <th>Da</th>
+                        <th>Conve.</th>
+                        <th>Allowance</th>
+                        <th>M.Allowance</th>
+                        <th>Others</th>
+                        <th>C.Basic</th>
+                        <th>C.Hra</th>
+                        <th>C.Da</th>
+                        <th>C.Conve.</th>
+                        <th>C.Allo.</th>
+                        <th>C.Me.Allo.</th>
+                        <th>C.Others</th>
+                        <th>tds</th>
+                        <th>esi</th>
+                        <th>PF</th>
+                        <th>loan</th>
+                        <th>Addition</th>
+                        <th>Month Deduct.</th>
+                        <th>Net Earning</th>
+                        <th>Net Dedcut</th>
+                        <th>Net Salary</th>
+                        
+                        <!-- <th class="text-center prt">Print</th> -->
+                        <th class="text-right prt">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of viewsalaryprocesslist">
+                        <td>{{item.empmaster_uid}}</td>
+                        <td>{{item.empname}}</td>
+                        <td>{{item.totalhrs}}</td>
+                        <td>{{item.normalhrs}}</td>
+                        <td>{{item.othrs}}</td>
+                        <td>{{item.grosssalary}}</td>
+                        <td>{{item.salarydeduct}}</td>
+                        <td>{{item.perhrrate|number:'1.2-2'}}</td>
+                        <td>{{item.basic}}</td>
+                        <td>{{item.hra}}</td>
+                        <td>{{item.da}}</td>
+                        <td>{{item.conveyance}}</td>
+                        <td>{{item.allowance}}</td>
+                        <td>{{item.medicalallowance}}</td>
+                        <td>{{item.others}}</td>
+                        <td>{{item.cbasic}}</td>
+                        <td>{{item.chra}}</td>
+                        <td>{{item.cda}}</td>
+                        <td>{{item.cconveyance}}</td>
+                        <td>{{item.callowance}}</td>
+                        <td>{{item.cmedicalallowance}}</td>
+                        <td>{{item.cothers}}</td>
+                        <td>{{item.dts}}</td>
+                        <td>{{item.esi}}</td>
+                        <td>{{item.pf}}</td>
+                        <td>{{item.loanAmount}}</td>
+                        <td>{{item.addition}}</td>
+                        <td>{{item.deduction}}</td>
+                        <td>{{item.totalsalary}}</td>
+                        <td>{{item.netdeduction}}</td>
+                        <td>{{item.netsalary}}</td>
+                        
+                          <td class="text-right prt">
+                            <div class="dropdoempmaster_uidwn dropdown-action">
+                                <a  class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item"  data-toggle="modal"
+                                        data-target="#get_timesheetdetail" (click)="viewtimesheet(item.empmaster_uid)"><i
+                                            class="fa fa-pencil m-r-5"></i> Get Details</a>
+                                    <a class="dropdown-item"  data-toggle="modal"
+                                        data-target="#delete_emptimesheet" (click)="tempId = item.empmaster_uid"><i
+                                            class="fa fa-trash-o m-r-5"></i>
+                                        Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
+</div>
+                <div class="submit-section" *ngIf="!id">
+                    <button class="btn btn-primary submit-btn m-r-10" (click)="savesend()">Save & Send</button>
+                    <button class="btn btn-primary submit-btn" (click)="savesend()">Save</button>
+                </div>
+                <div class="submit-section" *ngIf="id">
+                    <button class="btn btn-primary submit-btn">Save</button>
+                </div>
+           
+      
+    </div>
+</div>
+<!-- /Page Content -->
+
+<!--view employee details-->
+<div id="get_timesheetdetail" class="modal custom-modal fade" role="dialog">
+    
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View Employee Timehseet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+  <div class="modal-body">
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive print-box" id="print-section">
+            <h3 class="page-title prt-header text-center">Timesheet details</h3>    
+                <!-- -->
+                <table id="tblsalarymaster" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                class="table table-striped custom-table mb-0 datatable">
+                     <thead>
+                    <tr>
+                        <th>Date </th>
+                        <td>L.Type</td>
+                        <th>T.Hrs </th>
+                        <th>N.Hrs </th>
+                        <th>OT Hrs </th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of viewemplist;let i = index">
+                        <th>{{row.dates  | date :  "dd-MM-y" }} </th>
+                        <td>{{row.leavetype_code}}</td>
+                        <td>{{row.totalhrs}}</td>
+                        <td>{{row.normalhrs}}</td>
+                        <td>{{row.othrs}} </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  <!--
+    <div class="leave-action">
+        <button class="btn btn-sm btn-primary"  (click)="insertheaderanddetails()"><i class="fa fa-plus"></i>Update and save</button>
+    </div>
+    -->
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<!--End of view employee details-->
+
+ <!-- Delete Department Modal -->
+ <div class="modal custom-modal fade" id="delete_emptimesheet" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete employee</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="deletetimesheet()">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- /Delete Department Modal -->
