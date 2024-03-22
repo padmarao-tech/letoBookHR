@@ -46,7 +46,10 @@
               "node_modules/morris.js/morris.js",
               "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"
               
-            ]
+            ],
+            "allowedCommonJsDependencies": [
+              "date-fns"
+           ]
           },
           "configurations": {
             "production": {

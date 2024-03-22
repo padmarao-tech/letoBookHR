@@ -1,9 +1,8 @@
 import { Component, OnInit, HostListener, NgZone } from '@angular/core';
 
 @Component({
-  selector: 'app-apps',
+  // selector: 'app-apps',
   templateUrl: './apps.component.html',
-  styleUrls: ['./apps.component.css']
 })
 
 @HostListener('window: resize', ['$event'])
